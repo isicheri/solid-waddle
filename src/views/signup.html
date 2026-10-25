@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Banking Access | Lumen Aether Bank (LAFP)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/css/auth.css">
+</head>
+
+<body>
+
+    <!-- Top Secure Header -->
+    <header class="auth-header">
+        <a href="/" class="brand-logo" title="Back to Homepage">
+            <div class="logo-icon">LAFP</div>
+        </a>
+
+        <div class="security-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            </svg>
+            <!-- <span>256-Bit TLS Bank Security</span> -->
+        </div>
+    </header>
+
+    <!-- Main Auth Card -->
+    <main class="auth-wrapper">
+        <div class="auth-card">
+
+            <!-- Tab Switcher -->
+            <div class="auth-tabs" role="tablist">
+                <button type="button" id="tab-login" class="tab-btn active" role="tab" aria-selected="true"
+                    onclick="switchTab('login')">
+                    Sign In
+                </button>
+                <button type="button" id="tab-signup" class="tab-btn" role="tab" aria-selected="false"
+                    onclick="switchTab('signup')">
+                    Open Account
+                </button>
+            </div>
+
+            <!-- LOGIN PANEL -->
+            <section id="panel-login" class="form-panel active" aria-labelledby="tab-login">
+                <div class="panel-header">
+                    <h1 class="panel-title">Welcome Back</h1>
+                    <p class="panel-subtitle">Access your protected bank accounts and assets</p>
+                </div>
+
+                <form id="form-login" onsubmit="handleLogin(event)" novalidate>
+                    <div class="form-group">
+                        <label class="form-label" for="login-email">Registered Email</label>
+                        <div class="input-container">
+                            <span class="input-icon">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path
+                                        d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                                    <polyline points="22,6 12,13 2,6" />
+                                </svg>
+                            </span>
+                            <input type="email" id="login-email" class="form-input" placeholder="name@domain.com"
+                                required autocomplete="email">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="login-password">Password</label>
+                        <div class="input-container">
+                            <span class="input-icon">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                                    <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                                </svg>
+                            </span>
+                            <input type="password" id="login-password" class="form-input"
+                                placeholder="Enter your password" required autocomplete="current-password">
+                            <button type="button" class="toggle-password"
+                                onclick="togglePasswordVisibility('login-password', this)" title="Toggle password view">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                                    <circle cx="12" cy="12" r="3" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form-options">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="remember-device" class="custom-checkbox" checked>
+                            <span>Remember this device</span>
+                        </label>
+                        <a href="javascript:void(0)"
+                            onclick="showToast('For security reasons, contact bank support to reset credentials.', 'info')"
+                            class="link-gold">Forgot password?</a>
+                    </div>
+
+                    <button type="submit" id="btn-login-submit" class="btn-submit">
+                        <span class="btn-text">Authenticate & Sign In</span>
+                        <div class="spinner" id="login-spinner"></div>
+                    </button>
+                </form>
+            </section>
+
+            <!-- SIGNUP PANEL -->
+            <section id="panel-signup" class="form-panel" aria-labelledby="tab-signup">
+                <div class="panel-header">
+                    <h1 class="panel-title">Create Bank Account</h1>
+                    <p class="panel-subtitle">Instant setup with checking, savings & crypto yield</p>
+                </div>
+
+                <form id="form-signup" onsubmit="handleSignup(event)" novalidate>
+                    <div class="form-group">
+                        <label class="form-label" for="signup-fullname">Full Legal Name</label>
+                        <div class="input-container">
+                            <span class="input-icon">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                                    <circle cx="12" cy="7" r="4" />
+                                </svg>
+                            </span>
+                            <input type="text" id="signup-fullname" class="form-input"
+                                placeholder="e.g. Alexander Vance" required autocomplete="name">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="signup-email">Email Address</label>
+                        <div class="input-container">
+                            <span class="input-icon">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path
+                                        d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                                    <polyline points="22,6 12,13 2,6" />
+                                </svg>
+                            </span>
+                            <input type="email" id="signup-email" class="form-input" placeholder="alexander@domain.com"
+                                required autocomplete="email">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="signup-phone">Phone Number</label>
+                        <div class="input-container">
+                            <span class="input-icon">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path
+                                        d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                                </svg>
+                            </span>
+                            <input type="tel" id="signup-phone" class="form-input" placeholder="+1 (555) 019-2834"
+                                required autocomplete="tel">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="signup-password">Secure Password</label>
+                        <div class="input-container">
+                            <span class="input-icon">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                                    <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                                </svg>
+                            </span>
+                            <input type="password" id="signup-password" class="form-input"
+                                placeholder="Create robust password" required
+                                oninput="evaluatePasswordStrength(this.value)">
+                            <button type="button" class="toggle-password"
+                                onclick="togglePasswordVisibility('signup-password', this)"
+                                title="Toggle password view">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                                    <circle cx="12" cy="12" r="3" />
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="password-strength-con">
+                            <div class="strength-bar-bg">
+                                <div id="strength-fill" class="strength-bar-fill"></div>
+                            </div>
+                            <div class="strength-text">
+                                <span id="strength-label">Security score: Enter password</span>
+                                <span>Min 6 characters</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-options">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="terms-agree" class="custom-checkbox" required checked>
+                            <span>I accept <a href="#" class="link-gold">Terms of Banking</a> & Privacy</span>
+                        </label>
+                    </div>
+
+                    <button type="submit" id="btn-signup-submit" class="btn-submit">
+                        <span class="btn-text">Open Protected Account</span>
+                        <div class="spinner" id="signup-spinner"></div>
+                    </button>
+                </form>
+            </section>
+
+            <!-- Bottom Security Guarantee -->
+            <!-- <div class="security-guarantee">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                </svg>
+                <span>Insured & Protected by Cryptographic Vault Protocol</span>
+            </div> -->
+
+        </div>
+    </main>
+
+    <!-- Toast Notifications Area -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <!-- Footer -->
+    <footer class="auth-footer">
+        © 2018–2026 Lumen Aether Bank (LAFP). Authorized & Regulated Banking Infrastructure.
+    </footer>
+
+    <!-- Logic Script -->
+    <script>
+        // Check URL Query Parameters (e.g. ?tab=signup or ?tab=login)
+        window.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const requestedTab = params.get('tab');
+            if (requestedTab === 'signup') {
+                switchTab('signup');
+            } else {
+                switchTab('login');
+            }
+        });
+
+        // Tab Switcher
+        function switchTab(tab) {
+            const loginTab = document.getElementById('tab-login');
+            const signupTab = document.getElementById('tab-signup');
+            const loginPanel = document.getElementById('panel-login');
+            const signupPanel = document.getElementById('panel-signup');
+
+            if (tab === 'signup') {
+                signupTab.classList.add('active');
+                loginTab.classList.remove('active');
+                signupPanel.classList.add('active');
+                loginPanel.classList.remove('active');
+            } else {
+                loginTab.classList.add('active');
+                signupTab.classList.remove('active');
+                loginPanel.classList.add('active');
+                signupPanel.classList.remove('active');
+            }
+        }
+
+        // Toggle Password Show/Hide
+        function togglePasswordVisibility(inputId, btn) {
+            const input = document.getElementById(inputId);
+            if (input.type === 'password') {
+                input.type = 'text';
+                btn.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>`;
+            } else {
+                input.type = 'password';
+                btn.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>`;
+            }
+        }
+
+        // Password Strength Evaluator
+        function evaluatePasswordStrength(val) {
+            const fill = document.getElementById('strength-fill');
+            const label = document.getElementById('strength-label');
+            if (!val) {
+                fill.style.width = '0%';
+                label.innerText = 'Security score: Enter password';
+                return;
+            }
+
+            let score = 0;
+            if (val.length >= 6) score += 25;
+            if (val.length >= 10) score += 25;
+            if (/[A-Z]/.test(val) && /[a-z]/.test(val)) score += 25;
+            if (/[0-9]/.test(val) && /[^A-Za-z0-9]/.test(val)) score += 25;
+
+            fill.style.width = score + '%';
+            if (score <= 25) {
+                fill.style.backgroundColor = '#ef4444';
+                label.innerText = 'Security score: Weak';
+                label.style.color = '#ef4444';
+            } else if (score <= 50) {
+                fill.style.backgroundColor = '#f59e0b';
+                label.innerText = 'Security score: Moderate';
+                label.style.color = '#f59e0b';
+            } else if (score <= 75) {
+                fill.style.backgroundColor = '#06b6d4';
+                label.innerText = 'Security score: Strong';
+                label.style.color = '#06b6d4';
+            } else {
+                fill.style.backgroundColor = '#10b981';
+                label.innerText = 'Security score: Vault-Grade Unhackable';
+                label.style.color = '#10b981';
+            }
+        }
+
+        // Toast Notifications
+        function showToast(message, type = 'info') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = `toast toast-${type}`;
+
+            let icon = '';
+            if (type === 'success') {
+                icon = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>`;
+            } else if (type === 'error') {
+                icon = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>`;
+            } else {
+                icon = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>`;
+            }
+
+            toast.innerHTML = `<div>${icon}</div><div>${message}</div>`;
+            container.appendChild(toast);
+
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transform = 'translateX(40px)';
+                toast.style.transition = 'all 0.3s ease';
+                setTimeout(() => toast.remove(), 300);
+            }, 4500);
+        }
+
+        // Handle Login Submission
+        async function handleLogin(e) {
+            e.preventDefault();
+            const email = document.getElementById('login-email').value.trim();
+            const password = document.getElementById('login-password').value;
+            const submitBtn = document.getElementById('btn-login-submit');
+            const spinner = document.getElementById('login-spinner');
+            const btnText = submitBtn.querySelector('.btn-text');
+
+            if (!email || !password) {
+                showToast('Please provide your email and password.', 'error');
+                return;
+            }
+
+            try {
+                submitBtn.disabled = true;
+                spinner.style.display = 'block';
+                btnText.innerText = 'Verifying Credentials...';
+
+                const response = await fetch('/app/auth/signin', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.error || 'Authentication failed');
+                }
+
+                showToast('Signed in successfully! Opening dashboard...', 'success');
+                if (data.token) {
+                    sessionStorage.setItem('bank_token', data.token);
+                    sessionStorage.setItem('bank_user', JSON.stringify(data.user));
+                }
+
+                setTimeout(() => {
+                    window.location.href = '/dashboard';
+                }, 1000);
+
+            } catch (err) {
+                showToast(err.message, 'error');
+            } finally {
+                submitBtn.disabled = false;
+                spinner.style.display = 'none';
+                btnText.innerText = 'Authenticate & Sign In';
+            }
+        }
+
+        // Handle Signup Submission
+        async function handleSignup(e) {
+            e.preventDefault();
+            const fullName = document.getElementById('signup-fullname').value.trim();
+            const email = document.getElementById('signup-email').value.trim();
+            const phoneNumber = document.getElementById('signup-phone').value.trim();
+            const password = document.getElementById('signup-password').value;
+            const agree = document.getElementById('terms-agree').checked;
+
+            const submitBtn = document.getElementById('btn-signup-submit');
+            const spinner = document.getElementById('signup-spinner');
+            const btnText = submitBtn.querySelector('.btn-text');
+
+            if (!agree) {
+                showToast('Please accept the banking terms to proceed.', 'error');
+                return;
+            }
+
+            if (!fullName || !email || !phoneNumber || !password) {
+                showToast('Please fill in all required fields.', 'error');
+                return;
+            }
+
+            if (password.length < 6) {
+                showToast('Password must be at least 6 characters long.', 'error');
+                return;
+            }
+
+            try {
+                submitBtn.disabled = true;
+                spinner.style.display = 'block';
+                btnText.innerText = 'Provisioning Bank Vault...';
+
+                const response = await fetch('/app/auth/signup', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ fullName, email, phoneNumber, password })
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    let errMsg = data.error || 'Registration failed';
+                    if (data.details && Array.isArray(data.details)) {
+                        errMsg = data.details.map(d => d.message).join('. ');
+                    }
+                    throw new Error(errMsg);
+                }
+
+                showToast('Account registered! Welcome to Lumen Aether Bank.', 'success');
+                if (data.token) {
+                    sessionStorage.setItem('bank_token', data.token);
+                    sessionStorage.setItem('bank_user', JSON.stringify(data.user));
+                }
+
+                setTimeout(() => {
+                    window.location.href = '/dashboard';
+                }, 1200);
+
+            } catch (err) {
+                showToast(err.message, 'error');
+            } finally {
+                submitBtn.disabled = false;
+                spinner.style.display = 'none';
+                btnText.innerText = 'Open Protected Account';
+            }
+        }
+    </script>
+</body>
+
+</html>

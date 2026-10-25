@@ -1,0 +1,113 @@
+// Prisma schema for Lumen Aether Bank (LAFP)
+// Designed for high-security banking requirements
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+enum IdentityDocumentType {
+  DRIVERS_LICENSE
+  US_PASSPORT
+  STATE_ID
+  PERMANENT_RESIDENT_CARD
+  OTHER
+}
+
+enum VerificationStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+model User {
+  id                      String                   @id @default(uuid())
+  email                   String                   @unique
+  fullName                String
+  username                String                   @unique
+  phoneNumber             String                   @unique
+  password                String // Hashed with bcrypt
+  role                    String                   @default("USER")
+  accountNumber           String                   @unique
+  balance                 Float                    @default(15840.50)
+  currency                String                   @default("USD")
+  emailVerified           Boolean                  @default(true)
+  failedLoginAttempts     Int                      @default(0)
+  lockedUntil             DateTime?
+  lastLoginAt             DateTime?
+  createdAt               DateTime                 @default(now())
+  updatedAt               DateTime                 @updatedAt
+  transactions            Transaction[]
+  accountVerificationData AccountVerificationData?
+}
+
+model Transaction {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  type      String // "CREDIT" | "DEBIT" | "TRANSFER"
+  title     String
+  category  String   @default("Banking")
+  amount    Float
+  recipient String?
+  status    String   @default("COMPLETED") // "COMPLETED" | "PENDING" | "FAILED"
+  createdAt DateTime @default(now())
+}
+
+model AccountVerificationData {
+  id String @id @default(uuid())
+
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  fullName String
+  address  String
+
+  card Card?
+
+  documentType     IdentityDocumentType?
+  documentFrontUrl String?
+  documentBackUrl  String?
+
+  verificationStatus VerificationStatus @default(PENDING)
+
+  bankTransferOption String @default("wire transfer")
+  accountHolderName  String
+  bankName           String
+  bankAddress        String
+  accountNumber      String
+  routingNumber      String
+
+  receiveMethod ReceiveMethod
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum CardType {
+  Visa
+  MasterCard
+}
+
+enum ReceiveMethod {
+  BANK_WIRE_TRANSFER
+  CARD_BASED_CREDIT_PUSH
+  CASH_COURIER_DELIVERY
+}
+
+model Card {
+  id                        String                  @id @default(uuid())
+  accountVerificationData   AccountVerificationData @relation(fields: [accountVerificationDataId], references: [id], onDelete: Cascade)
+  accountVerificationDataId String                  @unique
+  cardHolderName            String
+  cardNumber                String
+  cardType                  CardType
+  cardCvv                   String
+  cardExpiry                String
+  createdAt                 DateTime                @default(now())
+  updatedAt                 DateTime                @updatedAt
+}
