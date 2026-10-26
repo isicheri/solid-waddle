@@ -8,16 +8,22 @@
     --bg-surface: #ffffff;
     --bg-surface-elevated: #f9fafb;
     --border-subtle: #e5e7eb;
-    --border-highlight: orange;
+    --border-highlight: #22c55e;
 
     --text-primary: #111111;
     --text-secondary: #4b5563;
     --text-muted: #6b7280;
 
-    --color-orange: orange;
-    --color-orange-dark: #ea580c;
-    --color-orange-light: #fff7ed;
-    --color-orange-border: #fed7aa;
+    --color-green: #22c55e;
+    --color-green-dark: #15803d;
+    --color-green-light: #f0fdf4;
+    --color-green-border: #bbf7d0;
+
+    /* Aliased for full backwards compatibility across existing elements */
+    --color-orange: #22c55e;
+    --color-orange-dark: #15803d;
+    --color-orange-light: #f0fdf4;
+    --color-orange-border: #bbf7d0;
     --color-emerald: #10b981;
     --color-emerald-soft: #ecfdf5;
     --color-danger: #ef4444;
@@ -495,7 +501,7 @@ body {
     border-radius: var(--radius-xl);
     padding: 28px;
     position: relative;
-    box-shadow: 0 8px 24px rgba(249, 115, 22, 0.08);
+    box-shadow: 0 8px 24px rgba(34, 197, 94, 0.12);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -752,11 +758,11 @@ body {
     border: none;
     color: #000000;
     font-weight: 700;
-    box-shadow: 0 4px 12px rgba(249, 115, 22, 0.2);
+    box-shadow: 0 4px 12px rgba(34, 197, 94, 0.25);
 }
 
 .btn-action-primary:hover {
-    background-color: #fb923c;
+    background-color: #16a34a;
     color: #000000;
 }
 
@@ -988,7 +994,7 @@ body {
 }
 
 .btn-modal-submit:hover {
-    background-color: #fb923c;
+    background-color: #16a34a;
 }
 
 /* Security Checklist Modal */
@@ -1390,7 +1396,7 @@ body {
 .modal-step input[type="text"]:focus,
 .modal-step select:focus {
     border-color: var(--color-orange);
-    box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.12);
+    box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.2);
 }
 
 .modal-step input[type="file"] {
@@ -1575,7 +1581,7 @@ body {
 }
 
 .verify-email-link:hover {
-    background: #ffedd5;
+    background: #dcfce7;
     text-decoration: underline;
 }
 
@@ -1621,7 +1627,7 @@ body {
     align-items: center;
     gap: 10px;
     background: #ffffff;
-    border: 1.5px solid #fed7aa;
+    border: 1.5px solid #bbf7d0;
     border-radius: var(--radius-sm);
     padding: 8px 12px;
 }

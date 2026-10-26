@@ -6,14 +6,14 @@
     --bg-page: #ffffff;
     --bg-card: #ffffff;
     --border-color: #e5e7eb;
-    --border-focus: #f97316;
+    --border-focus: #22c55e;
     
     --text-main: #111111;
     --text-muted: #6b7280;
     
-    --color-orange: #f97316;
-    --color-orange-hover: #ea580c;
-    --color-green: #10b981;
+    --color-orange: #22c55e;
+    --color-orange-hover: #16a34a;
+    --color-green: #22c55e;
     --color-danger: #ef4444;
     
     --font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -55,7 +55,7 @@ body {
 
 .logo-icon {
     padding: 8px 16px;
-    background-color: orange;
+    background-color: #22c55e;
     border-radius: 20px;
     font-weight: 900;
     font-size: 16px;
@@ -67,9 +67,9 @@ body {
     display: flex;
     align-items: center;
     gap: 6px;
-    background: #fff7ed;
-    border: 1px solid #fed7aa;
-    color: #c2410c;
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    color: #15803d;
     padding: 6px 14px;
     border-radius: 20px;
     font-size: 12px;
@@ -119,7 +119,7 @@ body {
 }
 
 .tab-btn.active {
-    background-color: orange;
+    background-color: #22c55e;
     color: #000000;
     font-weight: 700;
 }
@@ -257,14 +257,14 @@ body {
 }
 
 .custom-checkbox {
-    accent-color: orange;
+    accent-color: #22c55e;
     width: 16px;
     height: 16px;
     cursor: pointer;
 }
 
 .link-gold {
-    color: #ea580c;
+    color: #15803d;
     text-decoration: none;
     font-weight: 600;
 }
@@ -277,7 +277,7 @@ body {
 .btn-submit {
     width: 100%;
     height: 48px;
-    background-color: orange;
+    background-color: #22c55e;
     border: none;
     border-radius: 24px;
     color: #000000;
@@ -293,7 +293,7 @@ body {
 }
 
 .btn-submit:hover {
-    background-color: #fb923c;
+    background-color: #16a34a;
 }
 
 .btn-submit:active {
