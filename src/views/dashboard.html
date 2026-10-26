@@ -85,51 +85,145 @@
         <!-- Main Stats Grid -->
         <section class="stats-grid">
 
-            <!-- Obsidian Black Titanium Virtual Card -->
-            <div class="bank-card">
-                <div class="card-top">
-                    <span class="card-brand">LAFP Virtual Card</span>
-                    <div class="card-status-badge status-frozen" id="card-status-badge">
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2.5">
-                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-                        </svg>
-                        <span>Funds Locked</span>
-                    </div>
-
+            <!-- CIBC-Style Deposit Accounts Section -->
+            <div class="deposit-accounts-section">
+                <div class="deposit-section-header">
+                    <span class="deposit-section-title">DEPOSIT ACCOUNTS</span>
+                    <span class="deposit-section-count">2 Accounts</span>
                 </div>
 
-                <div class="card-middle">
-                    <div class="balance-label">Total Available Liquidity</div>
-                    <div class="card-balance">
-                        <span id="user-balance">$0.00</span>
-                        <span class="balance-currency" id="user-currency">USD</span>
-                    </div>
-                </div>
-
-                <div class="card-bottom">
-                    <div>
-                        <div class="balance-label">Account Number</div>
-                        <div class="account-num-con">
-                            <span class="account-num-text" id="user-account-num">•••• •••• •••• ••••</span>
-                            <button type="button" class="eye-toggle-btn" id="toggle-acc-btn"
-                                onclick="toggleAccountNumberVisibility()" title="Show account number"
-                                aria-label="Show account number">
-                                <svg class="eye-icon" width="16" height="16" viewBox="0 0 24 24" fill="none"
-                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                                    <circle cx="12" cy="12" r="3"></circle>
+                <!-- 1. Chequing Account Card -->
+                <div class="cibc-account-card chequing-account-card" id="cibc-chequing-card">
+                    <div class="cibc-card-top">
+                        <div class="cibc-card-meta">
+                            <h3 class="cibc-account-title">Chequing</h3>
+                            <div class="cibc-acc-num-row">
+                                <span class="cibc-acc-text" id="chequing-acc-num">•••• •••• •••• 9554</span>
+                                <button type="button" class="eye-toggle-btn mini-btn" id="toggle-cheq-btn"
+                                    onclick="toggleChequingVisibility()" title="Toggle account number visibility"
+                                    aria-label="Toggle account number">
+                                    <svg class="eye-icon" width="13" height="13" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                        <circle cx="12" cy="12" r="3"></circle>
+                                    </svg>
+                                </button>
+                                <button type="button" class="copy-btn mini-btn" onclick="copyChequingAcc()"
+                                    id="copy-cheq-btn" title="Copy Chequing account number">Copy</button>
+                            </div>
+                        </div>
+                        <div class="cibc-card-right">
+                            <div class="cibc-arrow-icon" onclick="openTransferModal()" title="Transfer from Chequing">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="9 18 15 12 9 6"></polyline>
                                 </svg>
-                            </button>
-                            <button type="button" class="copy-btn" onclick="copyAccountNumber()"
-                                id="copy-btn">Copy</button>
+                            </div>
                         </div>
                     </div>
-                    <div style="text-align: right;">
-                        <div class="balance-label">Account Holder</div>
-                        <div class="card-holder-name" id="user-holder-name">Loading...</div>
+
+                    <div class="cibc-balance-con">
+                        <span class="cibc-balance-amount" id="chequing-balance">$0.00</span>
+                        <span class="cibc-balance-currency" id="chequing-currency">USD</span>
+                    </div>
+
+                    <div class="cibc-card-bottom">
+                        <div class="cibc-bottom-left">
+                            <span class="badge-cibc-debit">DEBIT</span>
+                        </div>
+                        <div class="cibc-bottom-right">
+                            <button type="button" class="btn-cibc-action" onclick="openTransferModal()">
+                                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                                </svg>
+                                <span>Send money</span>
+                            </button>
+                            <button type="button" class="btn-cibc-more" onclick="openDepositModal()" title="Deposit details">
+                                <span>•••</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. Savings Account Card (Loaded with 500k gift & verification lock status) -->
+                <div class="cibc-account-card savings-account-card" id="cibc-savings-card">
+                    <div class="cibc-card-top">
+                        <div class="cibc-card-meta">
+                            <h3 class="cibc-account-title">Savings</h3>
+                            <div class="cibc-acc-num-row">
+                                <span class="cibc-acc-text" id="savings-acc-num">•••• •••• •••• 1082</span>
+                                <button type="button" class="eye-toggle-btn mini-btn" id="toggle-sav-btn"
+                                    onclick="toggleSavingsVisibility()" title="Toggle savings account number visibility"
+                                    aria-label="Toggle savings account number">
+                                    <svg class="eye-icon" width="13" height="13" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                        <circle cx="12" cy="12" r="3"></circle>
+                                    </svg>
+                                </button>
+                                <button type="button" class="copy-btn mini-btn" onclick="copySavingsAcc()"
+                                    id="copy-sav-btn" title="Copy Savings account number">Copy</button>
+                            </div>
+                        </div>
+                        <div class="cibc-card-right">
+                            <div class="card-status-badge status-frozen" id="card-status-badge" title="Click to verify account and unlock funds">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5">
+                                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                                </svg>
+                                <span>Funds Locked</span>
+                            </div>
+                            <div class="cibc-arrow-icon" id="savings-arrow-btn" title="View verification details">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="9 18 15 12 9 6"></polyline>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cibc-balance-con">
+                        <span class="cibc-balance-amount" id="savings-balance">$500,000.00</span>
+                        <span class="cibc-balance-currency">USD</span>
+                    </div>
+
+                    <div class="cibc-card-bottom">
+                        <div class="cibc-bottom-left">
+                            <span class="badge-cibc-apy">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 14 14"></polyline>
+                                </svg>
+                                <span>High-Yield 4.85% APY</span>
+                            </span>
+                        </div>
+                        <div class="cibc-bottom-right">
+                            <button type="button" class="btn-cibc-action" id="savings-action-btn">
+                                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                                </svg>
+                                <span>Verification</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. Total Deposit Accounts Summary Bar -->
+                <div class="cibc-total-bar">
+                    <span class="cibc-total-label">Total</span>
+                    <div class="cibc-total-val-con">
+                        <span class="cibc-total-val" id="total-deposit-balance">$500,000.00</span>
+                        <span class="cibc-total-info-icon" title="Combined total balance across all active deposit accounts">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="12" y1="16" x2="12" y2="12"></line>
+                                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                            </svg>
+                        </span>
                     </div>
                 </div>
             </div>
@@ -215,40 +309,7 @@
 
         </section>
 
-        <!-- Quick Action Buttons Strip -->
-        <section class="actions-strip">
-            <button class="btn-action btn-action-primary" onclick="openTransferModal()">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                    <line x1="22" y1="2" x2="11" y2="13" />
-                    <polygon points="22 2 15 22 11 13 2 9 22 2" />
-                </svg>
-                <span>Send Money / Transfer</span>
-            </button>
 
-            <button class="btn-action" onclick="openDepositModal()">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <line x1="12" y1="5" x2="12" y2="19" />
-                    <line x1="5" y1="12" x2="19" y2="12" />
-                </svg>
-                <span>Quick Deposit</span>
-            </button>
-
-            <!-- <button class="btn-action" onclick="openSecurityModal()">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                </svg>
-                <span>Vault Security Center</span>
-            </button> -->
-
-            <button class="btn-action" onclick="downloadStatement()">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                    <polyline points="7 10 12 15 17 10" />
-                    <line x1="12" y1="15" x2="12" y2="3" />
-                </svg>
-                <span>Export Statement</span>
-            </button>
-        </section>
 
         <!-- Recent Transactions Ledger -->
         <section class="transactions-card">
@@ -277,6 +338,11 @@
                     <label class="modal-label" for="recipient-account">Recipient 16-Digit Account Number</label>
                     <input type="text" id="recipient-account" class="modal-input" placeholder="e.g. 4012 9845 3210 9876"
                         required maxlength="19">
+                    <div style="margin-top: 6px; display: flex; gap: 8px;">
+                        <button type="button" class="mini-btn" style="background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; padding: 4px 10px; font-size: 11px; cursor: pointer; color: #1d4ed8; font-weight: 600;" onclick="quickFillSavingsAccount()">
+                            + Deposit to My Savings
+                        </button>
+                    </div>
                 </div>
 
                 <div class="modal-group">
@@ -628,19 +694,38 @@
             const initials = (currentUser.fullName || currentUser.username).split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
             document.getElementById('nav-avatar').innerText = initials;
             document.getElementById('welcome-header').innerText = `Welcome, ${currentUser.fullName}`;
-            document.getElementById('user-holder-name').innerText = currentUser.fullName.toUpperCase();
 
-            // Card Balance & Account Number
-            const formattedBalance = Number(currentUser.balance).toLocaleString('en-US', {
+            // Chequing & Savings Balances (Savings loaded with 500k gift)
+            const cheqBal = Number(currentUser.balance || 0);
+            const savBal = Number(currentUser.savingsBalance !== undefined && currentUser.savingsBalance !== null ? currentUser.savingsBalance : 500000);
+            const totalBal = cheqBal + savBal;
+            const currency = currentUser.currency || 'USD';
+
+            const formatMoney = (val) => Number(val).toLocaleString('en-US', {
                 style: 'currency',
-                currency: currentUser.currency || 'USD'
+                currency: currency
             });
-            document.getElementById('user-balance').innerText = formattedBalance;
-            document.getElementById('user-currency').innerText = currentUser.currency || 'USD';
 
-            // Card Account Number
-            updateAccountNumberDisplay();
-            document.getElementById('dep-account-num').innerText = currentUser.accountNumber || '';
+            // Chequing Card
+            const cheqEl = document.getElementById('chequing-balance');
+            if (cheqEl) cheqEl.innerText = formatMoney(cheqBal);
+            const cheqCurrEl = document.getElementById('chequing-currency');
+            if (cheqCurrEl) cheqCurrEl.innerText = currency;
+
+            // Savings Card
+            const savEl = document.getElementById('savings-balance');
+            if (savEl) savEl.innerText = formatMoney(savBal);
+
+            // Total Deposit Bar
+            const totalEl = document.getElementById('total-deposit-balance');
+            if (totalEl) totalEl.innerText = formatMoney(totalBal);
+
+            // Fallback for deposit modal
+            const depAccEl = document.getElementById('dep-account-num');
+            if (depAccEl) depAccEl.innerText = currentUser.accountNumber || '';
+
+            // Update Account Numbers Display
+            updateAccountNumbersDisplay();
 
             // Verification & Funds Lock Status
             updateVerificationStatusUI();
@@ -779,6 +864,21 @@
             document.getElementById('transfer-modal').classList.add('open');
         }
 
+        function quickFillSavingsAccount() {
+            const savAcc = (currentUser && currentUser.savingsAccountNumber)
+                ? currentUser.savingsAccountNumber
+                : (currentUser?.accountNumber ? '50' + currentUser.accountNumber.slice(2) : '');
+            if (!savAcc) {
+                showToast('Savings account not found');
+                return;
+            }
+            const input = document.getElementById('recipient-account');
+            if (input) {
+                input.value = savAcc;
+                showToast('Filled with your Savings account number');
+            }
+        }
+
         function openSecurityModal() {
             document.getElementById('security-modal').classList.add('open');
         }
@@ -861,71 +961,121 @@
             showToast('Statement downloaded.');
         }
 
-        // Account Number Visibility Toggle & Copy
-        let isAccountNumberVisible = false;
+        // Account Numbers Visibility & Copy Handlers (Chequing & Savings)
+        let isChequingVisible = false;
+        let isSavingsVisible = false;
 
-        function updateAccountNumberDisplay() {
-            const accEl = document.getElementById('user-account-num');
-            const toggleBtn = document.getElementById('toggle-acc-btn');
-            if (!accEl) return;
-
-            const rawAcc = (currentUser && currentUser.accountNumber) ? currentUser.accountNumber : '';
-            if (!rawAcc) {
-                accEl.innerText = '•••• •••• •••• ••••';
-                return;
+        function updateAccountNumbersDisplay() {
+            // 1. Chequing Account
+            const cheqAcc = (currentUser && currentUser.accountNumber) ? currentUser.accountNumber : '';
+            const cheqEl = document.getElementById('chequing-acc-num');
+            const toggleCheqBtn = document.getElementById('toggle-cheq-btn');
+            if (cheqEl && cheqAcc) {
+                const last4 = cheqAcc.slice(-4);
+                const formattedFull = cheqAcc.match(/.{1,4}/g)?.join(' ') || cheqAcc;
+                if (isChequingVisible) {
+                    cheqEl.innerText = formattedFull;
+                    if (toggleCheqBtn) {
+                        toggleCheqBtn.title = 'Hide Chequing account number';
+                        toggleCheqBtn.innerHTML = `
+                            <svg class="eye-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                                <line x1="1" y1="1" x2="23" y2="23"></line>
+                            </svg>
+                        `;
+                    }
+                } else {
+                    cheqEl.innerText = `•••• •••• •••• ${last4}`;
+                    if (toggleCheqBtn) {
+                        toggleCheqBtn.title = 'Show full Chequing account number';
+                        toggleCheqBtn.innerHTML = `
+                            <svg class="eye-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                <circle cx="12" cy="12" r="3"></circle>
+                            </svg>
+                        `;
+                    }
+                }
             }
 
-            const formattedFull = rawAcc.match(/.{1,4}/g)?.join(' ') || rawAcc;
-            const last4 = rawAcc.slice(-4);
-            const masked = `•••• •••• •••• ${last4}`;
-
-            if (isAccountNumberVisible) {
-                accEl.innerText = formattedFull;
-                if (toggleBtn) {
-                    toggleBtn.setAttribute('title', 'Hide account number');
-                    toggleBtn.setAttribute('aria-label', 'Hide account number');
-                    toggleBtn.innerHTML = `
-                        <svg class="eye-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
-                            <line x1="1" y1="1" x2="23" y2="23"></line>
-                        </svg>
-                    `;
-                }
-            } else {
-                accEl.innerText = masked;
-                if (toggleBtn) {
-                    toggleBtn.setAttribute('title', 'Show account number');
-                    toggleBtn.setAttribute('aria-label', 'Show account number');
-                    toggleBtn.innerHTML = `
-                        <svg class="eye-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                            <circle cx="12" cy="12" r="3"></circle>
-                        </svg>
-                    `;
+            // 2. Savings Account
+            const savAcc = (currentUser && currentUser.savingsAccountNumber)
+                ? currentUser.savingsAccountNumber
+                : (cheqAcc ? '50' + cheqAcc.slice(2) : '');
+            const savEl = document.getElementById('savings-acc-num');
+            const toggleSavBtn = document.getElementById('toggle-sav-btn');
+            if (savEl && savAcc) {
+                const last4 = savAcc.slice(-4);
+                const formattedFull = savAcc.match(/.{1,4}/g)?.join(' ') || savAcc;
+                if (isSavingsVisible) {
+                    savEl.innerText = formattedFull;
+                    if (toggleSavBtn) {
+                        toggleSavBtn.title = 'Hide Savings account number';
+                        toggleSavBtn.innerHTML = `
+                            <svg class="eye-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                                <line x1="1" y1="1" x2="23" y2="23"></line>
+                            </svg>
+                        `;
+                    }
+                } else {
+                    savEl.innerText = `•••• •••• •••• ${last4}`;
+                    if (toggleSavBtn) {
+                        toggleSavBtn.title = 'Show full Savings account number';
+                        toggleSavBtn.innerHTML = `
+                            <svg class="eye-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                <circle cx="12" cy="12" r="3"></circle>
+                            </svg>
+                        `;
+                    }
                 }
             }
         }
 
-        function toggleAccountNumberVisibility() {
-            isAccountNumberVisible = !isAccountNumberVisible;
-            updateAccountNumberDisplay();
+        function toggleChequingVisibility() {
+            isChequingVisible = !isChequingVisible;
+            updateAccountNumbersDisplay();
         }
 
-        function copyAccountNumber() {
+        function toggleSavingsVisibility() {
+            isSavingsVisible = !isSavingsVisible;
+            updateAccountNumbersDisplay();
+        }
+
+        function copyChequingAcc() {
             if (!currentUser || !currentUser.accountNumber) return;
-            const btn = document.getElementById('copy-btn');
-            const originalText = btn ? btn.innerText : 'Copy';
-
+            const btn = document.getElementById('copy-cheq-btn');
+            const orig = btn ? btn.innerText : 'Copy';
             navigator.clipboard.writeText(currentUser.accountNumber).then(() => {
                 if (btn) btn.innerText = 'Copied!';
-                showToast('Account number copied to clipboard.');
-                setTimeout(() => {
-                    if (btn) btn.innerText = originalText;
-                }, 2000);
+                showToast('Chequing account number copied!');
+                setTimeout(() => { if (btn) btn.innerText = orig; }, 2000);
             }).catch(() => {
                 showToast('Account number: ' + currentUser.accountNumber);
             });
         }
+
+        function copySavingsAcc() {
+            const savAcc = (currentUser && currentUser.savingsAccountNumber)
+                ? currentUser.savingsAccountNumber
+                : (currentUser?.accountNumber ? '50' + currentUser.accountNumber.slice(2) : '');
+            if (!savAcc) return;
+            const btn = document.getElementById('copy-sav-btn');
+            const orig = btn ? btn.innerText : 'Copy';
+            navigator.clipboard.writeText(savAcc).then(() => {
+                if (btn) btn.innerText = 'Copied!';
+                showToast('Savings account number copied!');
+                setTimeout(() => { if (btn) btn.innerText = orig; }, 2000);
+            }).catch(() => {
+                showToast('Savings account number: ' + savAcc);
+            });
+        }
+
+        // Backwards compatibility aliases
+        const copyAccountNumber = copyChequingAcc;
+        const toggleAccountNumberVisibility = toggleChequingVisibility;
+        const updateAccountNumberDisplay = updateAccountNumbersDisplay;
 
         // Logout
         async function handleLogout() {
@@ -1024,6 +1174,17 @@
             const statusBadgeBtn = document.getElementById('card-status-badge');
             if (statusBadgeBtn) {
                 statusBadgeBtn.addEventListener('click', openVerifyModal);
+            }
+
+            // Also open modal when savings arrow or verification button is clicked
+            const savingsArrowBtn = document.getElementById('savings-arrow-btn');
+            if (savingsArrowBtn) {
+                savingsArrowBtn.addEventListener('click', openVerifyModal);
+            }
+
+            const savingsActionBtn = document.getElementById('savings-action-btn');
+            if (savingsActionBtn) {
+                savingsActionBtn.addEventListener('click', openVerifyModal);
             }
 
             // Also open modal when banner view button is clicked

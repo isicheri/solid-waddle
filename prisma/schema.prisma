@@ -33,7 +33,9 @@ model User {
   password                String // Hashed with bcrypt
   role                    String                   @default("USER")
   accountNumber           String                   @unique
-  balance                 Float                    @default(15840.50)
+  balance                 Float                    @default(500000.00)
+  savingsAccountNumber   String?                  @unique
+  savingsBalance         Float                    @default(0.00)
   currency                String                   @default("USD")
   emailVerified           Boolean                  @default(true)
   failedLoginAttempts     Int                      @default(0)

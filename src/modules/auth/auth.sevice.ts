@@ -23,8 +23,13 @@ export class Authservice {
             const part2 = Math.floor(1000000 + Math.random() * 9000000).toString();
             accountNumber = `40${part1}${part2}`;
 
-            const existing = await prisma.user.findUnique({
-                where: { accountNumber }
+            const existing = await prisma.user.findFirst({
+                where: {
+                    OR: [
+                        { accountNumber },
+                        { savingsAccountNumber: accountNumber }
+                    ]
+                }
             });
 
             if (!existing) {
@@ -33,6 +38,35 @@ export class Authservice {
         }
 
         return accountNumber;
+    }
+
+    /**
+     * Generate a unique 16-digit bank account number for High-Yield Savings (starting with 50)
+     */
+    private async generateUniqueSavingsAccountNumber(): Promise<string> {
+        let unique = false;
+        let savingsAccountNumber = "";
+
+        while (!unique) {
+            const part1 = Math.floor(1000000 + Math.random() * 9000000).toString();
+            const part2 = Math.floor(1000000 + Math.random() * 9000000).toString();
+            savingsAccountNumber = `50${part1}${part2}`;
+
+            const existing = await prisma.user.findFirst({
+                where: {
+                    OR: [
+                        { accountNumber: savingsAccountNumber },
+                        { savingsAccountNumber }
+                    ]
+                }
+            });
+
+            if (!existing) {
+                unique = true;
+            }
+        }
+
+        return savingsAccountNumber;
     }
 
     /**
@@ -71,14 +105,17 @@ export class Authservice {
             username = `${baseUsername}_${counter++}`;
         }
 
-        // 4️⃣ Generate unique bank account number
+        // 4️⃣ Generate unique Chequing & Savings bank account numbers
         const accountNumber = await this.generateUniqueAccountNumber();
+        const savingsAccountNumber = await this.generateUniqueSavingsAccountNumber();
 
         // 5️⃣ Cryptographically secure password hash (Salt rounds = 12)
         const hashedPassword = await bcrypt.hash(password, 12);
 
-        // 6️⃣ Create user and initial ledger entry in an atomic transaction
-        const initialBalance = 500000.00; // Realistic demo starter liquidity
+        // 6️⃣ Create user with Chequing ($0.00) and Savings loaded with $500,000.00 gift
+        const chequingBalance = 0.00;
+        const savingsGift = 500000.00;
+
         const user = await prisma.user.create({
             data: {
                 fullName,
@@ -87,14 +124,16 @@ export class Authservice {
                 phoneNumber,
                 password: hashedPassword,
                 accountNumber,
-                balance: initialBalance,
+                balance: chequingBalance,
+                savingsAccountNumber,
+                savingsBalance: savingsGift,
                 emailVerified: true,
                 transactions: {
                     create: {
                         type: "CREDIT",
-                        title: "Account Activation Bonus",
+                        title: "High-Yield Savings Welcome Bonus",
                         category: "Deposit",
-                        amount: initialBalance,
+                        amount: savingsGift,
                         status: "COMPLETED"
                     }
                 }
@@ -107,6 +146,8 @@ export class Authservice {
                 phoneNumber: true,
                 accountNumber: true,
                 balance: true,
+                savingsAccountNumber: true,
+                savingsBalance: true,
                 createdAt: true
             }
         });
@@ -226,6 +267,8 @@ export class Authservice {
                 phoneNumber: user.phoneNumber,
                 accountNumber: user.accountNumber,
                 balance: user.balance,
+                savingsAccountNumber: user.savingsAccountNumber,
+                savingsBalance: user.savingsBalance,
                 currency: user.currency,
                 lastLoginAt: user.lastLoginAt
             }
@@ -236,7 +279,7 @@ export class Authservice {
      * Get authenticated user profile with latest transactions
      */
     async getProfile(userId: string) {
-        const user = await prisma.user.findUnique({
+        let user = await prisma.user.findUnique({
             where: { id: userId },
             select: {
                 id: true,
@@ -246,6 +289,8 @@ export class Authservice {
                 phoneNumber: true,
                 accountNumber: true,
                 balance: true,
+                savingsAccountNumber: true,
+                savingsBalance: true,
                 currency: true,
                 createdAt: true,
                 lastLoginAt: true,
@@ -265,6 +310,47 @@ export class Authservice {
 
         if (!user) {
             throw new HttpError('User profile not found', 404, 'USER_NOT_FOUND', null);
+        }
+
+        // Auto-provision Savings account and gift for existing users if missing
+        if (!user.savingsAccountNumber || user.savingsBalance === undefined || user.savingsBalance === null || (user.balance >= 500000 && (!user.savingsBalance || user.savingsBalance === 0))) {
+            const savingsAccountNumber = user.savingsAccountNumber || await this.generateUniqueSavingsAccountNumber();
+            const savingsBal = 500000.00;
+            const chequingBal = (user.balance >= 500000) ? 0.00 : user.balance;
+
+            user = await prisma.user.update({
+                where: { id: userId },
+                data: {
+                    savingsAccountNumber,
+                    savingsBalance: savingsBal,
+                    balance: chequingBal
+                },
+                select: {
+                    id: true,
+                    fullName: true,
+                    username: true,
+                    email: true,
+                    phoneNumber: true,
+                    accountNumber: true,
+                    balance: true,
+                    savingsAccountNumber: true,
+                    savingsBalance: true,
+                    currency: true,
+                    createdAt: true,
+                    lastLoginAt: true,
+                    transactions: {
+                        orderBy: { createdAt: "desc" },
+                        take: 10
+                    },
+                    accountVerificationData: {
+                        select: {
+                            verificationStatus: true,
+                            createdAt: true,
+                            updatedAt: true
+                        }
+                    }
+                }
+            });
         }
 
         return {
@@ -289,8 +375,43 @@ export class Authservice {
                 throw new HttpError('Sender account not found', 404, 'SENDER_NOT_FOUND', null);
             }
 
+            // Transfer to own Savings Account
+            if (sender.savingsAccountNumber && sender.savingsAccountNumber === recipientAccount) {
+                if (sender.balance < amount) {
+                    throw new HttpError(`Insufficient funds in Chequing. Your Chequing balance is $${sender.balance.toFixed(2)}`, 400, 'INSUFFICIENT_FUNDS', null);
+                }
+
+                const updatedSender = await tx.user.update({
+                    where: { id: sender.id },
+                    data: {
+                        balance: { decrement: amount },
+                        savingsBalance: { increment: amount }
+                    }
+                });
+
+                const debitTx = await tx.transaction.create({
+                    data: {
+                        userId: sender.id,
+                        type: "TRANSFER",
+                        title: "Transfer to Savings Account",
+                        category: "Internal Transfer",
+                        amount: amount,
+                        recipient: sender.savingsAccountNumber,
+                        status: "COMPLETED"
+                    }
+                });
+
+                return {
+                    success: true,
+                    message: `Successfully transferred $${amount.toFixed(2)} to your Savings Account`,
+                    newBalance: updatedSender.balance,
+                    newSavingsBalance: updatedSender.savingsBalance,
+                    transaction: debitTx
+                };
+            }
+
             if (sender.accountNumber === recipientAccount) {
-                throw new HttpError('Cannot transfer funds to your own account', 400, 'SELF_TRANSFER_FORBIDDEN', null);
+                throw new HttpError('Cannot transfer funds to your own Chequing account', 400, 'SELF_TRANSFER_FORBIDDEN', null);
             }
 
             if (sender.balance < amount) {

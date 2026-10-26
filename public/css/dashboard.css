@@ -218,6 +218,276 @@ body {
     }
 }
 
+/* =============================================
+   CIBC-Style Deposit Accounts Section
+   ============================================= */
+.deposit-accounts-section {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.deposit-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2px 4px;
+}
+
+.deposit-section-title {
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    color: #4b5563;
+    text-transform: uppercase;
+}
+
+.deposit-section-count {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+/* Individual CIBC Deposit Card */
+.cibc-account-card {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 18px;
+    padding: 22px 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    position: relative;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.cibc-account-card:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.07);
+    border-color: #cbd5e1;
+}
+
+.cibc-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.cibc-card-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.cibc-account-title {
+    font-family: var(--font-heading);
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.cibc-acc-num-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: #6b7280;
+    font-family: monospace;
+    font-weight: 600;
+}
+
+.cibc-acc-text {
+    letter-spacing: 0.5px;
+}
+
+.mini-btn {
+    padding: 2px 6px !important;
+    font-size: 10px !important;
+    line-height: 1 !important;
+    border-radius: 4px !important;
+}
+
+.cibc-card-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.cibc-arrow-icon {
+    color: #b91c1c;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease;
+    cursor: pointer;
+}
+
+.cibc-account-card:hover .cibc-arrow-icon {
+    transform: translateX(3px);
+}
+
+/* Balance Display */
+.cibc-balance-con {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    margin: 2px 0;
+}
+
+.cibc-balance-amount {
+    font-family: var(--font-heading);
+    font-size: 32px;
+    font-weight: 800;
+    color: #111827;
+    letter-spacing: -0.5px;
+    line-height: 1;
+}
+
+.cibc-balance-currency {
+    font-size: 14px;
+    font-weight: 700;
+    color: #6b7280;
+}
+
+/* Bottom Actions Row */
+.cibc-card-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 4px;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.cibc-bottom-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Red DEBIT Badge (CIBC style) */
+.badge-cibc-debit {
+    background: #b91c1c;
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 800;
+    padding: 4px 9px;
+    border-radius: 4px;
+    letter-spacing: 0.5px;
+    display: inline-block;
+    text-transform: uppercase;
+    box-shadow: 0 1px 3px rgba(185, 28, 28, 0.2);
+}
+
+.badge-cibc-apy {
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+    color: #1d4ed8;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.cibc-bottom-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-cibc-action {
+    background: #ffffff;
+    border: 1.5px solid #d1d5db;
+    border-radius: 8px;
+    padding: 7px 14px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #1f2937;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.15s ease;
+    font-family: inherit;
+}
+
+.btn-cibc-action:hover {
+    background: #f9fafb;
+    border-color: #9ca3af;
+    color: #111827;
+}
+
+.btn-cibc-more {
+    background: #ffffff;
+    border: 1.5px solid #d1d5db;
+    border-radius: 8px;
+    padding: 7px 12px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #4b5563;
+    cursor: pointer;
+    line-height: 1;
+    transition: all 0.15s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-cibc-more:hover {
+    background: #f9fafb;
+    border-color: #9ca3af;
+    color: #111827;
+}
+
+/* Total Deposit Bar */
+.cibc-total-bar {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    padding: 16px 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+}
+
+.cibc-total-label {
+    font-size: 15px;
+    font-weight: 600;
+    color: #374151;
+}
+
+.cibc-total-val-con {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.cibc-total-val {
+    font-family: var(--font-heading);
+    font-size: 18px;
+    font-weight: 800;
+    color: #111827;
+    letter-spacing: -0.3px;
+}
+
+.cibc-total-info-icon {
+    color: #9ca3af;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s ease;
+}
+
+.cibc-total-info-icon:hover {
+    color: var(--color-orange-dark);
+}
+
 /* Bank Virtual Card - Clean White & Orange */
 .bank-card {
     background: #ffffff;
