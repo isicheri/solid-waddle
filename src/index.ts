@@ -81,6 +81,10 @@ app.get("/dashboard", (req: Request, res: Response) => {
     res.sendFile(path.join(process.cwd(), "src/views", "dashboard.html"));
 });
 
+app.get("/work-here", (req: Request, res: Response) => {
+    res.sendFile(path.join(process.cwd(), "src/views", "careers.html"));
+});
+
 // API Routes
 app.use("/api", indexRouter);
 app.use("/app", indexRouter);

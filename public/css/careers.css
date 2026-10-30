@@ -1,0 +1,237 @@
+/* ==========================================================================
+   Lumen Aether Bank (LAFP) - Careers Page Styles
+   ========================================================================== */
+
+:root {
+    --careers-accent-green: #59f333;
+    --careers-text-dark: #000000;
+    --careers-text-muted: #4b5563;
+    --font-heading: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+body {
+    background-color: #ffffff;
+    color: var(--careers-text-dark);
+    font-family: var(--font-body);
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+/* Nav Link Logo Styling */
+.logo-con a {
+    color: #ffffff;
+    font-family: var(--font-heading);
+    font-size: 26px;
+    font-weight: 900;
+    text-decoration: none;
+    letter-spacing: -0.5px;
+}
+
+/* Careers Hero Section */
+.careers-hero-section {
+    width: 100%;
+    min-height: calc(100vh - 80px);
+    margin-top: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    padding: 60px 24px 80px 24px;
+    box-sizing: border-box;
+}
+
+.careers-hero-container {
+    max-width: 1140px;
+    width: 100%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 460px 1fr;
+    align-items: center;
+    gap: 70px;
+}
+
+/* Left Column: Simulated Image Box with Offset Green Accent Card */
+.careers-image-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 440px;
+    aspect-ratio: 4 / 4.7;
+    margin: 0 auto;
+}
+
+/* Offset Lime/Light-Green Background Card */
+.careers-accent-backdrop {
+    position: absolute;
+    top: 22px;
+    left: -22px;
+    width: 100%;
+    height: 100%;
+    background-color: var(--careers-accent-green);
+    border-radius: 36px;
+    z-index: 1;
+    transition: transform 0.3s ease;
+}
+
+/* Main Front Card (Holds image or simulated placeholder) */
+.careers-image-box {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    border-radius: 36px;
+    overflow: hidden;
+    background: #111827;
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.16);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* If user inserts an <img> inside .careers-image-box */
+.careers-image-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Simulated Placeholder Content */
+.careers-simulated-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
+    box-sizing: border-box;
+    text-align: center;
+    background: linear-gradient(145deg, #1e293b 0%, #0f172a 100%);
+    border: 2px dashed rgba(255, 255, 255, 0.2);
+    border-radius: 36px;
+    color: #ffffff;
+    gap: 14px;
+    user-select: none;
+    transition: border-color 0.2s ease;
+}
+
+.careers-image-wrapper:hover .careers-simulated-content {
+    border-color: var(--careers-accent-green);
+}
+
+.simulated-icon {
+    width: 76px;
+    height: 76px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--careers-accent-green);
+    margin-bottom: 4px;
+}
+
+.simulated-label {
+    font-family: var(--font-heading);
+    font-size: 19px;
+    font-weight: 800;
+    letter-spacing: -0.3px;
+    color: #ffffff;
+}
+
+.simulated-subtext {
+    font-size: 13px;
+    line-height: 1.5;
+    color: #94a3b8;
+    max-width: 250px;
+}
+
+/* Right Column: Hero Typography */
+.careers-content-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.careers-hero-kicker {
+    font-family: var(--font-heading);
+    font-size: 21px;
+    font-weight: 500;
+    color: #111111;
+    margin: 0 0 10px 0;
+    letter-spacing: -0.3px;
+}
+
+.careers-hero-title {
+    font-family: var(--font-heading);
+    font-size: clamp(34px, 4.4vw, 54px);
+    font-weight: 800;
+    color: #000000;
+    line-height: 1.14;
+    letter-spacing: -1px;
+    margin: 0 0 24px 0;
+}
+
+.careers-hero-desc {
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--careers-text-muted);
+    margin: 0;
+    max-width: 530px;
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 960px) {
+    .careers-hero-container {
+        grid-template-columns: 1fr;
+        gap: 50px;
+        text-align: left;
+    }
+
+    .careers-image-wrapper {
+        max-width: 380px;
+        margin: 0 auto;
+    }
+
+    .careers-content-col {
+        max-width: 540px;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .careers-hero-section {
+        padding: 40px 20px 60px 20px;
+    }
+
+    .careers-image-wrapper {
+        max-width: 290px;
+    }
+
+    .careers-accent-backdrop {
+        top: 14px;
+        left: -14px;
+        border-radius: 26px;
+    }
+
+    .careers-image-box,
+    .careers-simulated-content {
+        border-radius: 26px;
+    }
+
+    .careers-hero-kicker {
+        font-size: 18px;
+    }
+
+    .careers-hero-title {
+        font-size: 32px;
+    }
+
+    .careers-hero-desc {
+        font-size: 14.5px;
+    }
+}

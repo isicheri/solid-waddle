@@ -361,136 +361,80 @@ main {
 }
 
 /* =========================================
-   Stock Cards Section
+   Purpose & Mission Card Section
    ========================================= */
-.stock-card-holder {
+.purpose-section {
     width: 100%;
-    height: auto;
     max-width: 480px;
-    margin: 15px auto 40px auto;
+    margin: 20px auto 40px auto;
     padding: 0 16px;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 14px;
+    box-sizing: border-box;
 }
 
-.stock-card {
+.purpose-card {
     background: #ffffff;
-    border-radius: 20px;
-    padding: 18px 14px 16px 14px;
-    position: relative;
-    overflow: hidden;
+    border-radius: 24px;
+    padding: 20px 18px 28px 18px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
     border: 1px solid #f1f2f5;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-.stock-card:hover {
+.purpose-card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.09);
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.09);
 }
 
-.card-tag {
-    position: absolute;
-    top: 0;
-    right: 0;
-    background: linear-gradient(135deg, #c59e5b, #a57e38);
-    color: #ffffff;
-    font-size: 11px;
-    font-weight: 600;
-    padding: 3px 10px;
-    border-top-right-radius: 20px;
-    border-bottom-left-radius: 12px;
-    letter-spacing: 0.2px;
+.purpose-image-card {
+    width: 100%;
+    border-radius: 18px;
+    overflow: hidden;
+    background: #f8fafc;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+    line-height: 0;
 }
 
-.card-header {
+.purpose-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    border-radius: 18px;
+}
+
+.purpose-content {
     display: flex;
-    align-items: center;
-    gap: 8px;
+    flex-direction: column;
+    gap: 28px;
+    padding-top: 32px;
+    text-align: center;
 }
 
-.stock-logo {
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
+.purpose-item {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
+    gap: 10px;
 }
 
-.apple-logo {
-    background-color: #000000;
-}
-
-.netflix-logo {
-    background-color: #000000;
-}
-
-.coke-logo {
-    background-color: #e41c24;
-}
-
-.coke-text {
-    color: #ffffff;
-    font-size: 9px;
+.purpose-heading {
+    font-size: 20px;
     font-weight: 800;
-    font-style: italic;
-    letter-spacing: -0.5px;
-}
-
-.msft-logo {
-    background-color: #f7f7f8;
-    border: 1px solid #eee;
-}
-
-.nvda-logo {
-    background-color: #76b900;
-}
-
-.tsla-logo {
-    background-color: #e82127;
-}
-
-.stock-symbol {
-    font-size: 15px;
-    font-weight: 700;
-    color: #111111;
-    letter-spacing: -0.2px;
-}
-
-.card-body {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    margin-top: 20px;
-}
-
-.stock-price {
-    font-size: 18px;
-    font-weight: 700;
-    color: #111111;
+    color: #0b0f19;
     letter-spacing: -0.3px;
-    font-variant-numeric: tabular-nums;
+    line-height: 1.25;
+    margin: 0;
 }
 
-.stock-change {
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: -0.2px;
-    font-variant-numeric: tabular-nums;
-}
-
-.stock-change.neg {
-    color: #e05a68;
-}
-
-.stock-change.pos {
-    color: #10b981;
+.purpose-text {
+    font-size: 14.5px;
+    font-weight: 500;
+    color: #374151;
+    line-height: 1.55;
+    max-width: 400px;
+    margin: 0 auto;
 }
 
 /* =========================================
