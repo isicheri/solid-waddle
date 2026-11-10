@@ -16,25 +16,26 @@
 
 <body>
 
-    <!-- Fixed Header Navigation Bar -->
-    <div class="nav-con">
-        <nav class="nav">
-            <navbar class="navbar">
-                <div class="logo-con">
-                    <a href="/" class="logo-text">LAFP</a>
-                </div>
-                <div class="asset-con">
-                    <div class="btn-con">
-                        <div class="btn">
-                            <a href="/signup" style="text-decoration: none;">
-                                <p style="color: white; font-size: 16px; font-weight: 800;">Open Account</p>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </navbar>
-        </nav>
-    </div>
+    <!-- Header Navigation Bar -->
+    <header class="card-nav-con">
+        <div class="card-nav-inner">
+            <div class="card-nav-left">
+                <a href="/" class="card-nav-logo">LAFP</a>
+            </div>
+
+            <nav class="card-nav-links">
+                <a href="/" class="card-nav-link">Home</a>
+                <a href="/learn-more" class="card-nav-link">Features</a>
+                <a href="/activate-card" class="card-nav-link active">Cards</a>
+                <a href="/work-here" class="card-nav-link">Careers</a>
+            </nav>
+
+            <div class="card-nav-right">
+                <a href="/login" class="card-nav-login">Log In</a>
+                <a href="/signup" class="card-nav-btn">Open Account</a>
+            </div>
+        </div>
+    </header>
 
     <main>
 
@@ -44,38 +45,41 @@
                 <div class="card-hero-content">
                     <div class="card-pill-badge">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                            <polygon
+                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                            </polygon>
                         </svg>
                         <span>The LAFP Obsidian &amp; Emerald Suite</span>
                     </div>
 
-                    <h1 class="card-hero-title">Architected In Metal. Engineered For <span>Borderless Wealth.</span></h1>
+                    <h1 class="card-hero-title">Architected In Metal. Engineered For <span>Borderless Wealth.</span>
+                    </h1>
                     <p class="card-hero-subtitle">
-                        Experience premier spending power with up to 10% cashback, zero foreign exchange fees, instant multi-currency settlement, and high-security laser-engraved metal packages.
+                        Experience premier spending power with up to 10% cashback, zero foreign exchange fees, instant
+                        multi-currency settlement, and high-security laser-engraved metal packages.
                     </p>
 
-                    <div class="card-hero-actions">
-                        <button type="button" class="btn-activate-hero" onclick="openActivationModal('Obsidian Flagship')">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
-                                <line x1="1" y1="10" x2="23" y2="10"></line>
-                            </svg>
-                            <span>Activate Card Package</span>
-                        </button>
-                        <a href="#packages" class="btn-secondary-outline">View Packages</a>
-                    </div>
 
                     <div class="card-hero-specs">
                         <span>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12" />
+                            </svg>
                             16g Solid Metal Core
                         </span>
                         <span>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12" />
+                            </svg>
                             0% Foreign Exchange Fees
                         </span>
                         <span>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12" />
+                            </svg>
                             Apple &amp; Google Pay Ready
                         </span>
                     </div>
@@ -96,131 +100,144 @@
                 <div class="section-header-centered">
                     <p class="section-tag">EXECUTIVE CARD PACKAGES</p>
                     <h2 class="section-title">Select your premier card package</h2>
-                    <p class="section-desc">Each card package is customized with your laser-engraved monogram and shipped in an encrypted presentation vault box.</p>
+                    <p class="section-desc">Each card package is customized with your laser-engraved monogram and
+                        shipped in an encrypted presentation vault box.</p>
                 </div>
 
                 <div class="tiers-grid">
 
                     <!-- Tier 1: Emerald Premier -->
-                    <div class="tier-card">
-                        <div>
-                            <div class="tier-header">
-                                <span class="tier-material-badge">Brushed Metal Finish</span>
-                                <h3 class="tier-name">Emerald Premier</h3>
-                                <p class="tier-desc">Designed for daily institutional liquid transactions with zero FX markups.</p>
+                    <div class="tier-card tier-card-emerald">
+                        <div class="tier-card-bg" style="background-image: url('/images/card_person_emerald.jpg');"></div>
+                        <div class="tier-card-overlay"></div>
+                        <div class="tier-card-inner">
+                            <div>
+                                <div class="tier-header">
+                                    <span class="tier-material-badge">Brushed Metal Finish</span>
+                                    <h3 class="tier-name">Emerald Premier</h3>
+                                    <p class="tier-desc">Designed for daily institutional liquid transactions with zero FX markups.</p>
+                                </div>
+
+                                <div class="tier-price-box">
+                                    <span class="tier-price-num">$0</span>
+                                    <span class="tier-price-period">/ annual fee</span>
+                                </div>
+
+                                <ul class="tier-features-list">
+                                    <li>
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12" /></svg>
+                                        5% cashback on daily retail and merchant spending
+                                    </li>
+                                    <li>
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12" /></svg>
+                                        Free withdrawals at 55,000+ Allpoint® ATMs
+                                    </li>
+                                    <li>
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12" /></svg>
+                                        Zero foreign transaction fees globally
+                                    </li>
+                                    <li>
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12" /></svg>
+                                        Instant in-app card freeze and spending controls
+                                    </li>
+                                </ul>
                             </div>
 
-                            <div class="tier-price-box">
-                                <span class="tier-price-num">$0</span>
-                                <span class="tier-price-period">/ annual fee</span>
-                            </div>
-
-                            <ul class="tier-features-list">
-                                <li>
-                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                                    5% cashback on daily retail and merchant spending
-                                </li>
-                                <li>
-                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                                    Free withdrawals at 55,000+ Allpoint® ATMs
-                                </li>
-                                <li>
-                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                                    Zero foreign transaction fees globally
-                                </li>
-                                <li>
-                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                                    Instant in-app card freeze and spending controls
-                                </li>
-                            </ul>
+                            <button type="button" class="btn-tier-activate" onclick="openActivationModal('Emerald Premier')">
+                                Request Emerald Package
+                            </button>
                         </div>
-
-                        <button type="button" class="btn-tier-activate" onclick="openActivationModal('Emerald Premier')">
-                            Request Emerald Package
-                        </button>
                     </div>
 
                     <!-- Tier 2: Black Obsidian (Featured Flagship) -->
-                    <div class="tier-card featured">
+                    <div class="tier-card featured tier-card-obsidian">
+                        <div class="tier-card-bg" style="background-image: url('/images/card_person_obsidian.jpg');"></div>
+                        <div class="tier-card-overlay"></div>
                         <span class="tier-featured-tag">FLAGSHIP TIER</span>
-                        <div>
-                            <div class="tier-header">
-                                <span class="tier-material-badge" style="color: #4ade80; border-color: rgba(34, 197, 94, 0.3);">16g Solid Stainless Steel Core</span>
-                                <h3 class="tier-name">Black Obsidian Metal</h3>
-                                <p class="tier-desc">Our ultimate physical card for high-net-worth clients and global executives.</p>
+                        <div class="tier-card-inner">
+                            <div>
+                                <div class="tier-header">
+                                    <span class="tier-material-badge" style="color: #15803d; background: rgba(34, 197, 94, 0.14); border-color: rgba(34, 197, 94, 0.3);">16g Solid Stainless Steel Core</span>
+                                    <h3 class="tier-name">Black Obsidian Metal</h3>
+                                    <p class="tier-desc">Our ultimate physical card for high-net-worth clients and global executives.</p>
+                                </div>
+
+                                <div class="tier-price-box">
+                                    <span class="tier-price-num">$0</span>
+                                    <span class="tier-price-period">/ Tier-1 Qualified</span>
+                                </div>
+
+                                <ul class="tier-features-list">
+                                    <li>
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12" /></svg>
+                                        Up to 10% cash-back on private aviation, hotels &amp; dining
+                                    </li>
+                                    <li>
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12" /></svg>
+                                        Complimentary LoungeKey airport lounge membership
+                                    </li>
+                                    <li>
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12" /></svg>
+                                        $100,000 daily point-of-sale limit with zero liability
+                                    </li>
+                                    <li>
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12" /></svg>
+                                        24/7 dedicated corporate concierge &amp; wealth desk
+                                    </li>
+                                    <li>
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12" /></svg>
+                                        Custom laser monogram engraved on front card face
+                                    </li>
+                                </ul>
                             </div>
 
-                            <div class="tier-price-box">
-                                <span class="tier-price-num">$0</span>
-                                <span class="tier-price-period">/ Tier-1 Qualified</span>
-                            </div>
-
-                            <ul class="tier-features-list">
-                                <li>
-                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                                    Up to 10% cash-back on private aviation, hotels &amp; dining
-                                </li>
-                                <li>
-                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                                    Complimentary LoungeKey airport lounge membership
-                                </li>
-                                <li>
-                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                                    $100,000 daily point-of-sale limit with zero liability
-                                </li>
-                                <li>
-                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                                    24/7 dedicated corporate concierge &amp; wealth desk
-                                </li>
-                                <li>
-                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                                    Custom laser monogram engraved on front card face
-                                </li>
-                            </ul>
+                            <button type="button" class="btn-tier-activate" onclick="openActivationModal('Black Obsidian Metal')">
+                                Activate Obsidian Package
+                            </button>
                         </div>
-
-                        <button type="button" class="btn-tier-activate" onclick="openActivationModal('Black Obsidian Metal')">
-                            Activate Obsidian Package
-                        </button>
                     </div>
 
                     <!-- Tier 3: Cyber Virtual Shield -->
-                    <div class="tier-card">
-                        <div>
-                            <div class="tier-header">
-                                <span class="tier-material-badge">Instant Cloud Digital</span>
-                                <h3 class="tier-name">Cyber Virtual Shield</h3>
-                                <p class="tier-desc">Immediate digital issuance for safe eCommerce and zero-footprint privacy.</p>
+                    <div class="tier-card tier-card-cyber">
+                        <div class="tier-card-bg" style="background-image: url('/images/card_person_cyber.jpg');"></div>
+                        <div class="tier-card-overlay"></div>
+                        <div class="tier-card-inner">
+                            <div>
+                                <div class="tier-header">
+                                    <span class="tier-material-badge">Instant Cloud Digital</span>
+                                    <h3 class="tier-name">Cyber Virtual Shield</h3>
+                                    <p class="tier-desc">Immediate digital issuance for safe eCommerce and zero-footprint privacy.</p>
+                                </div>
+
+                                <div class="tier-price-box">
+                                    <span class="tier-price-num">$0</span>
+                                    <span class="tier-price-period">/ instant issuance</span>
+                                </div>
+
+                                <ul class="tier-features-list">
+                                    <li>
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12" /></svg>
+                                        Instant activation on Apple Wallet &amp; Google Pay in 30s
+                                    </li>
+                                    <li>
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12" /></svg>
+                                        Dynamic single-use CVV to prevent online merchant fraud
+                                    </li>
+                                    <li>
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12" /></svg>
+                                        Unlimited disposable virtual cards per account
+                                    </li>
+                                    <li>
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12" /></svg>
+                                        Real-time biometric payment authorization
+                                    </li>
+                                </ul>
                             </div>
 
-                            <div class="tier-price-box">
-                                <span class="tier-price-num">$0</span>
-                                <span class="tier-price-period">/ instant issuance</span>
-                            </div>
-
-                            <ul class="tier-features-list">
-                                <li>
-                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                                    Instant activation on Apple Wallet &amp; Google Pay in 30s
-                                </li>
-                                <li>
-                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                                    Dynamic single-use CVV to prevent online merchant fraud
-                                </li>
-                                <li>
-                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                                    Unlimited disposable virtual cards per account
-                                </li>
-                                <li>
-                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                                    Real-time biometric payment authorization
-                                </li>
-                            </ul>
+                            <button type="button" class="btn-tier-activate" onclick="openActivationModal('Cyber Virtual Shield')">
+                                Activate Virtual Card
+                            </button>
                         </div>
-
-                        <button type="button" class="btn-tier-activate" onclick="openActivationModal('Cyber Virtual Shield')">
-                            Activate Virtual Card
-                        </button>
                     </div>
 
                 </div>
@@ -233,55 +250,63 @@
                 <div class="section-header-centered">
                     <p class="section-tag">THE UNBOXING EXPERIENCE</p>
                     <h2 class="section-title">What arrives at your doorstep</h2>
-                    <p class="section-desc">Delivered in an encrypted, tamper-evident courier parcel within 2-3 business days.</p>
+                    <p class="section-desc">Delivered in an encrypted, tamper-evident courier parcel within 2-3 business
+                        days.</p>
                 </div>
 
                 <div class="unboxing-grid">
                     <div class="unboxing-item">
                         <span class="unboxing-step-num">Item 01</span>
                         <h4 class="unboxing-title">Magnetic Vault Box</h4>
-                        <p class="unboxing-desc">A matte-black presentation case precision-molded to house your heavy metal card and welcome documentation.</p>
+                        <p class="unboxing-desc">A matte-black presentation case precision-molded to house your heavy
+                            metal card and welcome documentation.</p>
                     </div>
 
                     <div class="unboxing-item">
                         <span class="unboxing-step-num">Item 02</span>
                         <h4 class="unboxing-title">Laser-Etched Metal Card</h4>
-                        <p class="unboxing-desc">Constructed with high-density steel core and embossed with your verified membership credentials.</p>
+                        <p class="unboxing-desc">Constructed with high-density steel core and embossed with your
+                            verified membership credentials.</p>
                     </div>
 
                     <div class="unboxing-item">
                         <span class="unboxing-step-num">Item 03</span>
                         <h4 class="unboxing-title">Encrypted NFC Welcome Key</h4>
-                        <p class="unboxing-desc">A secure contact key allowing you to tap and verify your physical card directly with your smartphone.</p>
+                        <p class="unboxing-desc">A secure contact key allowing you to tap and verify your physical card
+                            directly with your smartphone.</p>
                     </div>
 
                     <div class="unboxing-item">
                         <span class="unboxing-step-num">Item 04</span>
                         <h4 class="unboxing-title">Private Relationship Guide</h4>
-                        <p class="unboxing-desc">Your dedicated contact directory for corporate finance, private wealth desks, and 24/7 concierge.</p>
+                        <p class="unboxing-desc">Your dedicated contact directory for corporate finance, private wealth
+                            desks, and 24/7 concierge.</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Security & Protocol Banner -->
-        <section class="security-banner-section">
+        <!-- <section class="security-banner-section">
             <div class="card-page-container">
                 <div class="security-banner-card">
                     <div class="security-banner-icon">
-                        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
                         </svg>
                     </div>
                     <div class="security-banner-content">
                         <h3>Bank-Grade Card Security &amp; Zero-Liability</h3>
                         <p>
-                            All LAFP cards feature Visa/Mastercard Global Zero-Liability Protection, EMV cryptographic chip technology, and real-time transaction monitoring to prevent unauthorized usage across 200+ countries.
+                            All LAFP cards feature Visa/Mastercard Global Zero-Liability Protection, EMV cryptographic
+                            chip technology, and real-time transaction monitoring to prevent unauthorized usage across
+                            200+ countries.
                         </p>
                     </div>
                 </div>
             </div>
-        </section>
+        </section> -->
 
         <!-- FAQ Section -->
         <section class="card-faq-section">
@@ -289,55 +314,68 @@
                 <div class="section-header-centered">
                     <p class="section-tag">CARD ACTIVATION QUESTIONS</p>
                     <h2 class="section-title">Frequently asked questions</h2>
-                    <p class="section-desc">Answers to common cardholder questions regarding shipping, security, and activation.</p>
+                    <p class="section-desc">Answers to common cardholder questions regarding shipping, security, and
+                        activation.</p>
                 </div>
 
                 <div class="faq-container">
                     <div class="faq-item active">
                         <button class="faq-header" type="button">
                             <span>How do I complete the activation procedure for my card package?</span>
-                            <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <polyline points="6 9 12 15 18 9"></polyline>
                             </svg>
                         </button>
                         <div class="faq-body">
-                            To ensure institutional security and verified delivery, card packages are processed through our corporate finance desk. Simply email <strong>finance@lumenaether.com</strong> with your account number to begin the standard KYC confirmation and expedited courier dispatch.
+                            To ensure institutional security and verified delivery, card packages are processed through
+                            our corporate finance desk. Simply email <strong>finance@lumenaether.com</strong> with your
+                            account number to begin the standard KYC confirmation and expedited courier dispatch.
                         </div>
                     </div>
 
                     <div class="faq-item">
                         <button class="faq-header" type="button">
                             <span>How long does physical card delivery take?</span>
-                            <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <polyline points="6 9 12 15 18 9"></polyline>
                             </svg>
                         </button>
                         <div class="faq-body">
-                            Once your details are verified by our treasury team, your custom metal card is manufactured, packaged in our presentation vault, and shipped via insured DHL/FedEx Express within 2 to 3 business days with signature tracking.
+                            Once your details are verified by our treasury team, your custom metal card is manufactured,
+                            packaged in our presentation vault, and shipped via insured DHL/FedEx Express within 2 to 3
+                            business days with signature tracking.
                         </div>
                     </div>
 
                     <div class="faq-item">
                         <button class="faq-header" type="button">
                             <span>Can I use a virtual card while waiting for the physical metal card?</span>
-                            <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <polyline points="6 9 12 15 18 9"></polyline>
                             </svg>
                         </button>
                         <div class="faq-body">
-                            Yes! Your Cyber Virtual Shield card can be generated and linked directly into Apple Pay or Google Pay immediately, giving you instant spending ability while your physical card is en route.
+                            Yes! Your Cyber Virtual Shield card can be generated and linked directly into Apple Pay or
+                            Google Pay immediately, giving you instant spending ability while your physical card is en
+                            route.
                         </div>
                     </div>
 
                     <div class="faq-item">
                         <button class="faq-header" type="button">
                             <span>Are there any foreign transaction or currency conversion fees?</span>
-                            <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <polyline points="6 9 12 15 18 9"></polyline>
                             </svg>
                         </button>
                         <div class="faq-body">
-                            Zero. All LAFP card tiers feature 0% foreign transaction fees and real-time interbank conversion rates, saving cardholders 3% to 5% on international travel and cross-border purchases.
+                            Zero. All LAFP card tiers feature 0% foreign transaction fees and real-time interbank
+                            conversion rates, saving cardholders 3% to 5% on international travel and cross-border
+                            purchases.
                         </div>
                     </div>
                 </div>
@@ -350,7 +388,8 @@
                 <div class="closing-banner-card">
                     <h2 class="closing-title">Elevate your everyday spending power</h2>
                     <p class="closing-desc">
-                        Join verified executives and cardholders enjoying premium metal debit cards, instant global liquidity, and up to 10% rewards.
+                        Join verified executives and cardholders enjoying premium metal debit cards, instant global
+                        liquidity, and up to 10% rewards.
                     </p>
                     <button type="button" class="btn-activate-hero" onclick="openActivationModal('Obsidian Flagship')">
                         <span>Activate Your Card Package</span>
@@ -374,7 +413,8 @@
 
             <div class="activation-modal-body">
                 <div class="activation-icon-box">
-                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
                         <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
                         <line x1="1" y1="10" x2="23" y2="10"></line>
                     </svg>
@@ -382,13 +422,16 @@
 
                 <h3 class="activation-modal-title">Card Package Activation</h3>
                 <p class="activation-modal-desc">
-                    To maintain strict regulatory compliance, verify shipping credentials, and confirm custom laser engraving, please contact our corporate treasury &amp; finance department to complete your standard card issuance procedure:
+                    To maintain strict regulatory compliance, verify shipping credentials, and confirm custom laser
+                    engraving, please contact our corporate treasury &amp; finance department to complete your standard
+                    card issuance procedure:
                 </p>
 
                 <!-- Step-by-Step Procedure Guide -->
                 <div class="activation-procedure-box">
                     <div class="procedure-header">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
                             <circle cx="12" cy="12" r="10"></circle>
                             <line x1="12" y1="16" x2="12" y2="12"></line>
                             <line x1="12" y1="8" x2="12.01" y2="8"></line>
@@ -398,7 +441,8 @@
                     <ul class="procedure-steps">
                         <li>
                             <span class="num">1</span>
-                            <span>Contact <strong>finance@lumenaether.com</strong> with your registered client account number.</span>
+                            <span>Contact <strong>finance@lumenaether.com</strong> with your registered client account
+                                number.</span>
                         </li>
                         <li>
                             <span class="num">2</span>
@@ -414,18 +458,23 @@
                 <!-- Priority Contact Box -->
                 <div class="activation-contact-box">
                     <div class="activation-contact-left">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+                            </path>
                             <polyline points="22,6 12,13 2,6"></polyline>
                         </svg>
-                        <a href="mailto:finance@lumenaether.com?subject=LAFP%20Card%20Package%20Activation%20Request" class="activation-email-link">finance@lumenaether.com</a>
+                        <a href="mailto:finance@lumenaether.com?subject=LAFP%20Card%20Package%20Activation%20Request"
+                            class="activation-email-link">finance@lumenaether.com</a>
                     </div>
                     <button type="button" class="btn-copy-finance" onclick="copyFinanceEmail(event)">Copy Email</button>
                 </div>
 
                 <div class="activation-modal-actions">
-                    <a href="mailto:finance@lumenaether.com?subject=LAFP%20Card%20Package%20Activation%20Request" class="btn-modal-email-compose">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                    <a href="mailto:finance@lumenaether.com?subject=LAFP%20Card%20Package%20Activation%20Request"
+                        class="btn-modal-email-compose">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.2">
                             <line x1="22" y1="2" x2="11" y2="13"></line>
                             <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
                         </svg>
