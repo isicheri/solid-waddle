@@ -379,8 +379,8 @@ export class Authservice {
             }
 
             // Security guard: verify that the sender's account is verified before allowing transfers
-            const isVerified = sender.accountVerificationData && 
-                               sender.accountVerificationData.verificationStatus === 'APPROVED';
+            const isVerified = sender.accountVerificationData &&
+                sender.accountVerificationData.verificationStatus === 'APPROVED';
             if (!isVerified) {
                 throw new HttpError(
                     'Outbound transfers are restricted. Your account is awaiting verification.',
