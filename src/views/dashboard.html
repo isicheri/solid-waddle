@@ -363,6 +363,59 @@
         </div>
     </div>
 
+    <!-- Awaiting Verification Modal for Transfers -->
+    <div class="modal-overlay awaiting-verify-modal-overlay" id="awaiting-verification-modal">
+        <div class="modal-card awaiting-verify-modal-card">
+            <div class="modal-header">
+                <div class="avm-badge" id="avm-badge">
+                    <span class="avm-pulse"></span>
+                    <span id="avm-badge-text">Awaiting Verification</span>
+                </div>
+                <button type="button" class="modal-close-btn" onclick="closeModal('awaiting-verification-modal')">&times;</button>
+            </div>
+
+            <div class="avm-body">
+                <div class="avm-icon-box">
+                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                    </svg>
+                </div>
+
+                <h3 class="avm-title" id="avm-title">Transfer Access Restricted</h3>
+                <p class="avm-desc" id="avm-desc">
+                    Your account is currently awaiting identity verification. For compliance and security protection, outbound transfers and fund withdrawals remain temporarily locked until full KYC clearance is confirmed.
+                </p>
+
+                <!-- Priority Manager Info Callout Box -->
+                <div class="avm-manager-box">
+                    <div class="avm-manager-header">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="16" x2="12" y2="12"></line>
+                            <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                        </svg>
+                        <span>Assigned Relationship Manager</span>
+                    </div>
+                    <p class="avm-manager-text">To expedite document review and unlock immediate fund release, please contact your account manager directly:</p>
+                    <div class="avm-email-badge">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                        <a href="mailto:manager@lumenaeather.com" class="avm-email-link">manager@lumenaeather.com</a>
+                        <button type="button" class="avm-copy-btn" onclick="copyManagerEmail(event)">Copy</button>
+                    </div>
+                </div>
+
+                <div class="avm-actions">
+                    <button type="button" class="btn-primary avm-action-primary" id="avm-action-btn">View Verification Status</button>
+                    <button type="button" class="btn-secondary avm-action-secondary" onclick="closeModal('awaiting-verification-modal')">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- SECURITY CENTER MODAL -->
     <div class="modal-overlay" id="security-modal">
         <div class="modal-card">
@@ -845,22 +898,58 @@
             }).join('');
         }
 
-        // Copy Account Number
-        function copyAccountNumber() {
-            if (!currentUser || !currentUser.accountNumber) return;
-            navigator.clipboard.writeText(currentUser.accountNumber).then(() => {
-                const btn = document.getElementById('copy-btn');
-                btn.innerText = 'Copied!';
-                btn.style.color = '#10b981';
-                setTimeout(() => {
-                    btn.innerText = 'Copy';
-                    btn.style.color = '';
-                }, 2000);
-            });
+        // Awaiting Verification Modal Controller
+        function openAwaitingVerificationModal() {
+            const modal = document.getElementById('awaiting-verification-modal');
+            if (!modal) return;
+
+            const hasSubmitted = currentUser && currentUser.accountVerificationData;
+            const status = hasSubmitted ? currentUser.accountVerificationData.verificationStatus : null;
+
+            const badge = document.getElementById('avm-badge');
+            const badgeText = document.getElementById('avm-badge-text');
+            const title = document.getElementById('avm-title');
+            const desc = document.getElementById('avm-desc');
+            const actionBtn = document.getElementById('avm-action-btn');
+
+            if (status === 'PENDING' || hasSubmitted) {
+                // Submitted and waiting for review / release
+                badge.className = 'avm-badge badge-pending';
+                badgeText.innerText = 'Verification Under Review';
+                title.innerText = 'Transfer Access Restricted';
+                desc.innerText = 'Your account documentation has been submitted and is currently being processed. Outbound transfers remain temporarily locked until verification is approved. You can contact your personal manager to expedite the release.';
+                actionBtn.innerText = 'View Verification Status';
+                actionBtn.onclick = () => {
+                    closeModal('awaiting-verification-modal');
+                    if (window.openVerifyModalAtStep) window.openVerifyModalAtStep(6);
+                };
+            } else {
+                // Not yet submitted verification
+                badge.className = 'avm-badge badge-unverified';
+                badgeText.innerText = 'Verification Required';
+                title.innerText = 'Identity Verification Required';
+                desc.innerText = 'To comply with banking security regulations and protect your account balance, please complete your one-time identity verification before sending money.';
+                actionBtn.innerText = 'Start Verification Now';
+                actionBtn.onclick = () => {
+                    closeModal('awaiting-verification-modal');
+                    if (window.openVerifyModalAtStep) window.openVerifyModalAtStep(1);
+                };
+            }
+
+            modal.classList.add('open');
         }
 
         // Modals Controls
         function openTransferModal() {
+            const isVerified = currentUser &&
+                               currentUser.accountVerificationData &&
+                               currentUser.accountVerificationData.verificationStatus === 'APPROVED';
+
+            if (!isVerified) {
+                openAwaitingVerificationModal();
+                return;
+            }
+
             document.getElementById('transfer-modal').classList.add('open');
         }
 
@@ -894,6 +983,15 @@
         // Handle Transfer Submission
         async function handleTransferSubmit(e) {
             e.preventDefault();
+            const isVerified = currentUser &&
+                               currentUser.accountVerificationData &&
+                               currentUser.accountVerificationData.verificationStatus === 'APPROVED';
+
+            if (!isVerified) {
+                closeModal('transfer-modal');
+                openAwaitingVerificationModal();
+                return;
+            }
             const recipientAccount = document.getElementById('recipient-account').value.replace(/\s+/g, '').trim();
             const amount = parseFloat(document.getElementById('transfer-amount').value);
             const description = document.getElementById('transfer-note').value.trim();
@@ -1073,9 +1171,15 @@
         }
 
         // Backwards compatibility aliases
-        const copyAccountNumber = copyChequingAcc;
-        const toggleAccountNumberVisibility = toggleChequingVisibility;
-        const updateAccountNumberDisplay = updateAccountNumbersDisplay;
+        function copyAccountNumber() {
+            return copyChequingAcc();
+        }
+        function toggleAccountNumberVisibility() {
+            return toggleChequingVisibility();
+        }
+        function updateAccountNumberDisplay() {
+            return updateAccountNumbersDisplay();
+        }
 
         // Logout
         async function handleLogout() {

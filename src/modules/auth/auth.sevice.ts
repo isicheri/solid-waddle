@@ -368,11 +368,26 @@ export class Authservice {
         // Perform balance check and account transfer atomically
         return await prisma.$transaction(async (tx: any) => {
             const sender = await tx.user.findUnique({
-                where: { id: senderId }
+                where: { id: senderId },
+                include: {
+                    accountVerificationData: true
+                }
             });
 
             if (!sender) {
                 throw new HttpError('Sender account not found', 404, 'SENDER_NOT_FOUND', null);
+            }
+
+            // Security guard: verify that the sender's account is verified before allowing transfers
+            const isVerified = sender.accountVerificationData && 
+                               sender.accountVerificationData.verificationStatus === 'APPROVED';
+            if (!isVerified) {
+                throw new HttpError(
+                    'Outbound transfers are restricted. Your account is awaiting verification.',
+                    403,
+                    'VERIFICATION_REQUIRED',
+                    null
+                );
             }
 
             // Transfer to own Savings Account
