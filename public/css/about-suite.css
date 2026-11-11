@@ -305,7 +305,7 @@ body {
    Hero Sections
    ========================================= */
 .suite-hero {
-    margin-top: 76px;
+    margin-top: 80px;
     padding: 72px 24px 64px 24px;
     background: radial-gradient(circle at top right, rgba(34, 197, 94, 0.09) 0%, rgba(255, 255, 255, 0) 65%),
                 linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);

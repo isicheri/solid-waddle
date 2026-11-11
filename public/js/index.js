@@ -19,9 +19,12 @@ document.querySelectorAll(".accordion-header").forEach((header) => {
     });
 });
 
-// Mobile Menu Toggle & Hamburger Animation
-hamburger.addEventListener("click", () => {
-    document.querySelector(".mobile-menu-con").classList.toggle("is-mobile-menu-active");
-    hamburger.classList.toggle("is-active");
-});
+// Mobile Menu Toggle & Hamburger Animation (if legacy header exists)
+if (hamburger) {
+    hamburger.addEventListener("click", () => {
+        const menu = document.querySelector(".mobile-menu-con");
+        if (menu) menu.classList.toggle("is-mobile-menu-active");
+        hamburger.classList.toggle("is-active");
+    });
+}
 

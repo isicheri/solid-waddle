@@ -11,46 +11,13 @@
         href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="/css/about-suite.css">
+    <link rel="stylesheet" href="/css/site-nav.css">
 </head>
 
 <body>
 
-    <!-- Fixed Header Navigation Bar -->
-    <header class="suite-nav-con">
-        <div class="suite-nav-inner">
-            <a href="/" class="suite-nav-logo">LAFP</a>
-
-            <nav class="suite-nav-links">
-                <a href="/" class="suite-nav-link">Home</a>
-                <a href="/learn-more" class="suite-nav-link">Features</a>
-                <a href="/activate-card" class="suite-nav-link">Cards</a>
-                <a href="/about" class="suite-nav-link active">About LAFP</a>
-                <a href="/work-here" class="suite-nav-link">Careers</a>
-                <a href="/announcements" class="suite-nav-link">Announcements</a>
-            </nav>
-
-            <div class="suite-nav-right">
-                <a href="/login" class="suite-nav-login">Log In</a>
-                <a href="/signup" class="suite-nav-btn">Open Account</a>
-                <button type="button" class="suite-hamburger" aria-label="Toggle Menu"
-                    onclick="document.getElementById('suite-mobile-drawer').classList.toggle('open')">
-                    <span></span><span></span><span></span>
-                </button>
-            </div>
-        </div>
-    </header>
-
-    <!-- Mobile Navigation Drawer -->
-    <div class="suite-mobile-drawer" id="suite-mobile-drawer">
-        <a href="/" class="suite-mobile-link">Home</a>
-        <a href="/learn-more" class="suite-mobile-link">Features</a>
-        <a href="/activate-card" class="suite-mobile-link">Cards</a>
-        <a href="/about" class="suite-mobile-link active">About LAFP</a>
-        <a href="/work-here" class="suite-mobile-link">Careers</a>
-        <a href="/announcements" class="suite-mobile-link">Announcements</a>
-        <a href="/login" class="suite-mobile-link">Log In</a>
-        <a href="/signup" class="suite-mobile-link">Open Account</a>
-    </div>
+    <div id="site-nav-root"></div>
+    <script src="/js/site-nav.js"></script>
 
     <main>
         <!-- Hero Section -->
