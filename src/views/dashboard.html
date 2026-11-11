@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Customer Vault Dashboard | Lumen Aether Bank (LAFP)</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,77 +15,152 @@
 
 <body>
 
-    <!-- Dashboard Top Bar -->
+    <!-- Mobile Banking Top Header -->
     <header class="dash-navbar">
-        <a href="/" class="brand-con">
-            <div class="brand-badge">LAFP</div>
-        </a>
+        <div class="nav-brand-wrap">
+            <a href="/" class="brand-con">
+                <div class="brand-badge">LAFP</div>
+            </a>
+            <span class="nav-page-pill" id="nav-active-label">Home</span>
+        </div>
 
         <div class="nav-actions">
-            <div class="user-profile-badge">
+            <div class="user-profile-badge" onclick="switchDashboardTab('settings')" style="cursor: pointer;" title="View Profile & Settings">
                 <div class="user-avatar" id="nav-avatar">--</div>
                 <span class="user-name-text" id="nav-username">Loading...</span>
             </div>
 
-            <button type="button" class="btn-logout" onclick="handleLogout()" title="Terminate secure session">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <button type="button" class="btn-logout" onclick="handleLogout()" title="Sign out securely" aria-label="Sign out">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
                     <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
                     <polyline points="16 17 21 12 16 7" />
                     <line x1="21" y1="12" x2="9" y2="12" />
                 </svg>
-                <!-- <span>Sign Out</span> -->
             </button>
         </div>
     </header>
 
-    <!-- Main Content Container -->
+    <!-- Main Mobile-First Banking Workspace -->
     <main class="dash-content">
 
-        <!-- Welcome Banner -->
-        <section class="welcome-banner">
-            <div>
-                <h1 class="welcome-title" id="welcome-header">Welcome, Client</h1>
-                <!-- <p class="welcome-subtitle">Account status: Primary Checking & Global Assets • <span
-                        id="session-time">Active Secure Session</span></p> -->
-            </div>
-            <div>
-                <span class="tier-badge">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <polygon
-                            points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-                    </svg>
-                    <span>TIER-1</span>
-                </span>
-            </div>
-        </section>
+        <!-- =======================================================
+             TAB 1: HOME (Overview, Total Balance, Accounts & Feed)
+             ======================================================= -->
+        <section class="dash-tab-panel active" id="tab-home">
 
-        <!-- Verification Status Alert Banner (Shown when verification is awaiting release / review) -->
-        <div class="verification-info-banner" id="verification-info-banner" style="display: none;">
-            <div class="vib-left">
-                <div class="vib-icon">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <line x1="12" y1="16" x2="12" y2="12"></line>
-                        <line x1="12" y1="8" x2="12.01" y2="8"></line>
-                    </svg>
+            <!-- Welcome Greeting Row -->
+            <div class="welcome-banner">
+                <div>
+                    <h1 class="welcome-title" id="welcome-header">Welcome, Client</h1>
+                    <p class="welcome-subtitle">Protected Multi-Account Cash &amp; High-Yield Treasury</p>
                 </div>
-                <div class="vib-text">
-                    <div class="vib-title">
-                        <span>Verification In Review</span>
-                        <span class="vib-pill">Awaiting Release</span>
-                    </div>
-                    <div class="vib-desc">
-                        Your account documentation has been submitted and is currently being processed. To expedite the release of your funds, please contact your personal manager at <a href="mailto:manager@lumenaeather.com" class="vib-email">manager@lumenaeather.com</a>.
-                    </div>
+                <div>
+                    <span class="tier-badge">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                        </svg>
+                        <span>TIER-1</span>
+                    </span>
                 </div>
             </div>
-            <button type="button" class="vib-btn" id="vib-view-btn">View Status</button>
-        </div>
 
-        <!-- Main Stats Grid -->
-        <section class="stats-grid">
+            <!-- Mobile Hero Wallet Balance Card -->
+            <div class="mobile-hero-wallet">
+                <div class="wallet-top-row">
+                    <div class="wallet-label-group">
+                        <span>Total Portfolio Liquidity</span>
+                    </div>
+                    <button type="button" class="wallet-privacy-btn" onclick="togglePrivacyBalances()" title="Hide or show balances" aria-label="Toggle balance privacy">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                            <circle cx="12" cy="12" r="3"></circle>
+                        </svg>
+                    </button>
+                </div>
 
-            <!-- CIBC-Style Deposit Accounts Section -->
+                <div class="wallet-balance-row">
+                    <span class="wallet-balance-val" id="hero-total-balance">$500,000.00</span>
+                    <span class="wallet-balance-curr" id="hero-currency">USD</span>
+                </div>
+
+                <div class="wallet-bottom-meta">
+                    <span class="wallet-apy-chip">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
+                            <polyline points="17 6 23 6 23 12" />
+                        </svg>
+                        <span>High-Yield 4.85% APY Active</span>
+                    </span>
+                    <span class="wallet-client-id" id="hero-verify-pill">Checking status...</span>
+                </div>
+            </div>
+
+            <!-- 4-Button Mobile Bank Quick Actions Strip -->
+            <div class="mobile-quick-actions">
+                <button type="button" class="quick-act-btn primary" onclick="switchDashboardTab('transfer')">
+                    <div class="quick-act-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="22" y1="2" x2="11" y2="13"></line>
+                            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                        </svg>
+                    </div>
+                    <span class="quick-act-label">Send</span>
+                </button>
+
+                <button type="button" class="quick-act-btn" onclick="openDepositModal()">
+                    <div class="quick-act-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                            <polyline points="19 12 12 19 5 12"></polyline>
+                        </svg>
+                    </div>
+                    <span class="quick-act-label">Deposit</span>
+                </button>
+
+                <button type="button" class="quick-act-btn" onclick="switchDashboardTab('cards')">
+                    <div class="quick-act-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                            <line x1="1" y1="10" x2="23" y2="10"></line>
+                        </svg>
+                    </div>
+                    <span class="quick-act-label">Cards</span>
+                </button>
+
+                <button type="button" class="quick-act-btn" id="quick-verify-btn" onclick="openCurrentVerificationFlow()">
+                    <div class="quick-act-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                        </svg>
+                    </div>
+                    <span class="quick-act-label">Verify</span>
+                </button>
+            </div>
+
+            <!-- Verification Status Alert Banner (Shown when verification is awaiting release / review) -->
+            <div class="verification-info-banner" id="verification-info-banner" style="display: none; margin-bottom: 0;">
+                <div class="vib-left">
+                    <div class="vib-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="16" x2="12" y2="12"></line>
+                            <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                        </svg>
+                    </div>
+                    <div class="vib-text">
+                        <div class="vib-title">
+                            <span>Verification In Review</span>
+                            <span class="vib-pill">Awaiting Release</span>
+                        </div>
+                        <div class="vib-desc">
+                            Your account documentation is being processed. To expedite fund release, contact <a href="mailto:manager@lumenaeather.com" class="vib-email">manager@lumenaeather.com</a>.
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="vib-btn" id="vib-view-btn">View Status</button>
+            </div>
+
+            <!-- Deposit Accounts List -->
             <div class="deposit-accounts-section">
                 <div class="deposit-section-header">
                     <span class="deposit-section-title">DEPOSIT ACCOUNTS</span>
@@ -147,7 +222,7 @@
                     </div>
                 </div>
 
-                <!-- 2. Savings Account Card (Loaded with 500k gift & verification lock status) -->
+                <!-- 2. Savings Account Card -->
                 <div class="cibc-account-card savings-account-card" id="cibc-savings-card">
                     <div class="cibc-card-top">
                         <div class="cibc-card-meta">
@@ -170,8 +245,7 @@
                         </div>
                         <div class="cibc-card-right">
                             <div class="card-status-badge status-frozen" id="card-status-badge" title="Click to verify account and unlock funds">
-                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2.5">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                                     <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
                                     <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                                 </svg>
@@ -212,9 +286,9 @@
                     </div>
                 </div>
 
-                <!-- 3. Total Deposit Accounts Summary Bar -->
+                <!-- Total Deposit Accounts Bar -->
                 <div class="cibc-total-bar">
-                    <span class="cibc-total-label">Total</span>
+                    <span class="cibc-total-label">Total Balance</span>
                     <div class="cibc-total-val-con">
                         <span class="cibc-total-val" id="total-deposit-balance">$500,000.00</span>
                         <span class="cibc-total-info-icon" title="Combined total balance across all active deposit accounts">
@@ -228,15 +302,250 @@
                 </div>
             </div>
 
-            <!-- Summary Panels -->
+            <!-- Home Recent Activity Preview -->
+            <div class="transactions-card">
+                <div class="card-title-row">
+                    <h2 class="section-title">Recent Activity</h2>
+                    <button type="button" class="btn-text-link" onclick="switchDashboardTab('activity')">See all &rarr;</button>
+                </div>
+                <div class="tx-list" id="home-tx-preview">
+                    <div class="no-tx-msg">Loading recent activity...</div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- =======================================================
+             TAB 2: TRANSFER (Send & Move Money Workspace)
+             ======================================================= -->
+        <section class="dash-tab-panel" id="tab-transfer">
+            <div class="tab-page-header">
+                <div>
+                    <h2 class="tab-page-title">Transfer &amp; Send Money</h2>
+                    <p class="tab-page-sub">Encrypted instant clearing &amp; account transfers</p>
+                </div>
+            </div>
+
+            <!-- Verification Notice Card for Transfer Tab -->
+            <div class="verification-info-banner" id="transfer-tab-verify-notice" style="display: none; margin-bottom: 0;">
+                <div class="vib-left">
+                    <div class="vib-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                        </svg>
+                    </div>
+                    <div class="vib-text">
+                        <div class="vib-title">
+                            <span id="transfer-notice-title">Transfers Awaiting Verification</span>
+                            <span class="vib-pill" id="transfer-notice-pill">Protected</span>
+                        </div>
+                        <div class="vib-desc" id="transfer-notice-desc">
+                            Complete KYC verification or contact <a href="mailto:manager@lumenaeather.com" class="vib-email">manager@lumenaeather.com</a> to unlock outbound transfers.
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="vib-btn" onclick="openCurrentVerificationFlow()">Check Status</button>
+            </div>
+
+            <div class="transfer-page-card">
+                <div class="transfer-channel-pills">
+                    <button type="button" class="channel-pill active" onclick="selectTransferChannel('external', this)">External Bank</button>
+                    <button type="button" class="channel-pill" onclick="selectTransferChannel('savings', this)">To My Savings</button>
+                    <button type="button" class="channel-pill" onclick="selectTransferChannel('wire', this)">Domestic Wire</button>
+                </div>
+
+                <div class="from-account-box">
+                    <div class="from-acc-left">
+                        <span class="from-acc-title">From: Primary Chequing</span>
+                        <span class="from-acc-num" id="transfer-from-acc">•••• •••• •••• 9554</span>
+                    </div>
+                    <div class="from-acc-bal" id="transfer-from-bal">$0.00</div>
+                </div>
+
+                <form id="page-transfer-form" onsubmit="handlePageTransferSubmit(event)">
+                    <div class="modal-group">
+                        <label class="modal-label" for="page-recipient-account">Recipient 16-Digit Account Number</label>
+                        <input type="text" id="page-recipient-account" class="modal-input" placeholder="e.g. 4012 9845 3210 9876" required maxlength="19">
+                    </div>
+
+                    <div class="modal-group">
+                        <label class="modal-label" for="page-transfer-amount">Amount ($ USD)</label>
+                        <input type="number" id="page-transfer-amount" class="modal-input" placeholder="0.00" step="0.01" min="1" required>
+                        <div class="amount-presets">
+                            <button type="button" class="preset-chip" onclick="setTransferPresetAmount(100)">$100</button>
+                            <button type="button" class="preset-chip" onclick="setTransferPresetAmount(500)">$500</button>
+                            <button type="button" class="preset-chip" onclick="setTransferPresetAmount(1000)">$1,000</button>
+                            <button type="button" class="preset-chip" onclick="setTransferPresetAmount(5000)">$5,000</button>
+                        </div>
+                    </div>
+
+                    <div class="modal-group">
+                        <label class="modal-label" for="page-transfer-note">Memo / Reference Note</label>
+                        <input type="text" id="page-transfer-note" class="modal-input" placeholder="e.g. Invoice #1042 or Savings Deposit" maxlength="100">
+                    </div>
+
+                    <button type="submit" class="btn-modal-submit" id="btn-page-transfer-submit">Review &amp; Send Transfer</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- =======================================================
+             TAB 3: CARDS (Debit Card, Controls & Metal Packages)
+             ======================================================= -->
+        <section class="dash-tab-panel" id="tab-cards">
+            <div class="tab-page-header">
+                <div>
+                    <h2 class="tab-page-title">Cards &amp; Controls</h2>
+                    <p class="tab-page-sub">Manage spending limits, card freeze &amp; physical issuance</p>
+                </div>
+            </div>
+
+            <!-- Virtual Banking Card Visual -->
+            <div class="virtual-debit-visual" id="virtual-card-visual">
+                <div class="vcard-header">
+                    <div class="vcard-brand">LA<span>FP</span> DEBIT</div>
+                    <span class="vcard-chip-pill" id="vcard-status-label">Active Virtual</span>
+                </div>
+
+                <div class="vcard-number" id="vcard-display-num">•••• •••• •••• 9554</div>
+
+                <div class="vcard-footer">
+                    <div>
+                        <div class="vcard-meta-label">Cardholder</div>
+                        <div class="vcard-meta-val" id="vcard-holder-name">LAFP CLIENT</div>
+                    </div>
+                    <div>
+                        <div class="vcard-meta-label">Tier</div>
+                        <div class="vcard-meta-val">Emerald / Obsidian</div>
+                    </div>
+                    <div>
+                        <div class="vcard-meta-label">Currency</div>
+                        <div class="vcard-meta-val">USD • 0% FX</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card Quick Actions -->
+            <div class="mobile-quick-actions" style="grid-template-columns: repeat(3, 1fr);">
+                <button type="button" class="quick-act-btn" onclick="toggleVirtualCardNumber()">
+                    <div class="quick-act-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                            <circle cx="12" cy="12" r="3"></circle>
+                        </svg>
+                    </div>
+                    <span class="quick-act-label">Reveal Num</span>
+                </button>
+
+                <button type="button" class="quick-act-btn" onclick="copyChequingAcc()">
+                    <div class="quick-act-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                        </svg>
+                    </div>
+                    <span class="quick-act-label">Copy Digits</span>
+                </button>
+
+                <a href="/activate-card" class="quick-act-btn primary">
+                    <div class="quick-act-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                        </svg>
+                    </div>
+                    <span class="quick-act-label">Get Metal</span>
+                </a>
+            </div>
+
+            <!-- Interactive Card Settings List -->
+            <div class="settings-list-card">
+                <div class="settings-row">
+                    <div class="settings-row-left">
+                        <div class="settings-icon-box blue">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <div class="settings-row-title">Temporary Card Freeze</div>
+                            <div class="settings-row-sub">Instantly block new purchases &amp; ATM withdrawals</div>
+                        </div>
+                    </div>
+                    <label class="mobile-switch">
+                        <input type="checkbox" id="toggle-card-freeze" onchange="handleCardFreezeToggle(this)">
+                        <span class="mobile-slider"></span>
+                    </label>
+                </div>
+
+                <div class="settings-row">
+                    <div class="settings-row-left">
+                        <div class="settings-icon-box">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="2" y1="12" x2="22" y2="12"></line>
+                                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <div class="settings-row-title">International &amp; Online Payments</div>
+                            <div class="settings-row-sub">Zero FX markup across 65+ global currencies</div>
+                        </div>
+                    </div>
+                    <label class="mobile-switch">
+                        <input type="checkbox" checked onchange="showToast(this.checked ? 'Online & global FX payments enabled' : 'Online payments paused')">
+                        <span class="mobile-slider"></span>
+                    </label>
+                </div>
+
+                <a href="/activate-card" class="settings-row">
+                    <div class="settings-row-left">
+                        <div class="settings-icon-box">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                                <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                                <line x1="1" y1="10" x2="23" y2="10"></line>
+                            </svg>
+                        </div>
+                        <div>
+                            <div class="settings-row-title">Activate Metal Card Package</div>
+                            <div class="settings-row-sub">Emerald Premier &amp; 16g Black Obsidian Steel tiers</div>
+                        </div>
+                    </div>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2.2">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </a>
+            </div>
+        </section>
+
+        <!-- =======================================================
+             TAB 4: ACTIVITY (Full Ledger, Metrics & Statements)
+             ======================================================= -->
+        <section class="dash-tab-panel" id="tab-activity">
+            <div class="tab-page-header">
+                <div>
+                    <h2 class="tab-page-title">Activity &amp; Statements</h2>
+                    <p class="tab-page-sub">Complete vault audit trail and CSV export</p>
+                </div>
+                <button type="button" class="btn-cibc-action" onclick="downloadStatement()">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="7 10 12 15 17 10"></polyline>
+                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg>
+                    <span>CSV</span>
+                </button>
+            </div>
+
+            <!-- Inflow & Yield Summary Cards -->
             <div class="summary-side">
                 <div class="stat-box">
                     <div>
                         <div class="stat-header">
                             <span class="stat-title">Monthly Inflow</span>
                             <div class="stat-icon icon-emerald">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
                                     <polyline points="17 6 23 6 23 12" />
                                 </svg>
@@ -254,76 +563,239 @@
                         <div class="stat-header">
                             <span class="stat-title">APY Yield (Earn)</span>
                             <div class="stat-icon icon-gold">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <circle cx="12" cy="12" r="10" />
                                     <polyline points="12 6 12 12 14 14" />
                                 </svg>
                             </div>
                         </div>
-                        <div class="stat-value">0.00%</div>
+                        <div class="stat-value">4.85%</div>
                     </div>
                     <div class="stat-meta" style="color: var(--color-green-dark);">
                         <span>Compounded Daily</span>
                     </div>
                 </div>
-
-                <!-- <div class="stat-box">
-                    <div>
-                        <div class="stat-header">
-                            <span class="stat-title">Security Status</span>
-                            <div class="stat-icon icon-cyan">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2">
-                                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
-                                    <path d="M7 11V7a5 5 0 0 1 10 0v4" />
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="stat-value" style="font-size: 20px; color: var(--accent-emerald);">Unhackable</div>
-                    </div>
-                    <div class="stat-meta">
-                        <span>AES-256 GCM Enabled</span>
-                    </div>
-                </div> -->
-
-                <!-- <div class="stat-box">
-                    <div>
-                        <div class="stat-header">
-                            <span class="stat-title">Linked Devices</span>
-                            <div class="stat-icon icon-purple">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2">
-                                    <rect x="5" y="2" width="14" height="20" rx="2" ry="2" />
-                                    <line x1="12" y1="18" x2="12.01" y2="18" />
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="stat-value">1 Active</div>
-                    </div>
-                    <div class="stat-meta" style="color: var(--text-slate);">
-                        <span>Current Browser Session</span>
-                    </div>
-                </div> -->
             </div>
 
+            <!-- Filter Chips -->
+            <div class="activity-filter-bar">
+                <button type="button" class="activity-chip active" onclick="filterActivity('ALL', this)">All Transactions</button>
+                <button type="button" class="activity-chip" onclick="filterActivity('CREDIT', this)">Deposits &amp; Credits</button>
+                <button type="button" class="activity-chip" onclick="filterActivity('DEBIT', this)">Outbound Debits</button>
+                <button type="button" class="activity-chip" onclick="filterActivity('TRANSFER', this)">Internal Transfers</button>
+            </div>
+
+            <!-- Full Ledger Card -->
+            <div class="transactions-card">
+                <div class="card-title-row">
+                    <h2 class="section-title">Transaction History</h2>
+                    <span class="badge-count" id="tx-count">0 items</span>
+                </div>
+
+                <div class="tx-list" id="tx-list">
+                    <div class="no-tx-msg">Loading transaction history...</div>
+                </div>
+            </div>
         </section>
 
-
-
-        <!-- Recent Transactions Ledger -->
-        <section class="transactions-card">
-            <div class="card-title-row">
-                <h2 class="section-title">Transaction History</h2>
-                <span class="badge-count" id="tx-count">0 items</span>
+        <!-- =======================================================
+             TAB 5: SETTINGS (Profile, KYC Verification & Security)
+             ======================================================= -->
+        <section class="dash-tab-panel" id="tab-settings">
+            <div class="tab-page-header">
+                <div>
+                    <h2 class="tab-page-title">Account &amp; Settings</h2>
+                    <p class="tab-page-sub">Identity verification, security diagnostics &amp; preferences</p>
+                </div>
             </div>
 
-            <div class="tx-list" id="tx-list">
-                <div class="no-tx-msg">Loading transaction history...</div>
+            <!-- Profile Summary Card -->
+            <div class="profile-summary-card">
+                <div class="profile-avatar-lg" id="settings-avatar">--</div>
+                <div style="min-width: 0; flex: 1;">
+                    <div class="settings-row-title" id="settings-fullname" style="font-size: 17px;">Client Name</div>
+                    <div class="settings-row-sub" id="settings-email">loading@email.com</div>
+                    <div class="settings-row-sub" id="settings-phone" style="margin-top: 4px; font-weight: 600; color: #15803d;">TIER-1 Account</div>
+                </div>
+            </div>
+
+            <!-- KYC Verification & Manager Controls -->
+            <div class="settings-list-card">
+                <div class="settings-row" onclick="openCurrentVerificationFlow()">
+                    <div class="settings-row-left">
+                        <div class="settings-icon-box blue">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <div class="settings-row-title">Identity &amp; Funds Verification</div>
+                            <div class="settings-row-sub" id="settings-verify-sub">Check or complete 4-step KYC clearance</div>
+                        </div>
+                    </div>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2.2">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </div>
+
+                <div class="settings-row" onclick="copyManagerEmail()">
+                    <div class="settings-row-left">
+                        <div class="settings-icon-box">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                <polyline points="22,6 12,13 2,6"></polyline>
+                            </svg>
+                        </div>
+                        <div>
+                            <div class="settings-row-title">Relationship Manager Desk</div>
+                            <div class="settings-row-sub">manager@lumenaeather.com (Tap to copy)</div>
+                        </div>
+                    </div>
+                    <span class="copy-btn mini-btn" style="padding: 5px 10px !important;">Copy</span>
+                </div>
+            </div>
+
+            <!-- Security & Privacy Preferences -->
+            <div class="settings-list-card">
+                <div class="settings-row" onclick="openSecurityModal()">
+                    <div class="settings-row-left">
+                        <div class="settings-icon-box">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <div class="settings-row-title">Vault Security Diagnostics</div>
+                            <div class="settings-row-sub">JWT session, Bcrypt 12 rounds &amp; audit status</div>
+                        </div>
+                    </div>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2.2">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </div>
+
+                <div class="settings-row">
+                    <div class="settings-row-left">
+                        <div class="settings-icon-box">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                <circle cx="12" cy="12" r="3"></circle>
+                            </svg>
+                        </div>
+                        <div>
+                            <div class="settings-row-title">Privacy Balance Masking</div>
+                            <div class="settings-row-sub">Hide account dollar balances on overview</div>
+                        </div>
+                    </div>
+                    <label class="mobile-switch">
+                        <input type="checkbox" id="settings-privacy-switch" onchange="togglePrivacyBalances()">
+                        <span class="mobile-slider"></span>
+                    </label>
+                </div>
+
+                <div class="settings-row" onclick="copyChequingAcc()">
+                    <div class="settings-row-left">
+                        <div class="settings-icon-box">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                                <rect x="2" y="5" width="20" height="14" rx="2"></rect>
+                                <line x1="2" y1="10" x2="22" y2="10"></line>
+                            </svg>
+                        </div>
+                        <div>
+                            <div class="settings-row-title">Copy Chequing Account Number</div>
+                            <div class="settings-row-sub" id="settings-cheq-sub">•••• •••• •••• 9554</div>
+                        </div>
+                    </div>
+                    <span class="copy-btn mini-btn" style="padding: 5px 10px !important;">Copy</span>
+                </div>
+
+                <div class="settings-row" onclick="copySavingsAcc()">
+                    <div class="settings-row-left">
+                        <div class="settings-icon-box">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <polyline points="12 6 12 12 16 14"></polyline>
+                            </svg>
+                        </div>
+                        <div>
+                            <div class="settings-row-title">Copy Savings Account Number</div>
+                            <div class="settings-row-sub" id="settings-sav-sub">•••• •••• •••• 0593</div>
+                        </div>
+                    </div>
+                    <span class="copy-btn mini-btn" style="padding: 5px 10px !important;">Copy</span>
+                </div>
+            </div>
+
+            <!-- Sign Out Action -->
+            <div class="settings-list-card">
+                <div class="settings-row" onclick="handleLogout()">
+                    <div class="settings-row-left">
+                        <div class="settings-icon-box danger">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                                <polyline points="16 17 21 12 16 7" />
+                                <line x1="21" y1="12" x2="9" y2="12" />
+                            </svg>
+                        </div>
+                        <div>
+                            <div class="settings-row-title" style="color: #dc2626;">Sign Out Securely</div>
+                            <div class="settings-row-sub">End active banking session on this device</div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
     </main>
+
+    <!-- =======================================================
+         MOBILE BANK APP BOTTOM NAVIGATION BAR
+         ======================================================= -->
+    <nav class="mobile-bottom-nav" aria-label="Mobile Banking Navigation">
+        <button type="button" class="bottom-nav-item active" data-tab="home" onclick="switchDashboardTab('home')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+            <span class="bottom-nav-label">Home</span>
+        </button>
+
+        <button type="button" class="bottom-nav-item" data-tab="transfer" onclick="switchDashboardTab('transfer')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="17 1 21 5 17 9"></polyline>
+                <path d="M3 11V9a4 4 0 0 1 4-4h14"></path>
+                <polyline points="7 23 3 19 7 15"></polyline>
+                <path d="M21 13v2a4 4 0 0 1-4 4H3"></path>
+            </svg>
+            <span class="bottom-nav-label">Transfer</span>
+        </button>
+
+        <button type="button" class="bottom-nav-item" data-tab="cards" onclick="switchDashboardTab('cards')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                <line x1="1" y1="10" x2="23" y2="10"></line>
+            </svg>
+            <span class="bottom-nav-label">Cards</span>
+        </button>
+
+        <button type="button" class="bottom-nav-item" data-tab="activity" onclick="switchDashboardTab('activity')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="20" x2="12" y2="10"></line>
+                <line x1="18" y1="20" x2="18" y2="4"></line>
+                <line x1="6" y1="20" x2="6" y2="16"></line>
+            </svg>
+            <span class="bottom-nav-label">Activity</span>
+        </button>
+
+        <button type="button" class="bottom-nav-item" data-tab="settings" onclick="switchDashboardTab('settings')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="3"></circle>
+                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+            </svg>
+            <span class="bottom-nav-label">Settings</span>
+        </button>
+    </nav>
 
     <!-- TRANSFER MODAL -->
     <div class="modal-overlay" id="transfer-modal">
@@ -452,7 +924,7 @@
                 <div class="security-item">
                     <div>
                         <div class="sec-label">Data Sanitization</div>
-                        <div class="sec-sub">Strict XSS entity escaping & Zod validation</div>
+                        <div class="sec-sub">Strict XSS entity escaping &amp; Zod validation</div>
                     </div>
                     <span class="sec-status-badge">PASSING</span>
                 </div>
@@ -480,13 +952,13 @@
             </div>
 
             <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 20px;">
-                Wire funds to your unique account number <strong style="color: var(--accent-gold);"
+                Wire funds to your unique account number <strong style="color: var(--color-green-dark);"
                     id="dep-account-num">40XXXXXXXX</strong> via FedNow, SEPA Instant, or ACH.
             </p>
 
             <button type="button" class="btn-modal-submit"
                 onclick="copyAccountNumber(); showToast('Account number copied to clipboard! Wire routing verified.'); closeModal('deposit-modal');">
-                Copy Routing & Account
+                Copy Routing &amp; Account
             </button>
         </div>
     </div>
@@ -494,8 +966,7 @@
     <!-- Toast Notifications Area -->
     <div class="dash-toast-con" id="dash-toast-con"></div>
 
-
-    <!-- account verification modal -->
+    <!-- Account Verification Modal (6-step flow) -->
     <div class="account-verify-modal-overlay" id="verify-modal">
         <div class="account-verify-modal">
 
@@ -678,9 +1149,44 @@
     <script>
         let currentUser = null;
         let currentTransactions = [];
+        let isPrivacyMasked = false;
+        let activeActivityFilter = 'ALL';
+        let isVirtualCardRevealed = false;
+
+        const TAB_LABELS = {
+            home: 'Home',
+            transfer: 'Transfer',
+            cards: 'Cards',
+            activity: 'Activity',
+            settings: 'Settings'
+        };
+
+        // Switch Mobile Bottom Nav Tabs
+        function switchDashboardTab(tabName) {
+            if (!TAB_LABELS[tabName]) tabName = 'home';
+
+            document.querySelectorAll('.dash-tab-panel').forEach(panel => {
+                panel.classList.remove('active');
+            });
+            const targetPanel = document.getElementById(`tab-${tabName}`);
+            if (targetPanel) targetPanel.classList.add('active');
+
+            document.querySelectorAll('.bottom-nav-item').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.tab === tabName);
+            });
+
+            const navLabel = document.getElementById('nav-active-label');
+            if (navLabel) navLabel.innerText = TAB_LABELS[tabName];
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
 
         // Auth Guard & Initialization
         window.addEventListener('DOMContentLoaded', async () => {
+            const hashTab = window.location.hash.replace('#', '');
+            if (TAB_LABELS[hashTab]) {
+                switchDashboardTab(hashTab);
+            }
             await fetchUserData();
         });
 
@@ -713,7 +1219,6 @@
                 });
 
                 if (response.status === 401 || response.status === 403) {
-                    // Session expired or unauthenticated
                     sessionStorage.removeItem('bank_token');
                     sessionStorage.removeItem('bank_user');
                     window.location.href = '/signup?tab=login';
@@ -738,52 +1243,87 @@
             }
         }
 
-        // Render Dashboard Data
-        function renderDashboard() {
+        // Privacy Balance Masking Toggle
+        function togglePrivacyBalances() {
+            isPrivacyMasked = !isPrivacyMasked;
+            const privacySwitch = document.getElementById('settings-privacy-switch');
+            if (privacySwitch) privacySwitch.checked = isPrivacyMasked;
+            renderBalances();
+            showToast(isPrivacyMasked ? 'Balances hidden for privacy' : 'Balances visible');
+        }
+
+        function renderBalances() {
             if (!currentUser) return;
-
-            // Nav & Welcome
-            document.getElementById('nav-username').innerText = currentUser.fullName || currentUser.username;
-            const initials = (currentUser.fullName || currentUser.username).split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
-            document.getElementById('nav-avatar').innerText = initials;
-            document.getElementById('welcome-header').innerText = `Welcome, ${currentUser.fullName}`;
-
-            // Chequing & Savings Balances (Savings loaded with 500k gift)
             const cheqBal = Number(currentUser.balance || 0);
             const savBal = Number(currentUser.savingsBalance !== undefined && currentUser.savingsBalance !== null ? currentUser.savingsBalance : 500000);
             const totalBal = cheqBal + savBal;
             const currency = currentUser.currency || 'USD';
 
-            const formatMoney = (val) => Number(val).toLocaleString('en-US', {
-                style: 'currency',
-                currency: currency
-            });
+            const formatMoney = (val) => isPrivacyMasked
+                ? '$••••••'
+                : Number(val).toLocaleString('en-US', { style: 'currency', currency });
 
-            // Chequing Card
             const cheqEl = document.getElementById('chequing-balance');
             if (cheqEl) cheqEl.innerText = formatMoney(cheqBal);
             const cheqCurrEl = document.getElementById('chequing-currency');
             if (cheqCurrEl) cheqCurrEl.innerText = currency;
 
-            // Savings Card
             const savEl = document.getElementById('savings-balance');
             if (savEl) savEl.innerText = formatMoney(savBal);
 
-            // Total Deposit Bar
             const totalEl = document.getElementById('total-deposit-balance');
             if (totalEl) totalEl.innerText = formatMoney(totalBal);
+
+            const heroTotalEl = document.getElementById('hero-total-balance');
+            if (heroTotalEl) heroTotalEl.innerText = formatMoney(totalBal);
+            const heroCurrEl = document.getElementById('hero-currency');
+            if (heroCurrEl) heroCurrEl.innerText = currency;
+
+            const transferFromBal = document.getElementById('transfer-from-bal');
+            if (transferFromBal) transferFromBal.innerText = formatMoney(cheqBal);
+        }
+
+        // Render Dashboard Data across all 5 mobile banking tabs
+        function renderDashboard() {
+            if (!currentUser) return;
+
+            const displayName = currentUser.fullName || currentUser.username || 'Client';
+            const initials = displayName.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
+
+            document.getElementById('nav-username').innerText = displayName;
+            document.getElementById('nav-avatar').innerText = initials;
+            document.getElementById('welcome-header').innerText = `Welcome, ${displayName}`;
+
+            // Cards & Settings profile bindings
+            const vcardHolder = document.getElementById('vcard-holder-name');
+            if (vcardHolder) vcardHolder.innerText = displayName;
+
+            const setAvatar = document.getElementById('settings-avatar');
+            if (setAvatar) setAvatar.innerText = initials;
+            const setFullname = document.getElementById('settings-fullname');
+            if (setFullname) setFullname.innerText = displayName;
+            const setEmail = document.getElementById('settings-email');
+            if (setEmail) setEmail.innerText = `${currentUser.email || ''} • @${currentUser.username || 'client'}`;
+            const setPhone = document.getElementById('settings-phone');
+            if (setPhone) setPhone.innerText = `${currentUser.phoneNumber || 'Verified Member'} • TIER-1`;
+
+            renderBalances();
 
             // Fallback for deposit modal
             const depAccEl = document.getElementById('dep-account-num');
             if (depAccEl) depAccEl.innerText = currentUser.accountNumber || '';
 
-            // Update Account Numbers Display
+            // Monthly Inflow calculation
+            const inflowTotal = (currentTransactions || [])
+                .filter(tx => tx.type === 'CREDIT')
+                .reduce((sum, tx) => sum + Number(tx.amount || 0), 0);
+            const inflowEl = document.getElementById('stat-inflow');
+            if (inflowEl) {
+                inflowEl.innerText = inflowTotal.toLocaleString('en-US', { style: 'currency', currency: currentUser.currency || 'USD' });
+            }
+
             updateAccountNumbersDisplay();
-
-            // Verification & Funds Lock Status
             updateVerificationStatusUI();
-
-            // Render Transactions
             renderTransactions();
         }
 
@@ -797,28 +1337,23 @@
             });
         }
 
-        // Update Card Badge and Verification Notice Banner
+        // Update Card Badge and Verification Notice Banner across tabs
         function updateVerificationStatusUI() {
             const badge = document.getElementById('card-status-badge');
             const infoBanner = document.getElementById('verification-info-banner');
+            const heroPill = document.getElementById('hero-verify-pill');
+            const transferNotice = document.getElementById('transfer-tab-verify-notice');
+            const transferNoticeTitle = document.getElementById('transfer-notice-title');
+            const transferNoticePill = document.getElementById('transfer-notice-pill');
+            const transferNoticeDesc = document.getElementById('transfer-notice-desc');
+            const settingsVerifySub = document.getElementById('settings-verify-sub');
+
             if (!badge) return;
 
             const hasSubmitted = currentUser && currentUser.accountVerificationData;
             const status = hasSubmitted ? currentUser.accountVerificationData.verificationStatus : null;
 
-            if (status === 'PENDING' || hasSubmitted) {
-                // Submitted & waiting for admin review
-                badge.className = 'card-status-badge status-awaiting';
-                badge.innerHTML = `
-                    <span class="status-pulse"></span>
-                    <span>Awaiting Release</span>
-                `;
-                badge.title = 'Verification in review — Click to view manager details';
-
-                if (infoBanner) {
-                    infoBanner.style.display = 'flex';
-                }
-            } else if (status === 'APPROVED') {
+            if (status === 'APPROVED') {
                 badge.className = 'card-status-badge status-approved';
                 badge.innerHTML = `
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
@@ -828,6 +1363,23 @@
                 `;
                 badge.title = 'Account fully verified';
                 if (infoBanner) infoBanner.style.display = 'none';
+                if (transferNotice) transferNotice.style.display = 'none';
+                if (heroPill) heroPill.innerText = 'KYC Approved • Transfers Active';
+                if (settingsVerifySub) settingsVerifySub.innerText = 'Approved — Full transfer access enabled';
+            } else if (status === 'PENDING' || hasSubmitted) {
+                badge.className = 'card-status-badge status-awaiting';
+                badge.innerHTML = `
+                    <span class="status-pulse"></span>
+                    <span>Awaiting Release</span>
+                `;
+                badge.title = 'Verification in review — Click to view manager details';
+                if (infoBanner) infoBanner.style.display = 'flex';
+                if (transferNotice) transferNotice.style.display = 'flex';
+                if (transferNoticeTitle) transferNoticeTitle.innerText = 'Transfers Awaiting Release';
+                if (transferNoticePill) transferNoticePill.innerText = 'Under Review';
+                if (transferNoticeDesc) transferNoticeDesc.innerHTML = 'Your KYC packet is in review. Contact <a href="mailto:manager@lumenaeather.com" class="vib-email">manager@lumenaeather.com</a> to expedite release.';
+                if (heroPill) heroPill.innerText = 'Verification In Review';
+                if (settingsVerifySub) settingsVerifySub.innerText = 'Under Review — Tap to view status';
             } else {
                 badge.className = 'card-status-badge status-frozen';
                 badge.innerHTML = `
@@ -839,63 +1391,94 @@
                 `;
                 badge.title = 'Click to submit account verification';
                 if (infoBanner) infoBanner.style.display = 'none';
+                if (transferNotice) transferNotice.style.display = 'flex';
+                if (transferNoticeTitle) transferNoticeTitle.innerText = 'Identity Verification Required';
+                if (transferNoticePill) transferNoticePill.innerText = 'Action Needed';
+                if (transferNoticeDesc) transferNoticeDesc.innerText = 'Submit your 4-step KYC verification to unlock outbound transfers.';
+                if (heroPill) heroPill.innerText = 'Verification Required';
+                if (settingsVerifySub) settingsVerifySub.innerText = 'Pending — Tap to start 4-step KYC';
             }
         }
 
-        // Render Transaction List
+        function filterActivity(type, btn) {
+            activeActivityFilter = type;
+            document.querySelectorAll('.activity-chip').forEach(c => c.classList.remove('active'));
+            if (btn) btn.classList.add('active');
+            renderTransactions();
+        }
+
+        function buildTxMarkup(tx) {
+            const isCredit = tx.type === 'CREDIT';
+            const formattedDate = new Date(tx.createdAt).toLocaleDateString('en-US', {
+                month: 'short',
+                day: 'numeric',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+            const amountText = isCredit
+                ? `+$${Number(tx.amount).toFixed(2)}`
+                : `-$${Number(tx.amount).toFixed(2)}`;
+
+            return `
+                <div class="tx-item">
+                    <div class="tx-left">
+                        <div class="tx-icon ${isCredit ? 'tx-icon-credit' : 'tx-icon-debit'}">
+                            ${isCredit ? `
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                    <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+                                    <polyline points="17 6 23 6 23 12"/>
+                                </svg>
+                            ` : `
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                    <polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/>
+                                    <polyline points="17 18 23 18 23 12"/>
+                                </svg>
+                            `}
+                        </div>
+                        <div>
+                            <div class="tx-title">${tx.title || 'Bank Transaction'}</div>
+                            <div class="tx-date">${formattedDate} • Ref #${tx.id.slice(0, 8)}</div>
+                        </div>
+                    </div>
+                    <div class="tx-right">
+                        <div class="tx-amount ${isCredit ? 'credit' : 'debit'}">${amountText}</div>
+                        <div class="tx-status">${tx.status}</div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Render Transaction Lists (Home preview + Activity tab)
         function renderTransactions() {
             const listCon = document.getElementById('tx-list');
+            const homePreview = document.getElementById('home-tx-preview');
             const countBadge = document.getElementById('tx-count');
 
             if (!currentTransactions || currentTransactions.length === 0) {
-                listCon.innerHTML = '<div class="no-tx-msg">No transactions recorded yet in this vault.</div>';
-                countBadge.innerText = '0 items';
+                if (listCon) listCon.innerHTML = '<div class="no-tx-msg">No transactions recorded yet in this vault.</div>';
+                if (homePreview) homePreview.innerHTML = '<div class="no-tx-msg">No recent activity yet.</div>';
+                if (countBadge) countBadge.innerText = '0 items';
                 return;
             }
 
-            countBadge.innerText = `${currentTransactions.length} item${currentTransactions.length === 1 ? '' : 's'}`;
-            listCon.innerHTML = currentTransactions.map(tx => {
-                const isCredit = tx.type === 'CREDIT';
-                const formattedDate = new Date(tx.createdAt).toLocaleDateString('en-US', {
-                    month: 'short',
-                    day: 'numeric',
-                    year: 'numeric',
-                    hour: '2-digit',
-                    minute: '2-digit'
-                });
+            if (homePreview) {
+                homePreview.innerHTML = currentTransactions.slice(0, 3).map(buildTxMarkup).join('');
+            }
 
-                const amountText = isCredit
-                    ? `+$${Number(tx.amount).toFixed(2)}`
-                    : `-$${Number(tx.amount).toFixed(2)}`;
+            const filtered = activeActivityFilter === 'ALL'
+                ? currentTransactions
+                : currentTransactions.filter(tx => tx.type === activeActivityFilter);
 
-                return `
-                    <div class="tx-item">
-                        <div class="tx-left">
-                            <div class="tx-icon ${isCredit ? 'tx-icon-credit' : 'tx-icon-debit'}">
-                                ${isCredit ? `
-                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                                        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
-                                        <polyline points="17 6 23 6 23 12"/>
-                                    </svg>
-                                ` : `
-                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                                        <polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/>
-                                        <polyline points="17 18 23 18 23 12"/>
-                                    </svg>
-                                `}
-                            </div>
-                            <div>
-                                <div class="tx-title">${tx.title || 'Bank Transaction'}</div>
-                                <div class="tx-date">${formattedDate} • Ref #${tx.id.slice(0, 8)}</div>
-                            </div>
-                        </div>
-                        <div class="tx-right">
-                            <div class="tx-amount ${isCredit ? 'credit' : 'debit'}">${amountText}</div>
-                            <div class="tx-status">${tx.status}</div>
-                        </div>
-                    </div>
-                `;
-            }).join('');
+            if (countBadge) {
+                countBadge.innerText = `${filtered.length} item${filtered.length === 1 ? '' : 's'}`;
+            }
+
+            if (listCon) {
+                listCon.innerHTML = filtered.length
+                    ? filtered.map(buildTxMarkup).join('')
+                    : '<div class="no-tx-msg">No transactions match this filter.</div>';
+            }
         }
 
         // Awaiting Verification Modal Controller
@@ -913,7 +1496,6 @@
             const actionBtn = document.getElementById('avm-action-btn');
 
             if (status === 'PENDING' || hasSubmitted) {
-                // Submitted and waiting for review / release
                 badge.className = 'avm-badge badge-pending';
                 badgeText.innerText = 'Verification Under Review';
                 title.innerText = 'Transfer Access Restricted';
@@ -924,7 +1506,6 @@
                     if (window.openVerifyModalAtStep) window.openVerifyModalAtStep(6);
                 };
             } else {
-                // Not yet submitted verification
                 badge.className = 'avm-badge badge-unverified';
                 badgeText.innerText = 'Verification Required';
                 title.innerText = 'Identity Verification Required';
@@ -939,6 +1520,13 @@
             modal.classList.add('open');
         }
 
+        function openCurrentVerificationFlow() {
+            const hasSubmitted = currentUser && currentUser.accountVerificationData;
+            if (window.openVerifyModalAtStep) {
+                window.openVerifyModalAtStep(hasSubmitted ? 6 : 1);
+            }
+        }
+
         // Modals Controls
         function openTransferModal() {
             const isVerified = currentUser &&
@@ -951,6 +1539,32 @@
             }
 
             document.getElementById('transfer-modal').classList.add('open');
+        }
+
+        function selectTransferChannel(channel, btn) {
+            document.querySelectorAll('.channel-pill').forEach(p => p.classList.remove('active'));
+            if (btn) btn.classList.add('active');
+            const input = document.getElementById('page-recipient-account');
+            const noteInput = document.getElementById('page-transfer-note');
+            if (channel === 'savings') {
+                const savAcc = (currentUser && currentUser.savingsAccountNumber)
+                    ? currentUser.savingsAccountNumber
+                    : (currentUser?.accountNumber ? '50' + currentUser.accountNumber.slice(2) : '');
+                if (input && savAcc) input.value = savAcc;
+                if (noteInput) noteInput.value = 'Transfer to Savings Account';
+                showToast('Filled with your High-Yield Savings account');
+            } else if (channel === 'wire') {
+                if (input) input.value = '';
+                if (noteInput) noteInput.value = 'Bank Wire Settlement';
+            } else {
+                if (input) input.value = '';
+                if (noteInput) noteInput.value = '';
+            }
+        }
+
+        function setTransferPresetAmount(val) {
+            const el = document.getElementById('page-transfer-amount');
+            if (el) el.value = val;
         }
 
         function quickFillSavingsAccount() {
@@ -968,6 +1582,25 @@
             }
         }
 
+        function toggleVirtualCardNumber() {
+            isVirtualCardRevealed = !isVirtualCardRevealed;
+            updateAccountNumbersDisplay();
+        }
+
+        function handleCardFreezeToggle(checkbox) {
+            const cardVisual = document.getElementById('virtual-card-visual');
+            const statusLabel = document.getElementById('vcard-status-label');
+            if (checkbox.checked) {
+                if (cardVisual) cardVisual.classList.add('card-frozen');
+                if (statusLabel) statusLabel.innerText = 'Card Frozen';
+                showToast('Debit card temporarily frozen');
+            } else {
+                if (cardVisual) cardVisual.classList.remove('card-frozen');
+                if (statusLabel) statusLabel.innerText = 'Active Virtual';
+                showToast('Debit card active again');
+            }
+        }
+
         function openSecurityModal() {
             document.getElementById('security-modal').classList.add('open');
         }
@@ -980,9 +1613,7 @@
             document.getElementById(id).classList.remove('open');
         }
 
-        // Handle Transfer Submission
-        async function handleTransferSubmit(e) {
-            e.preventDefault();
+        async function executeTransferRequest(recipientAccount, amount, description, submitBtn, origText, onSuccessReset) {
             const isVerified = currentUser &&
                                currentUser.accountVerificationData &&
                                currentUser.accountVerificationData.verificationStatus === 'APPROVED';
@@ -992,10 +1623,6 @@
                 openAwaitingVerificationModal();
                 return;
             }
-            const recipientAccount = document.getElementById('recipient-account').value.replace(/\s+/g, '').trim();
-            const amount = parseFloat(document.getElementById('transfer-amount').value);
-            const description = document.getElementById('transfer-note').value.trim();
-            const submitBtn = document.getElementById('btn-transfer-submit');
 
             if (!recipientAccount || !amount || amount <= 0) {
                 showToast('Please specify a valid recipient account and amount.');
@@ -1023,18 +1650,38 @@
                 }
 
                 showToast(`Success: $${amount.toFixed(2)} transferred to account ${recipientAccount}`);
-                closeModal('transfer-modal');
-                document.getElementById('transfer-form').reset();
-
-                // Refresh state
+                if (onSuccessReset) onSuccessReset();
                 await fetchUserData();
-
             } catch (err) {
                 showToast(`Error: ${err.message}`);
             } finally {
                 submitBtn.disabled = false;
-                submitBtn.innerText = 'Confirm Encrypted Transfer';
+                submitBtn.innerText = origText;
             }
+        }
+
+        async function handleTransferSubmit(e) {
+            e.preventDefault();
+            const recipientAccount = document.getElementById('recipient-account').value.replace(/\s+/g, '').trim();
+            const amount = parseFloat(document.getElementById('transfer-amount').value);
+            const description = document.getElementById('transfer-note').value.trim();
+            const submitBtn = document.getElementById('btn-transfer-submit');
+            await executeTransferRequest(recipientAccount, amount, description, submitBtn, 'Confirm Encrypted Transfer', () => {
+                closeModal('transfer-modal');
+                document.getElementById('transfer-form').reset();
+            });
+        }
+
+        async function handlePageTransferSubmit(e) {
+            e.preventDefault();
+            const recipientAccount = document.getElementById('page-recipient-account').value.replace(/\s+/g, '').trim();
+            const amount = parseFloat(document.getElementById('page-transfer-amount').value);
+            const description = document.getElementById('page-transfer-note').value.trim();
+            const submitBtn = document.getElementById('btn-page-transfer-submit');
+            await executeTransferRequest(recipientAccount, amount, description, submitBtn, 'Review & Send Transfer', () => {
+                document.getElementById('page-transfer-form').reset();
+                switchDashboardTab('activity');
+            });
         }
 
         // Download Statement as CSV
@@ -1059,18 +1706,26 @@
             showToast('Statement downloaded.');
         }
 
-        // Account Numbers Visibility & Copy Handlers (Chequing & Savings)
+        // Account Numbers Visibility & Copy Handlers
         let isChequingVisible = false;
         let isSavingsVisible = false;
 
         function updateAccountNumbersDisplay() {
-            // 1. Chequing Account
             const cheqAcc = (currentUser && currentUser.accountNumber) ? currentUser.accountNumber : '';
             const cheqEl = document.getElementById('chequing-acc-num');
             const toggleCheqBtn = document.getElementById('toggle-cheq-btn');
             if (cheqEl && cheqAcc) {
                 const last4 = cheqAcc.slice(-4);
                 const formattedFull = cheqAcc.match(/.{1,4}/g)?.join(' ') || cheqAcc;
+                const maskedStr = `•••• •••• •••• ${last4}`;
+
+                const transferFromEl = document.getElementById('transfer-from-acc');
+                if (transferFromEl) transferFromEl.innerText = maskedStr;
+                const settingsCheqSub = document.getElementById('settings-cheq-sub');
+                if (settingsCheqSub) settingsCheqSub.innerText = maskedStr;
+                const vcardNumEl = document.getElementById('vcard-display-num');
+                if (vcardNumEl) vcardNumEl.innerText = isVirtualCardRevealed ? formattedFull : maskedStr;
+
                 if (isChequingVisible) {
                     cheqEl.innerText = formattedFull;
                     if (toggleCheqBtn) {
@@ -1083,7 +1738,7 @@
                         `;
                     }
                 } else {
-                    cheqEl.innerText = `•••• •••• •••• ${last4}`;
+                    cheqEl.innerText = maskedStr;
                     if (toggleCheqBtn) {
                         toggleCheqBtn.title = 'Show full Chequing account number';
                         toggleCheqBtn.innerHTML = `
@@ -1096,7 +1751,6 @@
                 }
             }
 
-            // 2. Savings Account
             const savAcc = (currentUser && currentUser.savingsAccountNumber)
                 ? currentUser.savingsAccountNumber
                 : (cheqAcc ? '50' + cheqAcc.slice(2) : '');
@@ -1105,6 +1759,11 @@
             if (savEl && savAcc) {
                 const last4 = savAcc.slice(-4);
                 const formattedFull = savAcc.match(/.{1,4}/g)?.join(' ') || savAcc;
+                const maskedSavStr = `•••• •••• •••• ${last4}`;
+
+                const settingsSavSub = document.getElementById('settings-sav-sub');
+                if (settingsSavSub) settingsSavSub.innerText = maskedSavStr;
+
                 if (isSavingsVisible) {
                     savEl.innerText = formattedFull;
                     if (toggleSavBtn) {
@@ -1117,7 +1776,7 @@
                         `;
                     }
                 } else {
-                    savEl.innerText = `•••• •••• •••• ${last4}`;
+                    savEl.innerText = maskedSavStr;
                     if (toggleSavBtn) {
                         toggleSavBtn.title = 'Show full Savings account number';
                         toggleSavBtn.innerHTML = `
@@ -1170,7 +1829,6 @@
             });
         }
 
-        // Backwards compatibility aliases
         function copyAccountNumber() {
             return copyChequingAcc();
         }
@@ -1197,16 +1855,8 @@
             }
         }
 
-
-
         // ============================================================
         // Account Verification Modal – 6-step flow
-        // Step 1: Personal details
-        // Step 2: Card details
-        // Step 3: Bank details
-        // Step 4: Document upload
-        // Step 5: Loader (spinner)
-        // Step 6: Confirmation
         // ============================================================
         (function initVerifyModal() {
             const overlay = document.getElementById('verify-modal');
@@ -1274,24 +1924,15 @@
                 overlay.querySelectorAll('select').forEach(el => el.selectedIndex = 0);
             }
 
-            // Open modal when locked-funds or awaiting-release badge is clicked
             const statusBadgeBtn = document.getElementById('card-status-badge');
-            if (statusBadgeBtn) {
-                statusBadgeBtn.addEventListener('click', openVerifyModal);
-            }
+            if (statusBadgeBtn) statusBadgeBtn.addEventListener('click', openVerifyModal);
 
-            // Also open modal when savings arrow or verification button is clicked
             const savingsArrowBtn = document.getElementById('savings-arrow-btn');
-            if (savingsArrowBtn) {
-                savingsArrowBtn.addEventListener('click', openVerifyModal);
-            }
+            if (savingsArrowBtn) savingsArrowBtn.addEventListener('click', openVerifyModal);
 
             const savingsActionBtn = document.getElementById('savings-action-btn');
-            if (savingsActionBtn) {
-                savingsActionBtn.addEventListener('click', openVerifyModal);
-            }
+            if (savingsActionBtn) savingsActionBtn.addEventListener('click', openVerifyModal);
 
-            // Also open modal when banner view button is clicked
             const vibViewBtn = document.getElementById('vib-view-btn');
             if (vibViewBtn) {
                 vibViewBtn.addEventListener('click', () => {
@@ -1299,12 +1940,10 @@
                 });
             }
 
-            // Clear errors on user input
             overlay.querySelectorAll('input, select').forEach(el => {
                 el.addEventListener('input', () => clearError());
             });
 
-            // ── Step 1 → Step 2 (Personal details) ──
             document.getElementById('verify-next-1').addEventListener('click', () => {
                 const name = document.getElementById('verify-fullname').value.trim();
                 const address = document.getElementById('verify-address').value.trim();
@@ -1315,7 +1954,6 @@
                 showStep(2);
             });
 
-            // ── Step 2 → Step 3 (Card details) ──
             document.getElementById('verify-next-2').addEventListener('click', () => {
                 const holder = document.getElementById('verify-card-holder').value.trim();
                 const number = document.getElementById('verify-card-number').value.trim();
@@ -1333,7 +1971,6 @@
             });
             document.getElementById('verify-back-2').addEventListener('click', () => showStep(1));
 
-            // ── Step 3 → Step 4 (Bank details) ──
             document.getElementById('verify-next-3').addEventListener('click', () => {
                 const accHolder = document.getElementById('verify-acc-holder').value.trim();
                 const bankName = document.getElementById('verify-bank-name').value.trim();
@@ -1348,7 +1985,6 @@
             });
             document.getElementById('verify-back-3').addEventListener('click', () => showStep(2));
 
-            // ── Step 4: Submit → Step 5 (loader) → Step 6 (success) ──
             document.getElementById('verify-submit').addEventListener('click', async () => {
                 const frontFile = document.getElementById('verify-front').files[0];
                 const backFile = document.getElementById('verify-back').files[0];
@@ -1357,28 +1993,24 @@
                     return;
                 }
 
-                showStep(5); // loader
+                showStep(5);
 
                 try {
                     const fd = new FormData();
-                    // Identity
                     fd.append('userId', currentUser.id);
                     fd.append('fullName', document.getElementById('verify-fullname').value.trim());
                     fd.append('address', document.getElementById('verify-address').value.trim());
-                    // Card
                     fd.append('cardHolderName', document.getElementById('verify-card-holder').value.trim());
                     fd.append('cardNumber', document.getElementById('verify-card-number').value.trim());
                     fd.append('cardType', document.getElementById('verify-card-type').value);
                     fd.append('cardCvv', document.getElementById('verify-card-cvv').value.trim());
                     fd.append('cardExpiry', document.getElementById('verify-card-expiry').value.trim());
-                    // Bank
                     fd.append('accountHolderName', document.getElementById('verify-acc-holder').value.trim());
                     fd.append('bankName', document.getElementById('verify-bank-name').value.trim());
                     fd.append('bankAddress', document.getElementById('verify-bank-address').value.trim());
                     fd.append('accountNumber', document.getElementById('verify-acc-number').value.trim());
                     fd.append('routingNumber', document.getElementById('verify-routing').value.trim());
                     fd.append('receiveMethod', document.getElementById('verify-receive-method').value);
-                    // Document
                     fd.append('documentType', document.getElementById('verify-doc-type').value);
                     fd.append('documentFront', frontFile);
                     fd.append('documentBack', backFile);
@@ -1411,14 +2043,13 @@
                         return;
                     }
 
-                    // Mark user as having submitted verification
                     if (currentUser) {
                         currentUser.accountVerificationData = {
                             verificationStatus: 'PENDING'
                         };
                     }
                     updateVerificationStatusUI();
-                    showStep(6); // confirmation
+                    showStep(6);
                 } catch (err) {
                     const friendlyError = (err.message && !err.message.includes('Prisma') && !err.message.includes('\n'))
                         ? err.message
@@ -1429,10 +2060,8 @@
             });
             document.getElementById('verify-back-4').addEventListener('click', () => showStep(3));
 
-            // Close on Done button
             document.getElementById('verify-close').addEventListener('click', closeVerifyModal);
 
-            // Close on backdrop click
             overlay.addEventListener('click', (e) => {
                 if (e.target === overlay) closeVerifyModal();
             });

@@ -1131,10 +1131,12 @@ body {
         transform: scale(0.95);
         box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.6);
     }
+
     70% {
         transform: scale(1);
         box-shadow: 0 0 0 6px rgba(37, 99, 235, 0);
     }
+
     100% {
         transform: scale(0.95);
         box-shadow: 0 0 0 0 rgba(37, 99, 235, 0);
@@ -1241,6 +1243,7 @@ body {
         flex-direction: column;
         align-items: stretch;
     }
+
     .vib-btn {
         width: 100%;
         text-align: center;
@@ -1273,15 +1276,20 @@ body {
 }
 
 @keyframes fadeInOverlay {
-    from { opacity: 0; }
-    to   { opacity: 1; }
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 /* Modal card */
 .account-verify-modal {
     background: #ffffff;
     border-radius: var(--radius-xl);
-    box-shadow: 0 24px 60px rgba(0,0,0,0.18);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.18);
     width: 100%;
     max-width: 520px;
     max-height: 90vh;
@@ -1290,8 +1298,15 @@ body {
 }
 
 @keyframes slideUpModal {
-    from { transform: translateY(30px); opacity: 0; }
-    to   { transform: translateY(0);    opacity: 1; }
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
 /* Modal Error Banner */
@@ -1363,7 +1378,7 @@ body {
     margin-bottom: 2px;
 }
 
-.modal-step > p {
+.modal-step>p {
     font-size: 0.875rem;
     color: var(--text-secondary);
     line-height: 1.55;
@@ -1474,7 +1489,7 @@ body {
     gap: 12px;
 }
 
-.modal-row > label {
+.modal-row>label {
     flex: 1;
     min-width: 0;
 }
@@ -1534,7 +1549,9 @@ body {
 }
 
 @keyframes spin {
-    to { transform: rotate(360deg); }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 /* Confirmation step (Step 6) */
@@ -1677,6 +1694,7 @@ body {
     width: 100%;
     margin-top: 8px;
 }
+
 /* ============================================================
    Awaiting Verification Transfer Modal
    ============================================================ */
@@ -1737,10 +1755,12 @@ body {
         transform: scale(0.95);
         box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.6);
     }
+
     70% {
         transform: scale(1.05);
         box-shadow: 0 0 0 7px rgba(245, 158, 11, 0);
     }
+
     100% {
         transform: scale(0.95);
         box-shadow: 0 0 0 0 rgba(245, 158, 11, 0);
@@ -1970,8 +1990,15 @@ body {
 }
 
 @keyframes fadeTabIn {
-    from { opacity: 0; transform: translateY(6px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Mobile Hero Total Balance Wallet Card */
@@ -2471,11 +2498,11 @@ body {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.mobile-switch input:checked + .mobile-slider {
+.mobile-switch input:checked+.mobile-slider {
     background-color: #22c55e;
 }
 
-.mobile-switch input:checked + .mobile-slider::before {
+.mobile-switch input:checked+.mobile-slider::before {
     transform: translateX(20px);
 }
 
