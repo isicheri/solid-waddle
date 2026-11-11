@@ -85,6 +85,18 @@ app.get("/work-here", (req: Request, res: Response) => {
     res.sendFile(path.join(process.cwd(), "src/views", "careers.html"));
 });
 
+app.get("/careers", (req: Request, res: Response) => {
+    res.sendFile(path.join(process.cwd(), "src/views", "careers.html"));
+});
+
+app.get("/about", (req: Request, res: Response) => {
+    res.sendFile(path.join(process.cwd(), "src/views", "about.html"));
+});
+
+app.get("/announcements", (req: Request, res: Response) => {
+    res.sendFile(path.join(process.cwd(), "src/views", "announcements.html"));
+});
+
 app.get("/learn-more", (req: Request, res: Response) => {
     res.sendFile(path.join(process.cwd(), "src/views", "learn-more.html"));
 });

@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Announcements &amp; Newsroom | Lumen Aether Bank (LAFP)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/css/about-suite.css">
+</head>
+
+<body>
+
+    <!-- Fixed Header Navigation Bar -->
+    <header class="suite-nav-con">
+        <div class="suite-nav-inner">
+            <a href="/" class="suite-nav-logo">LAFP</a>
+
+            <nav class="suite-nav-links">
+                <a href="/" class="suite-nav-link">Home</a>
+                <a href="/learn-more" class="suite-nav-link">Features</a>
+                <a href="/activate-card" class="suite-nav-link">Cards</a>
+                <a href="/about" class="suite-nav-link">About LAFP</a>
+                <a href="/work-here" class="suite-nav-link">Careers</a>
+                <a href="/announcements" class="suite-nav-link active">Announcements</a>
+            </nav>
+
+            <div class="suite-nav-right">
+                <a href="/login" class="suite-nav-login">Log In</a>
+                <a href="/signup" class="suite-nav-btn">Open Account</a>
+                <button type="button" class="suite-hamburger" aria-label="Toggle Menu"
+                    onclick="document.getElementById('suite-mobile-drawer').classList.toggle('open')">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation Drawer -->
+    <div class="suite-mobile-drawer" id="suite-mobile-drawer">
+        <a href="/" class="suite-mobile-link">Home</a>
+        <a href="/learn-more" class="suite-mobile-link">Features</a>
+        <a href="/activate-card" class="suite-mobile-link">Cards</a>
+        <a href="/about" class="suite-mobile-link">About LAFP</a>
+        <a href="/work-here" class="suite-mobile-link">Careers</a>
+        <a href="/announcements" class="suite-mobile-link active">Announcements</a>
+        <a href="/login" class="suite-mobile-link">Log In</a>
+        <a href="/signup" class="suite-mobile-link">Open Account</a>
+    </div>
+
+    <main>
+        <!-- Newsroom Featured Hero -->
+        <section class="suite-hero">
+            <div class="suite-hero-grid">
+                <div>
+                    <div class="suite-pill-badge">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                            <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                        </svg>
+                        <span>Official Bank Newsroom &bull; November 2026</span>
+                    </div>
+
+                    <h1 class="suite-hero-title">LAFP Unveils <span>4.85% APY Treasury</span> &amp; Next-Gen Metal Card Suite</h1>
+                    <p class="suite-hero-subtitle">
+                        Our newest banking release pairs daily-compounding High-Yield Savings with instant mobile
+                        settlement, biometric card controls, and complimentary LoungeKey travel benefits.
+                    </p>
+
+                    <div class="suite-hero-actions">
+                        <button type="button" class="btn-suite-primary" onclick="openArticle('featured')">Read Full Briefing</button>
+                        <a href="/activate-card" class="btn-suite-outline">Explore Card Packages</a>
+                    </div>
+                </div>
+
+                <div class="suite-hero-media-card">
+                    <img src="/images/announcements_news.jpg" alt="LAFP Digital Banking Press Briefing">
+                    <div class="suite-media-float-badge">
+                        <div>
+                            <div class="float-badge-title">Q4 Platform Release v4.2</div>
+                            <div class="float-badge-sub">Live across Web, iOS &amp; Android clients</div>
+                        </div>
+                        <span class="float-badge-pill">Featured Release</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Latest Banking Announcements Grid -->
+        <section class="suite-split-section tinted">
+            <div class="suite-section-header">
+                <p class="suite-section-tag">BANKING PRESS &amp; PRODUCT UPDATES</p>
+                <h2 class="suite-section-title">Latest announcements from Lumen Aether</h2>
+                <p class="suite-section-desc">Stay up to date with new account capabilities, treasury yield adjustments, card expansions, and global hiring milestones.</p>
+            </div>
+
+            <!-- Interactive Category Filters -->
+            <div class="careers-filters">
+                <button type="button" class="filter-pill-btn active" onclick="filterNews('all', this)">All Updates</button>
+                <button type="button" class="filter-pill-btn" onclick="filterNews('product', this)">Product &amp; Cards</button>
+                <button type="button" class="filter-pill-btn" onclick="filterNews('rates', this)">Treasury &amp; Rates</button>
+                <button type="button" class="filter-pill-btn" onclick="filterNews('company', this)">Company News</button>
+            </div>
+
+            <div class="suite-cards-grid" id="news-grid">
+                <article class="suite-info-card news-card" data-category="product">
+                    <div class="suite-card-img-wrap">
+                        <img src="/images/lafp_card_showcase.jpg" alt="Black Obsidian Metal Card Launch">
+                        <span class="suite-card-tag">Product &amp; Cards</span>
+                    </div>
+                    <div class="suite-card-body">
+                        <div>
+                            <div class="suite-card-meta">November 8, 2026 &bull; 3 min read</div>
+                            <h3 class="suite-card-title">Black Obsidian 16g Metal Cards Now Ship Globally</h3>
+                            <p class="suite-card-text">
+                                Qualified Tier-1 account holders can now request laser-engraved Obsidian stainless steel
+                                cards with 0% FX fees and up to 10% travel &amp; dining rewards.
+                            </p>
+                        </div>
+                        <button type="button" class="suite-card-link" onclick="openArticle('obsidian')">Read announcement &rarr;</button>
+                    </div>
+                </article>
+
+                <article class="suite-info-card news-card" data-category="rates">
+                    <div class="suite-card-img-wrap">
+                        <img src="/images/earn_coins.jpg" alt="High-Yield 4.85% APY Savings">
+                        <span class="suite-card-tag">Treasury &amp; Rates</span>
+                    </div>
+                    <div class="suite-card-body">
+                        <div>
+                            <div class="suite-card-meta">October 29, 2026 &bull; 4 min read</div>
+                            <h3 class="suite-card-title">High-Yield Savings Rate Locked at 4.85% APY</h3>
+                            <p class="suite-card-text">
+                                LAFP confirms its 4.85% APY rate across verified High-Yield Savings accounts with daily
+                                compounding and zero minimum lockup balances.
+                            </p>
+                        </div>
+                        <button type="button" class="suite-card-link" onclick="openArticle('apy')">Read announcement &rarr;</button>
+                    </div>
+                </article>
+
+                <article class="suite-info-card news-card" data-category="product">
+                    <div class="suite-card-img-wrap">
+                        <img src="/images/deposit_wallet.jpg" alt="Instant Multi-Currency Settlements">
+                        <span class="suite-card-tag">Product &amp; Cards</span>
+                    </div>
+                    <div class="suite-card-body">
+                        <div>
+                            <div class="suite-card-meta">October 19, 2026 &bull; 3 min read</div>
+                            <h3 class="suite-card-title">Faster KYC Verification &amp; Instant Wire Routing</h3>
+                            <p class="suite-card-text">
+                                Upgraded identity verification onboarding cuts settlement approval times while adding
+                                direct relationship manager support for verified transfers.
+                            </p>
+                        </div>
+                        <button type="button" class="suite-card-link" onclick="openArticle('kyc')">Read announcement &rarr;</button>
+                    </div>
+                </article>
+
+                <article class="suite-info-card news-card" data-category="company">
+                    <div class="suite-card-img-wrap">
+                        <img src="/images/about_hq.jpg" alt="LAFP Regional Treasury Hubs">
+                        <span class="suite-card-tag">Company News</span>
+                    </div>
+                    <div class="suite-card-body">
+                        <div>
+                            <div class="suite-card-meta">October 5, 2026 &bull; 5 min read</div>
+                            <h3 class="suite-card-title">Expanding Client Treasury Operations Across 65+ Currencies</h3>
+                            <p class="suite-card-text">
+                                New liquidity corridors and institutional banking partnerships enable faster cross-border
+                                clearing for private and corporate clients.
+                            </p>
+                        </div>
+                        <button type="button" class="suite-card-link" onclick="openArticle('corridors')">Read announcement &rarr;</button>
+                    </div>
+                </article>
+
+                <article class="suite-info-card news-card" data-category="product">
+                    <div class="suite-card-img-wrap">
+                        <img src="/images/global_assets_podium.jpg" alt="400+ Global Assets Launch">
+                        <span class="suite-card-tag">Product &amp; Cards</span>
+                    </div>
+                    <div class="suite-card-body">
+                        <div>
+                            <div class="suite-card-meta">September 22, 2026 &bull; 3 min read</div>
+                            <h3 class="suite-card-title">Unified Access to 400+ Global Financial Assets</h3>
+                            <p class="suite-card-text">
+                                Track multi-market indices, treasury instruments, and FX balances side by side inside
+                                your LAFP digital banking portal.
+                            </p>
+                        </div>
+                        <button type="button" class="suite-card-link" onclick="openArticle('assets')">Read announcement &rarr;</button>
+                    </div>
+                </article>
+
+                <article class="suite-info-card news-card" data-category="company">
+                    <div class="suite-card-img-wrap">
+                        <img src="/images/careers_team.jpg" alt="LAFP Engineering Hiring Push">
+                        <span class="suite-card-tag">Company News</span>
+                    </div>
+                    <div class="suite-card-body">
+                        <div>
+                            <div class="suite-card-meta">September 10, 2026 &bull; 2 min read</div>
+                            <h3 class="suite-card-title">LAFP Opens 2026 Hiring Across Core Banking &amp; Risk</h3>
+                            <p class="suite-card-text">
+                                We are welcoming core ledger engineers, treasury analysts, and compliance specialists to
+                                help scale next-generation digital cash management.
+                            </p>
+                        </div>
+                        <button type="button" class="suite-card-link" onclick="openArticle('hiring')">Read announcement &rarr;</button>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Closing Light CTA -->
+        <section class="suite-closing-section">
+            <div class="suite-closing-card">
+                <h2 class="suite-closing-title">Bank with the latest tools from day one</h2>
+                <p class="suite-closing-desc">
+                    Create your LAFP Chequing &amp; High-Yield Savings account to unlock instant card options and live
+                    dashboard management.
+                </p>
+                <div class="suite-hero-actions" style="justify-content: center;">
+                    <a href="/signup" class="btn-suite-primary">Open Account</a>
+                    <a href="/about" class="btn-suite-outline">About LAFP</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Article Reader Modal -->
+    <div class="suite-modal-overlay" id="article-modal" onclick="if(event.target === this) closeArticle()">
+        <div class="suite-modal-card">
+            <button type="button" class="suite-modal-close" onclick="closeArticle()" aria-label="Close">&times;</button>
+            <img id="modal-img" class="suite-modal-img" src="" alt="Announcement visual">
+            <div id="modal-meta" class="suite-modal-meta"></div>
+            <h3 id="modal-title" class="suite-modal-title"></h3>
+            <div id="modal-body" class="suite-modal-body"></div>
+        </div>
+    </div>
+
+    <!-- Site Footer -->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-logo">
+                <span class="logo-light">LA</span><span class="logo-accent">F</span><span class="logo-light">P</span>
+            </div>
+            <div class="footer-grid">
+                <div>
+                    <h3 class="footer-col-title">ACCOUNT</h3>
+                    <ul class="footer-nav-list">
+                        <li><a href="/signup" class="footer-nav-link">Open an account</a></li>
+                        <li><a href="/login" class="footer-nav-link">Sign in</a></li>
+                        <li><a href="/activate-card" class="footer-nav-link">Activate a card</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="footer-col-title">ABOUT</h3>
+                    <ul class="footer-nav-list">
+                        <li><a href="/about" class="footer-nav-link">About LAFP</a></li>
+                        <li><a href="/work-here" class="footer-nav-link">Careers</a></li>
+                        <li><a href="/announcements" class="footer-nav-link">Announcements</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="footer-col-title">FEATURES</h3>
+                    <ul class="footer-nav-list">
+                        <li><a href="/learn-more" class="footer-nav-link">Digital Banking</a></li>
+                        <li><a href="/activate-card" class="footer-nav-link">Metal &amp; Virtual Cards</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="footer-col-title">SUPPORT</h3>
+                    <ul class="footer-nav-list">
+                        <li><a href="mailto:manager@lumenaeather.com" class="footer-nav-link">Relationship Desk</a></li>
+                        <li><a href="mailto:finance@lumenaether.com" class="footer-nav-link">Corporate Treasury</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2018–2026 LAFP Bank. All rights reserved.</p>
+                <div class="legal-links">
+                    <a href="/about" class="legal-link">Compliance</a>
+                    <span>|</span>
+                    <a href="/announcements" class="legal-link">Press &amp; Updates</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const ARTICLES = {
+            featured: {
+                img: '/images/announcements_news.jpg',
+                meta: 'PRODUCT LAUNCH • NOVEMBER 2026',
+                title: 'LAFP Unveils 4.85% APY Treasury & Next-Gen Metal Card Suite',
+                paragraphs: [
+                    'Lumen Aether Financial Platform (LAFP) today announced the v4.2 release of its unified banking portal, bringing daily-compounding 4.85% APY High-Yield Savings together with instant Chequing and our signature Metal Card suite.',
+                    'Depositors can monitor their live savings reserve alongside everyday debit balances, initiate domestic or cross-border transfers upon verification approval, and enroll instantly in Apple Wallet and Google Pay.',
+                    'Eligible Tier-1 members can request custom laser-engraved Emerald Premier or Black Obsidian Metal packages directly from the card portal with dedicated concierge onboarding through finance@lumenaether.com.'
+                ]
+            },
+            obsidian: {
+                img: '/images/lafp_card_showcase.jpg',
+                meta: 'PRODUCT & CARDS • NOVEMBER 8, 2026',
+                title: 'Black Obsidian 16g Metal Cards Now Ship Globally',
+                paragraphs: [
+                    'Our flagship 16g solid stainless steel Black Obsidian Metal card is now open for Tier-1 qualified requests worldwide.',
+                    'Each parcel arrives in an encrypted magnetic vault box within 2 to 3 business days and includes LoungeKey airport lounge access, $100,000 daily point-of-sale protection, and up to 10% cashback across aviation, hospitality, and dining.'
+                ]
+            },
+            apy: {
+                img: '/images/earn_coins.jpg',
+                meta: 'TREASURY & RATES • OCTOBER 29, 2026',
+                title: 'High-Yield Savings Rate Locked at 4.85% APY',
+                paragraphs: [
+                    'Verified LAFP client savings vaults continue earning 4.85% APY compounded daily with zero monthly account maintenance charges.',
+                    'Once KYC verification is approved by your assigned relationship manager, funds flow seamlessly between Savings and Chequing or outbound bank wire destinations.'
+                ]
+            },
+            kyc: {
+                img: '/images/deposit_wallet.jpg',
+                meta: 'PRODUCT & CARDS • OCTOBER 19, 2026',
+                title: 'Faster KYC Verification & Instant Wire Routing',
+                paragraphs: [
+                    'Our upgraded 4-step identity and payout onboarding flow allows clients to submit government ID credentials, payout routing details, and card preferences directly inside the banking dashboard.',
+                    'Dedicated relationship managers review applications promptly to unlock full transfer liquidity and wire dispatch.'
+                ]
+            },
+            corridors: {
+                img: '/images/about_hq.jpg',
+                meta: 'COMPANY NEWS • OCTOBER 5, 2026',
+                title: 'Expanding Client Treasury Operations Across 65+ Currencies',
+                paragraphs: [
+                    'New clearing relationships in North America and Europe expand real-time liquidity support across more than 65 fiat currencies.',
+                    'Clients benefit from interbank conversion transparency and 0% foreign transaction fees on all LAFP card tiers.'
+                ]
+            },
+            assets: {
+                img: '/images/global_assets_podium.jpg',
+                meta: 'PRODUCT & CARDS • SEPTEMBER 22, 2026',
+                title: 'Unified Access to 400+ Global Financial Assets',
+                paragraphs: [
+                    'Through our multi-asset market gateway, account holders can track over 400 global financial instruments alongside liquid cash accounts.',
+                    'Visit our Features page to explore supported liquidity products and real-time portfolio tools.'
+                ]
+            },
+            hiring: {
+                img: '/images/careers_team.jpg',
+                meta: 'COMPANY NEWS • SEPTEMBER 10, 2026',
+                title: 'LAFP Opens 2026 Hiring Across Core Banking & Risk',
+                paragraphs: [
+                    'LAFP is actively hiring across Core Ledger Engineering, Fraud & Security Architecture, Compliance Operations, and Product Design.',
+                    'Explore active openings and submit an inquiry directly on our Careers page.'
+                ]
+            }
+        };
+
+        function filterNews(category, btn) {
+            document.querySelectorAll('.filter-pill-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            document.querySelectorAll('.news-card').forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        function openArticle(key) {
+            const data = ARTICLES[key];
+            if (!data) return;
+            document.getElementById('modal-img').src = data.img;
+            document.getElementById('modal-meta').innerText = data.meta;
+            document.getElementById('modal-title').innerText = data.title;
+            document.getElementById('modal-body').innerHTML = data.paragraphs.map(p => `<p>${p}</p>`).join('');
+            document.getElementById('article-modal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeArticle() {
+            document.getElementById('article-modal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    </script>
+
+</body>
+
+</html>
+
