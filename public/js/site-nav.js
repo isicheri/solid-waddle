@@ -55,8 +55,7 @@
         const bankingDrawerLinksHtml = [
             { label: 'Home', href: '/', match: ['/'] },
             { label: 'Features & Overview', href: '/learn-more', match: ['/learn-more'] },
-            { label: 'Cards & Packages', href: '/activate-card', match: ['/activate-card', '/cards'] },
-            { label: 'Client Dashboard', href: '/dashboard', match: ['/dashboard'] }
+            { label: 'Cards & Packages', href: '/activate-card', match: ['/activate-card', '/cards'] }
         ].map(item => {
             const activeClass = isItemActive(item.match, currentPath) ? ' active' : '';
             return `
