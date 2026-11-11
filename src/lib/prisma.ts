@@ -1,12 +1,14 @@
 // Prisma client instance
-// Dynamically loads generated PrismaClient once prisma db push / prisma generate is executed
+// Ensures env vars (and SQLite fallback) are loaded before instantiating PrismaClient
+import "../config";
 
 let PrismaClientConstructor: any;
 
 try {
     const prismaModule = require("@prisma/client");
     PrismaClientConstructor = prismaModule.PrismaClient;
-} catch {
+} catch (err) {
+    console.error("[Prisma Init Error]: Failed to load @prisma/client. Run `npx prisma generate` on this host.", err);
     PrismaClientConstructor = class FallbackPrismaClient {
         user = {};
         transaction = {};

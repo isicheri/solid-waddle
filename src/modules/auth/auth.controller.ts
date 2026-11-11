@@ -16,6 +16,10 @@ export interface IAuthController {
     logout: (req: Request, res: Response) => Promise<void>;
 }
 
+const isHttpsRequest = (req: Request): boolean => {
+    return Boolean(req.secure || req.headers["x-forwarded-proto"] === "https");
+};
+
 export const authController = (authservice: Authservice): IAuthController => {
     return {
         signup: async (req: Request, res: Response) => {
@@ -31,7 +35,7 @@ export const authController = (authservice: Authservice): IAuthController => {
             // Set secure HTTP-only cookie for bank session
             res.cookie("token", result.token, {
                 httpOnly: true,
-                secure: process.env.NODE_ENV === "production",
+                secure: isHttpsRequest(req),
                 sameSite: "lax",
                 maxAge: 60 * 60 * 1000 // 1 hour
             });
@@ -52,7 +56,7 @@ export const authController = (authservice: Authservice): IAuthController => {
             // Set secure HTTP-only cookie for bank session
             res.cookie("token", result.token, {
                 httpOnly: true,
-                secure: process.env.NODE_ENV === "production",
+                secure: isHttpsRequest(req),
                 sameSite: "lax",
                 maxAge: 60 * 60 * 1000 // 1 hour
             });
@@ -88,7 +92,7 @@ export const authController = (authservice: Authservice): IAuthController => {
             res.clearCookie("token", {
                 httpOnly: true,
                 sameSite: "lax",
-                secure: process.env.NODE_ENV === "production"
+                secure: isHttpsRequest(req)
             });
 
             res.status(200).json({

@@ -1,3 +1,4 @@
+import "./config";
 import express, { type Application, type Request, type Response } from "express";
 import fs from "fs";
 import cors from "cors";
@@ -10,6 +11,7 @@ import indexRouter from "./routes";
 import config from "./config";
 
 const app: Application = express();
+app.set("trust proxy", 1);
 
 // Security Headers with Helmet
 app.use(helmet({
@@ -115,7 +117,18 @@ app.use("/app", indexRouter);
 
 // Centralized Error Handling Middleware
 app.use((err: HttpError, req: express.Request, res: express.Response, next: express.NextFunction) => {
-    console.error('[Security Audit Error]:', err.message);
+    const underlying: any = err.errorobj;
+    const underlyingDetails = underlying instanceof Error
+        ? {
+            name: underlying.name,
+            message: underlying.message,
+            code: (underlying as any).code || undefined,
+            meta: (underlying as any).meta || undefined,
+            stack: underlying.stack
+        }
+        : (underlying || null);
+
+    console.error('[Security Audit Error]:', err.message, underlyingDetails ? JSON.stringify(underlyingDetails) : '');
 
     try {
         const logsDir = path.join(process.cwd(), "logs");
@@ -126,10 +139,11 @@ app.use((err: HttpError, req: express.Request, res: express.Response, next: expr
             path.join(logsDir, "error-logs.txt"),
             JSON.stringify({
                 timestamp: new Date().toISOString(),
+                path: req.originalUrl,
                 status: err.status || 500,
                 errname: err.errname || 'INTERNAL_ERROR',
                 message: err.message,
-                details: err.errorobj || null
+                details: underlyingDetails
             }) + "\n"
         );
     } catch (logError) {
