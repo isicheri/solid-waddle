@@ -669,8 +669,8 @@
             <div class="profile-summary-card">
                 <div class="profile-avatar-lg" id="settings-avatar">--</div>
                 <div style="min-width: 0; flex: 1;">
-                    <div class="settings-row-title" id="settings-fullname" style="font-size: 17px;">Client Name</div>
-                    <div class="settings-row-sub" id="settings-email">loading@email.com</div>
+                    <div class="settings-row-title" id="settings-fullname" style="font-size: 17px;"></div>
+                    <div class="settings-row-sub" id="settings-email"></div>
                     <div class="settings-row-sub" id="settings-phone"
                         style="margin-top: 4px; font-weight: 600; color: #15803d;">TIER-1 Account</div>
                 </div>
@@ -1379,7 +1379,7 @@
         function renderDashboard() {
             if (!currentUser) return;
 
-            const displayName = currentUser.fullName || currentUser.username || 'Client';
+            const displayName = currentUser.fullName || currentUser.username || 'LAFP';
             const initials = displayName.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
 
             document.getElementById('nav-username').innerText = displayName;
@@ -1395,9 +1395,9 @@
             const setFullname = document.getElementById('settings-fullname');
             if (setFullname) setFullname.innerText = displayName;
             const setEmail = document.getElementById('settings-email');
-            if (setEmail) setEmail.innerText = `${currentUser.email || ''} • @${currentUser.username || 'client'}`;
+            if (setEmail) setEmail.innerText = `${''} • @${currentUser.username || 'lafp'}`;
             const setPhone = document.getElementById('settings-phone');
-            if (setPhone) setPhone.innerText = `${currentUser.phoneNumber || 'Verified Member'} • TIER-1`;
+            if (setPhone) setPhone.innerText = `${'Verified Member'} • TIER-1`;
 
             renderBalances();
 
