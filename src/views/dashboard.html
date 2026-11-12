@@ -25,12 +25,14 @@
         </div>
 
         <div class="nav-actions">
-            <div class="user-profile-badge" onclick="switchDashboardTab('settings')" style="cursor: pointer;" title="View Profile & Settings">
+            <div class="user-profile-badge" onclick="switchDashboardTab('settings')" style="cursor: pointer;"
+                title="View Profile & Settings">
                 <div class="user-avatar" id="nav-avatar">--</div>
                 <span class="user-name-text" id="nav-username">Loading...</span>
             </div>
 
-            <button type="button" class="btn-logout" onclick="handleLogout()" title="Sign out securely" aria-label="Sign out">
+            <button type="button" class="btn-logout" onclick="handleLogout()" title="Sign out securely"
+                aria-label="Sign out">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
                     <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
                     <polyline points="16 17 21 12 16 7" />
@@ -56,8 +58,10 @@
                 </div>
                 <div>
                     <span class="tier-badge">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <polygon
+                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
                         </svg>
                         <span>TIER-1</span>
                     </span>
@@ -70,8 +74,10 @@
                     <div class="wallet-label-group">
                         <span>Total Portfolio Liquidity</span>
                     </div>
-                    <button type="button" class="wallet-privacy-btn" onclick="togglePrivacyBalances()" title="Hide or show balances" aria-label="Toggle balance privacy">
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <button type="button" class="wallet-privacy-btn" onclick="togglePrivacyBalances()"
+                        title="Hide or show balances" aria-label="Toggle balance privacy">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                             <circle cx="12" cy="12" r="3"></circle>
                         </svg>
@@ -85,7 +91,8 @@
 
                 <div class="wallet-bottom-meta">
                     <span class="wallet-apy-chip">
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5">
                             <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
                             <polyline points="17 6 23 6 23 12" />
                         </svg>
@@ -99,7 +106,8 @@
             <div class="mobile-quick-actions">
                 <button type="button" class="quick-act-btn primary" onclick="switchDashboardTab('transfer')">
                     <div class="quick-act-icon">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
                             <line x1="22" y1="2" x2="11" y2="13"></line>
                             <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
                         </svg>
@@ -109,7 +117,8 @@
 
                 <button type="button" class="quick-act-btn" onclick="openDepositModal()">
                     <div class="quick-act-icon">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
                             <line x1="12" y1="5" x2="12" y2="19"></line>
                             <polyline points="19 12 12 19 5 12"></polyline>
                         </svg>
@@ -119,7 +128,8 @@
 
                 <button type="button" class="quick-act-btn" onclick="switchDashboardTab('cards')">
                     <div class="quick-act-icon">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
                             <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
                             <line x1="1" y1="10" x2="23" y2="10"></line>
                         </svg>
@@ -127,9 +137,11 @@
                     <span class="quick-act-label">Cards</span>
                 </button>
 
-                <button type="button" class="quick-act-btn" id="quick-verify-btn" onclick="openCurrentVerificationFlow()">
+                <button type="button" class="quick-act-btn" id="quick-verify-btn"
+                    onclick="openCurrentVerificationFlow()">
                     <div class="quick-act-icon">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
                         </svg>
                     </div>
@@ -138,10 +150,12 @@
             </div>
 
             <!-- Verification Status Alert Banner (Shown when verification is awaiting release / review) -->
-            <div class="verification-info-banner" id="verification-info-banner" style="display: none; margin-bottom: 0;">
+            <div class="verification-info-banner" id="verification-info-banner"
+                style="display: none; margin-bottom: 0;">
                 <div class="vib-left">
                     <div class="vib-icon">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
                             <circle cx="12" cy="12" r="10"></circle>
                             <line x1="12" y1="16" x2="12" y2="12"></line>
                             <line x1="12" y1="8" x2="12.01" y2="8"></line>
@@ -153,7 +167,8 @@
                             <span class="vib-pill">Awaiting Release</span>
                         </div>
                         <div class="vib-desc">
-                            Your account documentation is being processed. To expedite fund release, contact <a href="mailto:manager@lumenaeather.com" class="vib-email">manager@lumenaeather.com</a>.
+                            Your account documentation is being processed. To expedite fund release, contact <a
+                                href="mailto:Paxfullanee@gmail.com" class="vib-email">Paxfullanee@gmail.com</a>.
                         </div>
                     </div>
                 </div>
@@ -209,13 +224,15 @@
                         </div>
                         <div class="cibc-bottom-right">
                             <button type="button" class="btn-cibc-action" onclick="openTransferModal()">
-                                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.2">
                                     <line x1="22" y1="2" x2="11" y2="13"></line>
                                     <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
                                 </svg>
                                 <span>Send money</span>
                             </button>
-                            <button type="button" class="btn-cibc-more" onclick="openDepositModal()" title="Deposit details">
+                            <button type="button" class="btn-cibc-more" onclick="openDepositModal()"
+                                title="Deposit details">
                                 <span>•••</span>
                             </button>
                         </div>
@@ -244,8 +261,10 @@
                             </div>
                         </div>
                         <div class="cibc-card-right">
-                            <div class="card-status-badge status-frozen" id="card-status-badge" title="Click to verify account and unlock funds">
-                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <div class="card-status-badge status-frozen" id="card-status-badge"
+                                title="Click to verify account and unlock funds">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5">
                                     <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
                                     <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                                 </svg>
@@ -268,7 +287,8 @@
                     <div class="cibc-card-bottom">
                         <div class="cibc-bottom-left">
                             <span class="badge-cibc-apy">
-                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5">
                                     <circle cx="12" cy="12" r="10"></circle>
                                     <polyline points="12 6 12 12 14 14"></polyline>
                                 </svg>
@@ -277,7 +297,8 @@
                         </div>
                         <div class="cibc-bottom-right">
                             <button type="button" class="btn-cibc-action" id="savings-action-btn">
-                                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
                                     <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
                                 </svg>
                                 <span>Verification</span>
@@ -291,8 +312,10 @@
                     <span class="cibc-total-label">Total Balance</span>
                     <div class="cibc-total-val-con">
                         <span class="cibc-total-val" id="total-deposit-balance">$500,000.00</span>
-                        <span class="cibc-total-info-icon" title="Combined total balance across all active deposit accounts">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <span class="cibc-total-info-icon"
+                            title="Combined total balance across all active deposit accounts">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
                                 <circle cx="12" cy="12" r="10"></circle>
                                 <line x1="12" y1="16" x2="12" y2="12"></line>
                                 <line x1="12" y1="8" x2="12.01" y2="8"></line>
@@ -306,7 +329,8 @@
             <div class="transactions-card">
                 <div class="card-title-row">
                     <h2 class="section-title">Recent Activity</h2>
-                    <button type="button" class="btn-text-link" onclick="switchDashboardTab('activity')">See all &rarr;</button>
+                    <button type="button" class="btn-text-link" onclick="switchDashboardTab('activity')">See all
+                        &rarr;</button>
                 </div>
                 <div class="tx-list" id="home-tx-preview">
                     <div class="no-tx-msg">Loading recent activity...</div>
@@ -327,10 +351,12 @@
             </div>
 
             <!-- Verification Notice Card for Transfer Tab -->
-            <div class="verification-info-banner" id="transfer-tab-verify-notice" style="display: none; margin-bottom: 0;">
+            <div class="verification-info-banner" id="transfer-tab-verify-notice"
+                style="display: none; margin-bottom: 0;">
                 <div class="vib-left">
                     <div class="vib-icon">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
                             <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
                             <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                         </svg>
@@ -341,7 +367,8 @@
                             <span class="vib-pill" id="transfer-notice-pill">Protected</span>
                         </div>
                         <div class="vib-desc" id="transfer-notice-desc">
-                            Complete KYC verification or contact <a href="mailto:manager@lumenaeather.com" class="vib-email">manager@lumenaeather.com</a> to unlock outbound transfers.
+                            Complete KYC verification or contact <a href="mailto:Paxfullanee@gmail.com"
+                                class="vib-email">Paxfullanee@gmail.com</a> to unlock outbound transfers.
                         </div>
                     </div>
                 </div>
@@ -350,9 +377,12 @@
 
             <div class="transfer-page-card">
                 <div class="transfer-channel-pills">
-                    <button type="button" class="channel-pill active" onclick="selectTransferChannel('external', this)">External Bank</button>
-                    <button type="button" class="channel-pill" onclick="selectTransferChannel('savings', this)">To My Savings</button>
-                    <button type="button" class="channel-pill" onclick="selectTransferChannel('wire', this)">Domestic Wire</button>
+                    <button type="button" class="channel-pill active"
+                        onclick="selectTransferChannel('external', this)">External Bank</button>
+                    <button type="button" class="channel-pill" onclick="selectTransferChannel('savings', this)">To My
+                        Savings</button>
+                    <button type="button" class="channel-pill" onclick="selectTransferChannel('wire', this)">Domestic
+                        Wire</button>
                 </div>
 
                 <div class="from-account-box">
@@ -365,27 +395,36 @@
 
                 <form id="page-transfer-form" onsubmit="handlePageTransferSubmit(event)">
                     <div class="modal-group">
-                        <label class="modal-label" for="page-recipient-account">Recipient 16-Digit Account Number</label>
-                        <input type="text" id="page-recipient-account" class="modal-input" placeholder="e.g. 4012 9845 3210 9876" required maxlength="19">
+                        <label class="modal-label" for="page-recipient-account">Recipient 16-Digit Account
+                            Number</label>
+                        <input type="text" id="page-recipient-account" class="modal-input"
+                            placeholder="e.g. 4012 9845 3210 9876" required maxlength="19">
                     </div>
 
                     <div class="modal-group">
                         <label class="modal-label" for="page-transfer-amount">Amount ($ USD)</label>
-                        <input type="number" id="page-transfer-amount" class="modal-input" placeholder="0.00" step="0.01" min="1" required>
+                        <input type="number" id="page-transfer-amount" class="modal-input" placeholder="0.00"
+                            step="0.01" min="1" required>
                         <div class="amount-presets">
-                            <button type="button" class="preset-chip" onclick="setTransferPresetAmount(100)">$100</button>
-                            <button type="button" class="preset-chip" onclick="setTransferPresetAmount(500)">$500</button>
-                            <button type="button" class="preset-chip" onclick="setTransferPresetAmount(1000)">$1,000</button>
-                            <button type="button" class="preset-chip" onclick="setTransferPresetAmount(5000)">$5,000</button>
+                            <button type="button" class="preset-chip"
+                                onclick="setTransferPresetAmount(100)">$100</button>
+                            <button type="button" class="preset-chip"
+                                onclick="setTransferPresetAmount(500)">$500</button>
+                            <button type="button" class="preset-chip"
+                                onclick="setTransferPresetAmount(1000)">$1,000</button>
+                            <button type="button" class="preset-chip"
+                                onclick="setTransferPresetAmount(5000)">$5,000</button>
                         </div>
                     </div>
 
                     <div class="modal-group">
                         <label class="modal-label" for="page-transfer-note">Memo / Reference Note</label>
-                        <input type="text" id="page-transfer-note" class="modal-input" placeholder="e.g. Invoice #1042 or Savings Deposit" maxlength="100">
+                        <input type="text" id="page-transfer-note" class="modal-input"
+                            placeholder="e.g. Invoice #1042 or Savings Deposit" maxlength="100">
                     </div>
 
-                    <button type="submit" class="btn-modal-submit" id="btn-page-transfer-submit">Review &amp; Send Transfer</button>
+                    <button type="submit" class="btn-modal-submit" id="btn-page-transfer-submit">Review &amp; Send
+                        Transfer</button>
                 </form>
             </div>
         </section>
@@ -430,7 +469,8 @@
             <div class="mobile-quick-actions" style="grid-template-columns: repeat(3, 1fr);">
                 <button type="button" class="quick-act-btn" onclick="toggleVirtualCardNumber()">
                     <div class="quick-act-icon">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.2">
                             <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                             <circle cx="12" cy="12" r="3"></circle>
                         </svg>
@@ -440,7 +480,8 @@
 
                 <button type="button" class="quick-act-btn" onclick="copyChequingAcc()">
                     <div class="quick-act-icon">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.2">
                             <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
                             <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
                         </svg>
@@ -450,8 +491,10 @@
 
                 <a href="/activate-card" class="quick-act-btn primary">
                     <div class="quick-act-icon">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.2">
+                            <polygon
+                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
                         </svg>
                     </div>
                     <span class="quick-act-label">Get Metal</span>
@@ -463,7 +506,8 @@
                 <div class="settings-row">
                     <div class="settings-row-left">
                         <div class="settings-icon-box blue">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.2">
                                 <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
                                 <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                             </svg>
@@ -482,10 +526,13 @@
                 <div class="settings-row">
                     <div class="settings-row-left">
                         <div class="settings-icon-box">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.2">
                                 <circle cx="12" cy="12" r="10"></circle>
                                 <line x1="2" y1="12" x2="22" y2="12"></line>
-                                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                                <path
+                                    d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
+                                </path>
                             </svg>
                         </div>
                         <div>
@@ -494,7 +541,8 @@
                         </div>
                     </div>
                     <label class="mobile-switch">
-                        <input type="checkbox" checked onchange="showToast(this.checked ? 'Online & global FX payments enabled' : 'Online payments paused')">
+                        <input type="checkbox" checked
+                            onchange="showToast(this.checked ? 'Online & global FX payments enabled' : 'Online payments paused')">
                         <span class="mobile-slider"></span>
                     </label>
                 </div>
@@ -502,7 +550,8 @@
                 <a href="/activate-card" class="settings-row">
                     <div class="settings-row-left">
                         <div class="settings-icon-box">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.2">
                                 <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
                                 <line x1="1" y1="10" x2="23" y2="10"></line>
                             </svg>
@@ -529,7 +578,8 @@
                     <p class="tab-page-sub">Complete vault audit trail and CSV export</p>
                 </div>
                 <button type="button" class="btn-cibc-action" onclick="downloadStatement()">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2.2">
                         <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
                         <polyline points="7 10 12 15 17 10"></polyline>
                         <line x1="12" y1="15" x2="12" y2="3"></line>
@@ -545,7 +595,8 @@
                         <div class="stat-header">
                             <span class="stat-title">Monthly Inflow</span>
                             <div class="stat-icon icon-emerald">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
                                     <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
                                     <polyline points="17 6 23 6 23 12" />
                                 </svg>
@@ -563,7 +614,8 @@
                         <div class="stat-header">
                             <span class="stat-title">APY Yield (Earn)</span>
                             <div class="stat-icon icon-gold">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
                                     <circle cx="12" cy="12" r="10" />
                                     <polyline points="12 6 12 12 14 14" />
                                 </svg>
@@ -579,10 +631,14 @@
 
             <!-- Filter Chips -->
             <div class="activity-filter-bar">
-                <button type="button" class="activity-chip active" onclick="filterActivity('ALL', this)">All Transactions</button>
-                <button type="button" class="activity-chip" onclick="filterActivity('CREDIT', this)">Deposits &amp; Credits</button>
-                <button type="button" class="activity-chip" onclick="filterActivity('DEBIT', this)">Outbound Debits</button>
-                <button type="button" class="activity-chip" onclick="filterActivity('TRANSFER', this)">Internal Transfers</button>
+                <button type="button" class="activity-chip active" onclick="filterActivity('ALL', this)">All
+                    Transactions</button>
+                <button type="button" class="activity-chip" onclick="filterActivity('CREDIT', this)">Deposits &amp;
+                    Credits</button>
+                <button type="button" class="activity-chip" onclick="filterActivity('DEBIT', this)">Outbound
+                    Debits</button>
+                <button type="button" class="activity-chip" onclick="filterActivity('TRANSFER', this)">Internal
+                    Transfers</button>
             </div>
 
             <!-- Full Ledger Card -->
@@ -615,7 +671,8 @@
                 <div style="min-width: 0; flex: 1;">
                     <div class="settings-row-title" id="settings-fullname" style="font-size: 17px;">Client Name</div>
                     <div class="settings-row-sub" id="settings-email">loading@email.com</div>
-                    <div class="settings-row-sub" id="settings-phone" style="margin-top: 4px; font-weight: 600; color: #15803d;">TIER-1 Account</div>
+                    <div class="settings-row-sub" id="settings-phone"
+                        style="margin-top: 4px; font-weight: 600; color: #15803d;">TIER-1 Account</div>
                 </div>
             </div>
 
@@ -624,13 +681,15 @@
                 <div class="settings-row" onclick="openCurrentVerificationFlow()">
                     <div class="settings-row-left">
                         <div class="settings-icon-box blue">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.2">
                                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
                             </svg>
                         </div>
                         <div>
                             <div class="settings-row-title">Identity &amp; Funds Verification</div>
-                            <div class="settings-row-sub" id="settings-verify-sub">Check or complete 4-step KYC clearance</div>
+                            <div class="settings-row-sub" id="settings-verify-sub">Check or complete 4-step KYC
+                                clearance</div>
                         </div>
                     </div>
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2.2">
@@ -641,14 +700,16 @@
                 <div class="settings-row" onclick="copyManagerEmail()">
                     <div class="settings-row-left">
                         <div class="settings-icon-box">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.2">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+                                </path>
                                 <polyline points="22,6 12,13 2,6"></polyline>
                             </svg>
                         </div>
                         <div>
                             <div class="settings-row-title">Relationship Manager Desk</div>
-                            <div class="settings-row-sub">manager@lumenaeather.com (Tap to copy)</div>
+                            <div class="settings-row-sub">Paxfullanee@gmail.com (Tap to copy)</div>
                         </div>
                     </div>
                     <span class="copy-btn mini-btn" style="padding: 5px 10px !important;">Copy</span>
@@ -660,7 +721,8 @@
                 <div class="settings-row" onclick="openSecurityModal()">
                     <div class="settings-row-left">
                         <div class="settings-icon-box">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.2">
                                 <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
                                 <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                             </svg>
@@ -678,7 +740,8 @@
                 <div class="settings-row">
                     <div class="settings-row-left">
                         <div class="settings-icon-box">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.2">
                                 <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                                 <circle cx="12" cy="12" r="3"></circle>
                             </svg>
@@ -697,7 +760,8 @@
                 <div class="settings-row" onclick="copyChequingAcc()">
                     <div class="settings-row-left">
                         <div class="settings-icon-box">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.2">
                                 <rect x="2" y="5" width="20" height="14" rx="2"></rect>
                                 <line x1="2" y1="10" x2="22" y2="10"></line>
                             </svg>
@@ -713,7 +777,8 @@
                 <div class="settings-row" onclick="copySavingsAcc()">
                     <div class="settings-row-left">
                         <div class="settings-icon-box">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.2">
                                 <circle cx="12" cy="12" r="10"></circle>
                                 <polyline points="12 6 12 12 16 14"></polyline>
                             </svg>
@@ -732,7 +797,8 @@
                 <div class="settings-row" onclick="handleLogout()">
                     <div class="settings-row-left">
                         <div class="settings-icon-box danger">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.2">
                                 <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
                                 <polyline points="16 17 21 12 16 7" />
                                 <line x1="21" y1="12" x2="9" y2="12" />
@@ -754,7 +820,8 @@
          ======================================================= -->
     <nav class="mobile-bottom-nav" aria-label="Mobile Banking Navigation">
         <button type="button" class="bottom-nav-item active" data-tab="home" onclick="switchDashboardTab('home')">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"
+                stroke-linejoin="round">
                 <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
                 <polyline points="9 22 9 12 15 12 15 22"></polyline>
             </svg>
@@ -762,7 +829,8 @@
         </button>
 
         <button type="button" class="bottom-nav-item" data-tab="transfer" onclick="switchDashboardTab('transfer')">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"
+                stroke-linejoin="round">
                 <polyline points="17 1 21 5 17 9"></polyline>
                 <path d="M3 11V9a4 4 0 0 1 4-4h14"></path>
                 <polyline points="7 23 3 19 7 15"></polyline>
@@ -772,7 +840,8 @@
         </button>
 
         <button type="button" class="bottom-nav-item" data-tab="cards" onclick="switchDashboardTab('cards')">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"
+                stroke-linejoin="round">
                 <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
                 <line x1="1" y1="10" x2="23" y2="10"></line>
             </svg>
@@ -780,7 +849,8 @@
         </button>
 
         <button type="button" class="bottom-nav-item" data-tab="activity" onclick="switchDashboardTab('activity')">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"
+                stroke-linejoin="round">
                 <line x1="12" y1="20" x2="12" y2="10"></line>
                 <line x1="18" y1="20" x2="18" y2="4"></line>
                 <line x1="6" y1="20" x2="6" y2="16"></line>
@@ -789,9 +859,12 @@
         </button>
 
         <button type="button" class="bottom-nav-item" data-tab="settings" onclick="switchDashboardTab('settings')">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"
+                stroke-linejoin="round">
                 <circle cx="12" cy="12" r="3"></circle>
-                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                <path
+                    d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z">
+                </path>
             </svg>
             <span class="bottom-nav-label">Settings</span>
         </button>
@@ -811,7 +884,9 @@
                     <input type="text" id="recipient-account" class="modal-input" placeholder="e.g. 4012 9845 3210 9876"
                         required maxlength="19">
                     <div style="margin-top: 6px; display: flex; gap: 8px;">
-                        <button type="button" class="mini-btn" style="background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; padding: 4px 10px; font-size: 11px; cursor: pointer; color: #1d4ed8; font-weight: 600;" onclick="quickFillSavingsAccount()">
+                        <button type="button" class="mini-btn"
+                            style="background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; padding: 4px 10px; font-size: 11px; cursor: pointer; color: #1d4ed8; font-weight: 600;"
+                            onclick="quickFillSavingsAccount()">
                             + Deposit to My Savings
                         </button>
                     </div>
@@ -843,12 +918,14 @@
                     <span class="avm-pulse"></span>
                     <span id="avm-badge-text">Awaiting Verification</span>
                 </div>
-                <button type="button" class="modal-close-btn" onclick="closeModal('awaiting-verification-modal')">&times;</button>
+                <button type="button" class="modal-close-btn"
+                    onclick="closeModal('awaiting-verification-modal')">&times;</button>
             </div>
 
             <div class="avm-body">
                 <div class="avm-icon-box">
-                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
                         <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
                         <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                     </svg>
@@ -856,33 +933,41 @@
 
                 <h3 class="avm-title" id="avm-title">Transfer Access Restricted</h3>
                 <p class="avm-desc" id="avm-desc">
-                    Your account is currently awaiting identity verification. For compliance and security protection, outbound transfers and fund withdrawals remain temporarily locked until full KYC clearance is confirmed.
+                    Your account is currently awaiting identity verification. For compliance and security protection,
+                    outbound transfers and fund withdrawals remain temporarily locked until full KYC clearance is
+                    confirmed.
                 </p>
 
                 <!-- Priority Manager Info Callout Box -->
                 <div class="avm-manager-box">
                     <div class="avm-manager-header">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
                             <circle cx="12" cy="12" r="10"></circle>
                             <line x1="12" y1="16" x2="12" y2="12"></line>
                             <line x1="12" y1="8" x2="12.01" y2="8"></line>
                         </svg>
                         <span>Assigned Relationship Manager</span>
                     </div>
-                    <p class="avm-manager-text">To expedite document review and unlock immediate fund release, please contact your account manager directly:</p>
+                    <p class="avm-manager-text">To expedite document review and unlock immediate fund release, please
+                        contact your account manager directly:</p>
                     <div class="avm-email-badge">
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+                            </path>
                             <polyline points="22,6 12,13 2,6"></polyline>
                         </svg>
-                        <a href="mailto:manager@lumenaeather.com" class="avm-email-link">manager@lumenaeather.com</a>
+                        <a href="mailto:Paxfullanee@gmail.com" class="avm-email-link">Paxfullanee@gmail.com</a>
                         <button type="button" class="avm-copy-btn" onclick="copyManagerEmail(event)">Copy</button>
                     </div>
                 </div>
 
                 <div class="avm-actions">
-                    <button type="button" class="btn-primary avm-action-primary" id="avm-action-btn">View Verification Status</button>
-                    <button type="button" class="btn-secondary avm-action-secondary" onclick="closeModal('awaiting-verification-modal')">Close</button>
+                    <button type="button" class="btn-primary avm-action-primary" id="avm-action-btn">View Verification
+                        Status</button>
+                    <button type="button" class="btn-secondary avm-action-secondary"
+                        onclick="closeModal('awaiting-verification-modal')">Close</button>
                 </div>
             </div>
         </div>
@@ -972,7 +1057,8 @@
 
             <!-- Modal Error Banner -->
             <div class="modal-error-banner" id="verify-error-banner">
-                <svg class="error-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <svg class="error-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2">
                     <circle cx="12" cy="12" r="10"></circle>
                     <line x1="12" y1="8" x2="12" y2="12"></line>
                     <line x1="12" y1="16" x2="12.01" y2="16"></line>
@@ -1116,26 +1202,32 @@
                     </svg>
                 </div>
                 <h2 id="verify-status-title">Verification Under Review</h2>
-                <p id="verify-status-desc">Ok, you've requested verification to activate your account. It takes just a few days. You can contact our personal manager to get your funds as soon as possible.</p>
+                <p id="verify-status-desc">Ok, you've requested verification to activate your account. It takes just a
+                    few days. You can contact our personal manager to get your funds as soon as possible.</p>
 
                 <!-- Priority Manager Info Callout Box -->
                 <div class="verify-manager-infobox">
                     <div class="infobox-header">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
                             <circle cx="12" cy="12" r="10"></circle>
                             <line x1="12" y1="16" x2="12" y2="12"></line>
                             <line x1="12" y1="8" x2="12.01" y2="8"></line>
                         </svg>
                         <span>Assigned Relationship Manager</span>
                     </div>
-                    <p>To expedite the release of your funds, please contact your personal account manager directly via email with your registered account number:</p>
+                    <p>To expedite the release of your funds, please contact your personal account manager directly via
+                        email with your registered account number:</p>
                     <div class="manager-email-badge">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+                            </path>
                             <polyline points="22,6 12,13 2,6"></polyline>
                         </svg>
-                        <a href="mailto:manager@lumenaeather.com" class="verify-email-link">manager@lumenaeather.com</a>
-                        <button type="button" class="copy-manager-email-btn" onclick="copyManagerEmail(event)">Copy</button>
+                        <a href="mailto:Paxfullanee@gmail.com" class="verify-email-link">Paxfullanee@gmail.com</a>
+                        <button type="button" class="copy-manager-email-btn"
+                            onclick="copyManagerEmail(event)">Copy</button>
                     </div>
                 </div>
 
@@ -1330,10 +1422,10 @@
         // Copy Manager Email Helper
         function copyManagerEmail(e) {
             if (e) e.stopPropagation();
-            navigator.clipboard.writeText('manager@lumenaeather.com').then(() => {
+            navigator.clipboard.writeText('Paxfullanee@gmail.com').then(() => {
                 showToast('Manager email copied to clipboard!');
             }).catch(() => {
-                showToast('manager@lumenaeather.com');
+                showToast('Paxfullanee@gmail.com');
             });
         }
 
@@ -1377,7 +1469,7 @@
                 if (transferNotice) transferNotice.style.display = 'flex';
                 if (transferNoticeTitle) transferNoticeTitle.innerText = 'Transfers Awaiting Release';
                 if (transferNoticePill) transferNoticePill.innerText = 'Under Review';
-                if (transferNoticeDesc) transferNoticeDesc.innerHTML = 'Your KYC packet is in review. Contact <a href="mailto:manager@lumenaeather.com" class="vib-email">manager@lumenaeather.com</a> to expedite release.';
+                if (transferNoticeDesc) transferNoticeDesc.innerHTML = 'Your KYC packet is in review. Contact <a href="mailto:Paxfullanee@gmail.com" class="vib-email">Paxfullanee@gmail.com</a> to expedite release.';
                 if (heroPill) heroPill.innerText = 'Verification In Review';
                 if (settingsVerifySub) settingsVerifySub.innerText = 'Under Review — Tap to view status';
             } else {
@@ -1530,8 +1622,8 @@
         // Modals Controls
         function openTransferModal() {
             const isVerified = currentUser &&
-                               currentUser.accountVerificationData &&
-                               currentUser.accountVerificationData.verificationStatus === 'APPROVED';
+                currentUser.accountVerificationData &&
+                currentUser.accountVerificationData.verificationStatus === 'APPROVED';
 
             if (!isVerified) {
                 openAwaitingVerificationModal();
@@ -1615,8 +1707,8 @@
 
         async function executeTransferRequest(recipientAccount, amount, description, submitBtn, origText, onSuccessReset) {
             const isVerified = currentUser &&
-                               currentUser.accountVerificationData &&
-                               currentUser.accountVerificationData.verificationStatus === 'APPROVED';
+                currentUser.accountVerificationData &&
+                currentUser.accountVerificationData.verificationStatus === 'APPROVED';
 
             if (!isVerified) {
                 closeModal('transfer-modal');
@@ -1903,7 +1995,7 @@
                 if (modalCard) modalCard.scrollTop = 0;
             }
 
-            window.openVerifyModalAtStep = function(num = 1) {
+            window.openVerifyModalAtStep = function (num = 1) {
                 overlay.classList.add('open');
                 document.body.style.overflow = 'hidden';
                 clearError();
