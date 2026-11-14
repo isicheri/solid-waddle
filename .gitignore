@@ -2,3 +2,8 @@
 node_modules
 dist
 prisma/*.db
+logs/
+uploads/*
+!uploads/identity-docs/
+uploads/identity-docs/*
+!uploads/identity-docs/.gitkeep
