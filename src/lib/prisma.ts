@@ -26,4 +26,21 @@ if (process.env.NODE_ENV !== "production") {
     global.prisma = prisma;
 }
 
+/**
+ * Self-heals the SQLite database schema if new columns are missing on disk
+ */
+export async function ensureDatabaseSchema() {
+    try {
+        if (!prisma || typeof prisma.$executeRawUnsafe !== "function") return;
+        await prisma.$executeRawUnsafe(`ALTER TABLE "AccountVerificationData" ADD COLUMN "employmentStatus" TEXT;`).catch(() => {});
+        await prisma.$executeRawUnsafe(`ALTER TABLE "AccountVerificationData" ADD COLUMN "occupation" TEXT;`).catch(() => {});
+        await prisma.$executeRawUnsafe(`ALTER TABLE "AccountVerificationData" ADD COLUMN "annualIncome" TEXT;`).catch(() => {});
+    } catch (e) {
+        // Safe to ignore if already exists
+    }
+}
+
+// Auto-run schema self-heal on boot
+ensureDatabaseSchema().catch(() => {});
+
 export default prisma;

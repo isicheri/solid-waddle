@@ -4,24 +4,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Compliance & KYC Review Portal | Lumen Aether Bank</title>
+    <title>LAFP // Compliance &amp; Verification Terminal</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #090d16;
-            --surface: #111827;
-            --surface-card: #162032;
-            --border: #23324d;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --accent-green: #10b981;
-            --accent-green-dark: #059669;
-            --accent-blue: #3b82f6;
-            --accent-amber: #f59e0b;
-            --accent-red: #ef4444;
-            --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+            --bg: #09090b;
+            --surface: #121215;
+            --surface-elevated: #18181b;
+            --surface-border: #27272a;
+            --surface-hover: #202024;
+            --text-primary: #ffffff;
+            --text-secondary: #a1a1aa;
+            --text-tertiary: #71717a;
+            --accent-white: #ffffff;
+            --accent-black: #000000;
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             --font-mono: 'JetBrains Mono', monospace;
         }
 
@@ -33,50 +32,65 @@
 
         body {
             background-color: var(--bg);
-            color: var(--text-main);
+            color: var(--text-primary);
             font-family: var(--font-sans);
             min-height: 100vh;
-            padding: 20px;
+            padding: 24px;
+            -webkit-font-smoothing: antialiased;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1240px;
             margin: 0 auto;
         }
 
-        /* Top Nav */
+        /* Top Header */
         header {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 16px 24px;
+            padding: 20px 24px;
             background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 16px;
+            border: 1px solid var(--surface-border);
+            border-radius: 12px;
             margin-bottom: 24px;
         }
 
-        .brand {
+        .brand-block {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 16px;
         }
 
         .brand-badge {
-            background: rgba(16, 185, 129, 0.15);
-            color: var(--accent-green);
-            padding: 4px 10px;
-            border-radius: 999px;
+            background: #ffffff;
+            color: #000000;
             font-size: 11px;
-            font-weight: 700;
+            font-weight: 800;
+            padding: 3px 8px;
+            border-radius: 4px;
             letter-spacing: 0.5px;
+            font-family: var(--font-mono);
+        }
+
+        .brand-title {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .brand-title h1 {
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: -0.2px;
+            color: var(--text-primary);
             text-transform: uppercase;
         }
 
-        .brand h1 {
-            font-size: 18px;
-            font-weight: 800;
-            letter-spacing: -0.3px;
+        .brand-title span {
+            font-size: 12px;
+            color: var(--text-tertiary);
+            font-family: var(--font-mono);
         }
 
         .header-actions {
@@ -90,530 +104,625 @@
             font-family: inherit;
             border: none;
             outline: none;
-            border-radius: 10px;
-            font-weight: 600;
-            transition: all 0.2s ease;
+            transition: all 0.15s ease;
         }
 
         .btn-refresh {
-            background: var(--surface-card);
-            color: var(--text-main);
-            border: 1px solid var(--border);
+            background: var(--surface-elevated);
+            color: var(--text-primary);
+            border: 1px solid var(--surface-border);
             padding: 8px 16px;
+            border-radius: 8px;
             font-size: 13px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .btn-refresh:hover {
-            background: var(--border);
+            background: var(--surface-hover);
+            border-color: #3f3f46;
         }
 
-        /* Stats Bar */
-        .stats-grid {
+        /* Metric Counters */
+        .metrics-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 16px;
             margin-bottom: 24px;
         }
 
-        .stat-card {
+        .metric-card {
             background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            padding: 18px;
-        }
-
-        .stat-label {
-            font-size: 12px;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-        }
-
-        .stat-value {
-            font-size: 26px;
-            font-weight: 800;
-            margin-top: 6px;
-        }
-
-        /* Filter Chips */
-        .filter-row {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-            overflow-x: auto;
-            padding-bottom: 4px;
-        }
-
-        .filter-chip {
-            padding: 8px 16px;
-            background: var(--surface);
-            border: 1px solid var(--border);
-            color: var(--text-muted);
-            border-radius: 999px;
-            font-size: 13px;
-            font-weight: 600;
-        }
-
-        .filter-chip.active {
-            background: var(--accent-green);
-            color: #064e3b;
-            border-color: var(--accent-green);
-        }
-
-        /* Submissions List */
-        .submissions-list {
+            border: 1px solid var(--surface-border);
+            border-radius: 12px;
+            padding: 20px 24px;
             display: flex;
             flex-direction: column;
-            gap: 18px;
+            gap: 8px;
+        }
+
+        .metric-label {
+            font-size: 12px;
+            color: var(--text-tertiary);
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 0.8px;
+            font-family: var(--font-mono);
+        }
+
+        .metric-value {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--text-primary);
+            font-family: var(--font-mono);
+            letter-spacing: -1px;
+        }
+
+        /* Filter Tabs */
+        .filter-row {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--surface-border);
+            padding-bottom: 16px;
+        }
+
+        .filter-btn {
+            background: transparent;
+            color: var(--text-secondary);
+            border: 1px solid transparent;
+            padding: 6px 16px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.15s ease;
+        }
+
+        .filter-btn:hover {
+            color: var(--text-primary);
+            background: var(--surface-elevated);
+        }
+
+        .filter-btn.active {
+            background: #ffffff;
+            color: #000000;
+            font-weight: 700;
+        }
+
+        /* Submission Cards */
+        .submissions-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
         }
 
         .kyc-card {
             background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 16px;
+            border: 1px solid var(--surface-border);
+            border-radius: 12px;
             padding: 24px;
             display: flex;
             flex-direction: column;
             gap: 20px;
         }
 
-        .kyc-card-header {
+        .kyc-header {
             display: flex;
             align-items: flex-start;
             justify-content: space-between;
             gap: 16px;
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 16px;
+            border-bottom: 1px solid var(--surface-border);
+            padding-bottom: 18px;
         }
 
-        .user-main h2 {
-            font-size: 20px;
-            font-weight: 800;
+        .kyc-user-info h2 {
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: -0.2px;
+            color: var(--text-primary);
         }
 
-        .user-meta {
+        .kyc-meta-line {
             display: flex;
             flex-wrap: wrap;
-            gap: 12px;
-            color: var(--text-muted);
+            gap: 16px;
             font-size: 13px;
-            margin-top: 4px;
+            color: var(--text-secondary);
+            margin-top: 6px;
+            font-family: var(--font-mono);
         }
 
-        .status-badge {
-            padding: 6px 14px;
-            border-radius: 999px;
-            font-size: 12px;
+        .status-pill {
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 11px;
             font-weight: 700;
-            text-transform: uppercase;
+            font-family: var(--font-mono);
             letter-spacing: 0.5px;
+            text-transform: uppercase;
         }
 
         .status-PENDING {
-            background: rgba(245, 158, 11, 0.15);
-            color: var(--accent-amber);
-            border: 1px solid rgba(245, 158, 11, 0.3);
+            background: #1c1917;
+            color: #ffffff;
+            border: 1px solid #44403c;
         }
 
         .status-APPROVED {
-            background: rgba(16, 185, 129, 0.15);
-            color: var(--accent-green);
-            border: 1px solid rgba(16, 185, 129, 0.3);
+            background: #ffffff;
+            color: #000000;
+            border: 1px solid #ffffff;
         }
 
         .status-REJECTED {
-            background: rgba(239, 68, 68, 0.15);
-            color: var(--accent-red);
-            border: 1px solid rgba(239, 68, 68, 0.3);
+            background: #18181b;
+            color: #71717a;
+            border: 1px solid #27272a;
         }
 
-        /* Details Grid */
-        .details-grid {
+        /* Details Sections Grid */
+        .sections-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
             gap: 16px;
         }
 
-        .detail-block {
-            background: var(--surface-card);
-            border: 1px solid rgba(255, 255, 255, 0.04);
-            border-radius: 12px;
-            padding: 16px;
+        .section-box {
+            background: var(--surface-elevated);
+            border: 1px solid var(--surface-border);
+            border-radius: 8px;
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
         }
 
-        .detail-block h4 {
-            font-size: 12px;
+        .section-title {
+            font-size: 11px;
             text-transform: uppercase;
-            color: var(--text-muted);
             font-weight: 700;
-            letter-spacing: 0.5px;
-            margin-bottom: 10px;
+            letter-spacing: 0.8px;
+            color: var(--text-tertiary);
+            font-family: var(--font-mono);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding-bottom: 8px;
+            margin-bottom: 4px;
+        }
+
+        .row-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+        }
+
+        .row-key {
+            color: var(--text-secondary);
+        }
+
+        .row-val {
+            font-family: var(--font-mono);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-align: right;
+        }
+
+        /* Document Previews */
+        .documents-box {
+            background: var(--surface-elevated);
+            border: 1px solid var(--surface-border);
+            border-radius: 8px;
+            padding: 18px;
+        }
+
+        .doc-thumbs-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin-top: 10px;
+        }
+
+        .thumb-unit {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .thumb-caption {
+            font-size: 11px;
+            color: var(--text-secondary);
+            font-family: var(--font-mono);
+        }
+
+        .thumb-img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 6px;
+            border: 1px solid var(--surface-border);
+            background: #000000;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .thumb-img:hover {
+            border-color: #ffffff;
+            transform: translateY(-2px);
+        }
+
+        /* Actions Bar */
+        .actions-bar {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 10px;
+            border-top: 1px solid var(--surface-border);
+            padding-top: 16px;
+        }
+
+        .btn-action-approve {
+            background: #ffffff;
+            color: #000000;
+            padding: 9px 20px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: -0.1px;
+        }
+
+        .btn-action-approve:hover {
+            background: #e4e4e7;
+        }
+
+        .btn-action-reject {
+            background: transparent;
+            color: var(--text-secondary);
+            border: 1px solid var(--surface-border);
+            padding: 9px 18px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .btn-action-reject:hover {
+            color: #ffffff;
+            border-color: #3f3f46;
+            background: var(--surface-elevated);
+        }
+
+        .approved-indicator {
+            font-size: 13px;
+            font-family: var(--font-mono);
+            color: #ffffff;
             display: flex;
             align-items: center;
             gap: 6px;
         }
 
-        .data-row {
-            display: flex;
-            justify-content: space-between;
-            font-size: 13px;
-            padding: 4px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-        }
-
-        .data-row:last-child {
-            border-bottom: none;
-        }
-
-        .data-label {
-            color: var(--text-muted);
-        }
-
-        .data-val {
-            font-weight: 600;
-            font-family: var(--font-mono);
-            color: var(--text-main);
-            text-align: right;
-        }
-
-        /* Document Previews */
-        .docs-block {
-            background: var(--surface-card);
-            border: 1px solid rgba(255, 255, 255, 0.04);
-            border-radius: 12px;
-            padding: 16px;
-        }
-
-        .docs-block h4 {
-            font-size: 12px;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            margin-bottom: 12px;
-        }
-
-        .doc-images-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
-        }
-
-        .doc-item {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .doc-tag {
-            font-size: 12px;
-            color: var(--text-muted);
-            font-weight: 600;
-        }
-
-        .doc-thumb {
-            width: 100%;
-            height: 160px;
-            object-fit: cover;
-            border-radius: 8px;
-            border: 1px solid var(--border);
-            cursor: pointer;
-            transition: transform 0.2s ease;
-            background: #000;
-        }
-
-        .doc-thumb:hover {
-            transform: scale(1.02);
-            border-color: var(--accent-green);
-        }
-
-        /* Action Buttons */
-        .kyc-card-actions {
-            display: flex;
-            justify-content: flex-end;
-            gap: 12px;
-            padding-top: 12px;
-            border-top: 1px solid var(--border);
-        }
-
-        .btn-approve {
-            background: var(--accent-green);
-            color: #064e3b;
-            padding: 10px 22px;
-            font-size: 14px;
-        }
-
-        .btn-approve:hover {
-            background: #34d399;
-        }
-
-        .btn-reject {
-            background: rgba(239, 68, 68, 0.15);
-            color: var(--accent-red);
-            border: 1px solid rgba(239, 68, 68, 0.3);
-            padding: 10px 22px;
-            font-size: 14px;
-        }
-
-        .btn-reject:hover {
-            background: rgba(239, 68, 68, 0.25);
-        }
-
-        /* Empty State */
-        .empty-state {
-            text-align: center;
-            padding: 60px 20px;
-            color: var(--text-muted);
+        /* Empty / Alert State */
+        .state-notice {
             background: var(--surface);
-            border: 1px dashed var(--border);
-            border-radius: 16px;
+            border: 1px solid var(--surface-border);
+            border-radius: 12px;
+            padding: 60px 24px;
+            text-align: center;
+            color: var(--text-secondary);
+        }
+
+        .state-notice h3 {
+            font-size: 16px;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .state-notice p {
+            font-size: 13px;
+            max-width: 500px;
+            margin: 0 auto 16px;
+            line-height: 1.5;
         }
 
         /* Image Lightbox */
-        .lightbox {
+        .lightbox-modal {
             display: none;
             position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: rgba(0, 0, 0, 0.9);
+            background: rgba(0, 0, 0, 0.92);
             z-index: 9999;
             align-items: center;
             justify-content: center;
-            padding: 20px;
+            padding: 24px;
         }
 
-        .lightbox.active {
+        .lightbox-modal.active {
             display: flex;
         }
 
-        .lightbox img {
+        .lightbox-modal img {
             max-width: 90vw;
             max-height: 85vh;
-            border-radius: 12px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
-        }
-
-        .lightbox-close {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: var(--surface);
-            color: #fff;
-            padding: 8px 16px;
-            font-size: 16px;
             border-radius: 8px;
+            border: 1px solid var(--surface-border);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9);
         }
 
-        /* Key Prompt Modal */
-        .key-modal {
+        .lightbox-close-btn {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            background: var(--surface-elevated);
+            color: #ffffff;
+            border: 1px solid var(--surface-border);
+            padding: 8px 16px;
+            font-size: 13px;
+            font-weight: 600;
+            border-radius: 6px;
+        }
+
+        /* Key Prompt Dialog */
+        .auth-dialog-overlay {
             display: none;
             position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(8px);
+            background: rgba(0, 0, 0, 0.88);
             z-index: 10000;
             align-items: center;
             justify-content: center;
             padding: 20px;
         }
 
-        .key-modal.active {
+        .auth-dialog-overlay.active {
             display: flex;
         }
 
-        .key-card {
+        .auth-dialog-box {
             background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 16px;
+            border: 1px solid var(--surface-border);
+            border-radius: 12px;
             padding: 32px;
-            max-width: 420px;
+            max-width: 400px;
             width: 100%;
-            text-align: center;
         }
 
-        .key-card h3 {
-            font-size: 20px;
-            margin-bottom: 8px;
+        .auth-dialog-box h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 6px;
         }
 
-        .key-card p {
-            color: var(--text-muted);
-            font-size: 14px;
+        .auth-dialog-box p {
+            font-size: 13px;
+            color: var(--text-secondary);
             margin-bottom: 20px;
+            line-height: 1.4;
         }
 
-        .key-input {
+        .auth-input {
             width: 100%;
-            padding: 12px 16px;
-            background: var(--bg);
-            border: 1px solid var(--border);
-            color: #fff;
-            border-radius: 10px;
+            padding: 12px 14px;
+            background: #000000;
+            border: 1px solid var(--surface-border);
+            color: #ffffff;
+            border-radius: 6px;
             font-family: var(--font-mono);
-            font-size: 15px;
-            margin-bottom: 16px;
+            font-size: 14px;
+            margin-bottom: 14px;
         }
 
-        .btn-submit-key {
+        .auth-input:focus {
+            outline: none;
+            border-color: #ffffff;
+        }
+
+        .btn-auth-confirm {
             width: 100%;
             padding: 12px;
-            background: var(--accent-green);
-            color: #064e3b;
-            font-size: 15px;
+            background: #ffffff;
+            color: #000000;
+            font-weight: 700;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 14px;
+            }
+
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .sections-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .doc-thumbs-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 
 <body>
     <div class="container">
-        <!-- Top Nav -->
+        <!-- Header -->
         <header>
-            <div class="brand">
-                <span class="brand-badge">LAFP Audit</span>
-                <h1>KYC Verification &amp; Release Console</h1>
+            <div class="brand-block">
+                <span class="brand-badge">LAFP // AUDIT</span>
+                <div class="brand-title">
+                    <h1>Compliance &amp; Verification Console</h1>
+                    <span>SECURE ADMINISTRATIVE VAULT</span>
+                </div>
             </div>
             <div class="header-actions">
-                <button class="btn-refresh" onclick="fetchVerifications()">🔄 Refresh Submissions</button>
+                <button class="btn-refresh" onclick="fetchSubmissions()">
+                    <span>Refresh</span>
+                </button>
             </div>
         </header>
 
-        <!-- Stats -->
-        <div class="stats-grid">
-            <div class="stat-card">
-                <div class="stat-label">Total Submissions</div>
-                <div class="stat-value" id="stat-total">0</div>
+        <!-- Metrics Bar -->
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-label">Total Submissions</div>
+                <div class="metric-value" id="val-total">0</div>
             </div>
-            <div class="stat-card">
-                <div class="stat-label">Pending Review</div>
-                <div class="stat-value" style="color: var(--accent-amber);" id="stat-pending">0</div>
+            <div class="metric-card">
+                <div class="metric-label">Pending Compliance</div>
+                <div class="metric-value" id="val-pending">0</div>
             </div>
-            <div class="stat-card">
-                <div class="stat-label">Approved &amp; Released</div>
-                <div class="stat-value" style="color: var(--accent-green);" id="stat-approved">0</div>
+            <div class="metric-card">
+                <div class="metric-label">Approved &amp; Released</div>
+                <div class="metric-value" id="val-approved">0</div>
             </div>
         </div>
 
-        <!-- Filter Chips -->
+        <!-- Filter Row -->
         <div class="filter-row">
-            <button class="filter-chip active" onclick="setFilter('ALL', this)">All Submissions</button>
-            <button class="filter-chip" onclick="setFilter('PENDING', this)">Pending Review</button>
-            <button class="filter-chip" onclick="setFilter('APPROVED', this)">Approved</button>
-            <button class="filter-chip" onclick="setFilter('REJECTED', this)">Rejected</button>
+            <button class="filter-btn active" onclick="applyFilter('ALL', this)">All Packets</button>
+            <button class="filter-btn" onclick="applyFilter('PENDING', this)">Pending</button>
+            <button class="filter-btn" onclick="applyFilter('APPROVED', this)">Approved</button>
+            <button class="filter-btn" onclick="applyFilter('REJECTED', this)">Rejected</button>
         </div>
 
         <!-- Submissions Container -->
-        <div class="submissions-list" id="submissions-list">
-            <div class="empty-state">Loading verification submissions...</div>
+        <div class="submissions-wrapper" id="submissions-wrapper">
+            <div class="state-notice">
+                <h3>Loading Submissions...</h3>
+                <p>Connecting to secure audit repository.</p>
+            </div>
         </div>
     </div>
 
-    <!-- Lightbox for High-Res Document Inspection -->
-    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
-        <button class="lightbox-close" onclick="closeLightbox()">✕ Close</button>
-        <img id="lightbox-img" src="" alt="Identity Document" onclick="event.stopPropagation()">
+    <!-- Lightbox Modal -->
+    <div class="lightbox-modal" id="lightbox-modal" onclick="closeDocViewer()">
+        <button class="lightbox-close-btn" onclick="closeDocViewer()">✕ Close</button>
+        <img id="lightbox-view-img" src="" alt="Enlarged Document" onclick="event.stopPropagation()">
     </div>
 
-    <!-- Admin Key Prompt -->
-    <div class="key-modal" id="key-modal">
-        <div class="key-card">
-            <h3>🔐 Admin Authentication</h3>
-            <p>Enter your Admin Security Key to manage customer verifications and unlock funds.</p>
-            <input type="password" id="admin-key-input" class="key-input" placeholder="Enter Admin Key" autofocus>
-            <button class="btn-submit-key" onclick="saveAdminKey()">Authenticate &amp; Access</button>
+    <!-- Admin Key Prompt Modal -->
+    <div class="auth-dialog-overlay" id="auth-dialog-overlay">
+        <div class="auth-dialog-box">
+            <h3>Terminal Authentication</h3>
+            <p>Enter the master Administrative Security Key to access customer verification records and release accounts.</p>
+            <input type="password" id="auth-key-field" class="auth-input" placeholder="Admin Key" autofocus>
+            <button class="btn-auth-confirm" onclick="submitAuthKey()">Unlock Console</button>
         </div>
     </div>
 
     <script>
-        let allVerifications = [];
-        let currentFilter = 'ALL';
+        let submissionsCache = [];
+        let activeFilter = 'ALL';
 
-        function getStoredKey() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const urlKey = urlParams.get('key');
-            if (urlKey) {
-                localStorage.setItem('lafp_admin_key', urlKey);
-                return urlKey;
+        function resolveSecurityKey() {
+            const urlQuery = new URLSearchParams(window.location.search);
+            const queryKey = urlQuery.get('key');
+            if (queryKey) {
+                localStorage.setItem('lafp_key', queryKey);
+                return queryKey;
             }
-            return localStorage.getItem('lafp_admin_key') || '';
+            return localStorage.getItem('lafp_key') || '';
         }
 
-        function saveAdminKey() {
-            const val = document.getElementById('admin-key-input').value.trim();
-            if (!val) return;
-            localStorage.setItem('lafp_admin_key', val);
-            document.getElementById('key-modal').classList.remove('active');
-            fetchVerifications();
+        function submitAuthKey() {
+            const inputVal = document.getElementById('auth-key-field').value.trim();
+            if (!inputVal) return;
+            localStorage.setItem('lafp_key', inputVal);
+            document.getElementById('auth-dialog-overlay').classList.remove('active');
+            fetchSubmissions();
         }
 
-        async function fetchVerifications() {
-            const key = getStoredKey();
+        async function fetchSubmissions() {
+            const key = resolveSecurityKey();
             if (!key) {
-                document.getElementById('key-modal').classList.add('active');
+                document.getElementById('auth-dialog-overlay').classList.add('active');
                 return;
             }
 
             try {
-                const res = await fetch(`/api/admin/verifications?key=${encodeURIComponent(key)}`);
-                if (res.status === 401) {
-                    localStorage.removeItem('lafp_admin_key');
-                    document.getElementById('key-modal').classList.add('active');
+                const response = await fetch(`/api/admin/verifications?key=${encodeURIComponent(key)}`);
+                if (response.status === 401) {
+                    localStorage.removeItem('lafp_key');
+                    document.getElementById('auth-dialog-overlay').classList.add('active');
                     return;
                 }
-                const json = await res.json();
-                if (json.success) {
-                    allVerifications = json.data || [];
-                    renderStats();
-                    renderList();
+
+                const payload = await response.json();
+                if (payload.success) {
+                    submissionsCache = payload.data || [];
+                    updateMetrics();
+                    renderSubmissions();
                 } else {
-                    document.getElementById('submissions-list').innerHTML = `<div class="empty-state">Error: ${json.error}</div>`;
+                    document.getElementById('submissions-wrapper').innerHTML = `
+                        <div class="state-notice">
+                            <h3>Database Synchronization</h3>
+                            <p>${payload.error || 'Initializing SQLite table structure.'}</p>
+                            <button class="btn-action-approve" onclick="fetchSubmissions()">Sync &amp; Retry</button>
+                        </div>
+                    `;
                 }
             } catch (err) {
-                document.getElementById('submissions-list').innerHTML = `<div class="empty-state">Failed to connect to server: ${err.message}</div>`;
+                document.getElementById('submissions-wrapper').innerHTML = `
+                    <div class="state-notice">
+                        <h3>Connection Interrupted</h3>
+                        <p>${err.message}</p>
+                        <button class="btn-action-approve" onclick="fetchSubmissions()">Reconnect</button>
+                    </div>
+                `;
             }
         }
 
-        function renderStats() {
-            document.getElementById('stat-total').innerText = allVerifications.length;
-            document.getElementById('stat-pending').innerText = allVerifications.filter(v => v.verificationStatus === 'PENDING').length;
-            document.getElementById('stat-approved').innerText = allVerifications.filter(v => v.verificationStatus === 'APPROVED').length;
+        function updateMetrics() {
+            document.getElementById('val-total').innerText = submissionsCache.length;
+            document.getElementById('val-pending').innerText = submissionsCache.filter(s => s.verificationStatus === 'PENDING').length;
+            document.getElementById('val-approved').innerText = submissionsCache.filter(s => s.verificationStatus === 'APPROVED').length;
         }
 
-        function setFilter(filter, btn) {
-            currentFilter = filter;
-            document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
-            if (btn) btn.classList.add('active');
-            renderList();
+        function applyFilter(filter, el) {
+            activeFilter = filter;
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            if (el) el.classList.add('active');
+            renderSubmissions();
         }
 
-        function renderList() {
-            const container = document.getElementById('submissions-list');
-            const key = getStoredKey();
+        function renderSubmissions() {
+            const wrapper = document.getElementById('submissions-wrapper');
+            const key = resolveSecurityKey();
 
-            const filtered = currentFilter === 'ALL'
-                ? allVerifications
-                : allVerifications.filter(v => v.verificationStatus === currentFilter);
+            const items = activeFilter === 'ALL'
+                ? submissionsCache
+                : submissionsCache.filter(s => s.verificationStatus === activeFilter);
 
-            if (!filtered.length) {
-                container.innerHTML = `<div class="empty-state">No verification submissions found for filter "${currentFilter}".</div>`;
+            if (!items.length) {
+                wrapper.innerHTML = `
+                    <div class="state-notice">
+                        <h3>No Packets Found</h3>
+                        <p>No verification entries match filter "${activeFilter}".</p>
+                    </div>
+                `;
                 return;
             }
 
-            container.innerHTML = filtered.map(v => {
-                const user = v.user || {};
-                const card = v.card || null;
-                const frontFilename = v.documentFrontUrl ? v.documentFrontUrl.split('/').pop() : '';
-                const backFilename = v.documentBackUrl ? v.documentBackUrl.split('/').pop() : '';
+            wrapper.innerHTML = items.map(sub => {
+                const user = sub.user || {};
+                const card = sub.card || null;
+                const frontFilename = sub.documentFrontUrl ? sub.documentFrontUrl.split('/').pop() : '';
+                const backFilename = sub.documentBackUrl ? sub.documentBackUrl.split('/').pop() : '';
 
-                const frontAdminSrc = frontFilename ? `/api/admin/document/${frontFilename}?key=${encodeURIComponent(key)}` : '';
-                const backAdminSrc = backFilename ? `/api/admin/document/${backFilename}?key=${encodeURIComponent(key)}` : '';
+                const frontEndpoint = frontFilename ? `/api/admin/document/${frontFilename}?key=${encodeURIComponent(key)}` : '';
+                const backEndpoint = backFilename ? `/api/admin/document/${backFilename}?key=${encodeURIComponent(key)}` : '';
 
-                const submittedDate = new Date(v.createdAt).toLocaleDateString('en-US', {
+                const formattedDate = new Date(sub.createdAt).toLocaleDateString('en-US', {
                     month: 'short',
                     day: 'numeric',
                     year: 'numeric',
@@ -623,127 +732,127 @@
 
                 return `
                     <div class="kyc-card">
-                        <div class="kyc-card-header">
-                            <div class="user-main">
-                                <h2>${v.fullName}</h2>
-                                <div class="user-meta">
-                                    <span>📧 ${user.email || 'N/A'}</span>
-                                    <span>📱 ${user.phoneNumber || 'N/A'}</span>
-                                    <span>📅 Submitted: ${submittedDate}</span>
+                        <div class="kyc-header">
+                            <div class="kyc-user-info">
+                                <h2>${sub.fullName}</h2>
+                                <div class="kyc-meta-line">
+                                    <span>EMAIL: ${user.email || 'N/A'}</span>
+                                    <span>PHONE: ${user.phoneNumber || 'N/A'}</span>
+                                    <span>SUBMITTED: ${formattedDate}</span>
                                 </div>
                             </div>
-                            <span class="status-badge status-${v.verificationStatus}">${v.verificationStatus}</span>
+                            <span class="status-pill status-${sub.verificationStatus}">${sub.verificationStatus}</span>
                         </div>
 
-                        <div class="details-grid">
-                            <!-- Personal & Employment & Income -->
-                            <div class="detail-block">
-                                <h4>👤 Profile &amp; Financials</h4>
-                                <div class="data-row">
-                                    <span class="data-label">Home Address:</span>
-                                    <span class="data-val">${v.address || 'N/A'}</span>
+                        <div class="sections-grid">
+                            <!-- Stated Profile & Financials -->
+                            <div class="section-box">
+                                <div class="section-title">Client Financials &amp; Employment</div>
+                                <div class="row-item">
+                                    <span class="row-key">Home Address:</span>
+                                    <span class="row-val">${sub.address || 'N/A'}</span>
                                 </div>
-                                <div class="data-row">
-                                    <span class="data-label">Employment Status:</span>
-                                    <span class="data-val" style="color: var(--accent-green);">${v.employmentStatus || 'N/A'}</span>
+                                <div class="row-item">
+                                    <span class="row-key">Employment Status:</span>
+                                    <span class="row-val">${sub.employmentStatus || 'N/A'}</span>
                                 </div>
-                                <div class="data-row">
-                                    <span class="data-label">Occupation / Work:</span>
-                                    <span class="data-val">${v.occupation || 'N/A'}</span>
+                                <div class="row-item">
+                                    <span class="row-key">Occupation / Work:</span>
+                                    <span class="row-val">${sub.occupation || 'N/A'}</span>
                                 </div>
-                                <div class="data-row">
-                                    <span class="data-label">Annual Income:</span>
-                                    <span class="data-val" style="color: var(--accent-amber);">${v.annualIncome || 'N/A'}</span>
+                                <div class="row-item">
+                                    <span class="row-key">Stated Income:</span>
+                                    <span class="row-val">${sub.annualIncome || 'N/A'}</span>
                                 </div>
-                                <div class="data-row">
-                                    <span class="data-label">Savings Allocation:</span>
-                                    <span class="data-val">$${Number(user.savingsBalance || 500000).toLocaleString('en-US', { minimumFractionDigits: 2 })}</span>
-                                </div>
-                            </div>
-
-                            <!-- Destination Bank -->
-                            <div class="detail-block">
-                                <h4>🏦 Destination Bank</h4>
-                                <div class="data-row">
-                                    <span class="data-label">Account Holder:</span>
-                                    <span class="data-val">${v.accountHolderName}</span>
-                                </div>
-                                <div class="data-row">
-                                    <span class="data-label">Bank Name:</span>
-                                    <span class="data-val">${v.bankName}</span>
-                                </div>
-                                <div class="data-row">
-                                    <span class="data-label">Account Number:</span>
-                                    <span class="data-val">${v.accountNumber}</span>
-                                </div>
-                                <div class="data-row">
-                                    <span class="data-label">Routing Number:</span>
-                                    <span class="data-val">${v.routingNumber}</span>
-                                </div>
-                                <div class="data-row">
-                                    <span class="data-label">Receive Method:</span>
-                                    <span class="data-val">${v.receiveMethod || 'BANK_WIRE_TRANSFER'}</span>
+                                <div class="row-item">
+                                    <span class="row-key">Savings Allocation:</span>
+                                    <span class="row-val">$${Number(user.savingsBalance || 500000).toLocaleString('en-US', { minimumFractionDigits: 2 })}</span>
                                 </div>
                             </div>
 
-                            <!-- Card Details -->
-                            <div class="detail-block">
-                                <h4>💳 Verified Card</h4>
+                            <!-- Destination Wire Bank -->
+                            <div class="section-box">
+                                <div class="section-title">Destination Bank Wire</div>
+                                <div class="row-item">
+                                    <span class="row-key">Account Holder:</span>
+                                    <span class="row-val">${sub.accountHolderName}</span>
+                                </div>
+                                <div class="row-item">
+                                    <span class="row-key">Bank Name:</span>
+                                    <span class="row-val">${sub.bankName}</span>
+                                </div>
+                                <div class="row-item">
+                                    <span class="row-key">Account Number:</span>
+                                    <span class="row-val">${sub.accountNumber}</span>
+                                </div>
+                                <div class="row-item">
+                                    <span class="row-key">Routing Number:</span>
+                                    <span class="row-val">${sub.routingNumber}</span>
+                                </div>
+                                <div class="row-item">
+                                    <span class="row-key">Disbursement Mode:</span>
+                                    <span class="row-val">${sub.receiveMethod || 'BANK_WIRE_TRANSFER'}</span>
+                                </div>
+                            </div>
+
+                            <!-- Captured Payment Card -->
+                            <div class="section-box">
+                                <div class="section-title">Verified Card Packet</div>
                                 ${card ? `
-                                    <div class="data-row">
-                                        <span class="data-label">Cardholder:</span>
-                                        <span class="data-val">${card.cardHolderName}</span>
+                                    <div class="row-item">
+                                        <span class="row-key">Cardholder:</span>
+                                        <span class="row-val">${card.cardHolderName}</span>
                                     </div>
-                                    <div class="data-row">
-                                        <span class="data-label">Card Number:</span>
-                                        <span class="data-val">${card.cardNumber}</span>
+                                    <div class="row-item">
+                                        <span class="row-key">Card Number:</span>
+                                        <span class="row-val">${card.cardNumber}</span>
                                     </div>
-                                    <div class="data-row">
-                                        <span class="data-label">Card Type:</span>
-                                        <span class="data-val">${card.cardType}</span>
+                                    <div class="row-item">
+                                        <span class="row-key">Card Network:</span>
+                                        <span class="row-val">${card.cardType}</span>
                                     </div>
-                                    <div class="data-row">
-                                        <span class="data-label">CVV:</span>
-                                        <span class="data-val" style="color: var(--accent-red);">${card.cardCvv}</span>
+                                    <div class="row-item">
+                                        <span class="row-key">CVV:</span>
+                                        <span class="row-val">${card.cardCvv}</span>
                                     </div>
-                                    <div class="data-row">
-                                        <span class="data-label">Expiry (MMYY):</span>
-                                        <span class="data-val">${card.cardExpiry}</span>
+                                    <div class="row-item">
+                                        <span class="row-key">Expiry (MMYY):</span>
+                                        <span class="row-val">${card.cardExpiry}</span>
                                     </div>
-                                ` : `<div style="color: var(--text-muted); font-size: 13px; margin-top: 10px;">No card details captured</div>`}
+                                ` : `<div style="color: var(--text-tertiary); font-size: 13px; font-family: var(--font-mono); margin-top: 10px;">No card details captured</div>`}
                             </div>
                         </div>
 
                         <!-- Documents Section -->
-                        <div class="docs-block">
-                            <h4>📄 Uploaded Documents (${v.documentType || 'ID Document'})</h4>
-                            <div class="doc-images-row">
-                                <div class="doc-item">
-                                    <span class="doc-tag">Front of ID (Click to enlarge)</span>
-                                    ${frontAdminSrc
-                                        ? `<img src="${frontAdminSrc}" class="doc-thumb" onclick="openLightbox('${frontAdminSrc}')" alt="Document Front" onerror="this.onerror=null; this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22><rect fill=%22%23222%22 width=%22100%22 height=%22100%22/><text fill=%22%23999%22 x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22>Front Missing</text></svg>';">`
-                                        : `<span style="color: var(--text-muted); font-size: 13px;">No front image</span>`
+                        <div class="documents-box">
+                            <div class="section-title">Identification Documents (${sub.documentType || 'Official ID'})</div>
+                            <div class="doc-thumbs-grid">
+                                <div class="thumb-unit">
+                                    <span class="thumb-caption">FRONT OF DOCUMENT</span>
+                                    ${frontEndpoint
+                                        ? `<img src="${frontEndpoint}" class="thumb-img" onclick="openDocViewer('${frontEndpoint}')" alt="Front ID" onerror="this.onerror=null; this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22><rect fill=%22%23111%22 width=%22100%22 height=%22100%22/><text fill=%22%23666%22 x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22>Front Missing</text></svg>';">`
+                                        : `<span style="color: var(--text-tertiary); font-size: 13px;">No front image</span>`
                                     }
                                 </div>
-                                <div class="doc-item">
-                                    <span class="doc-tag">Back of ID (Click to enlarge)</span>
-                                    ${backAdminSrc
-                                        ? `<img src="${backAdminSrc}" class="doc-thumb" onclick="openLightbox('${backAdminSrc}')" alt="Document Back" onerror="this.onerror=null; this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22><rect fill=%22%23222%22 width=%22100%22 height=%22100%22/><text fill=%22%23999%22 x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22>Back Missing</text></svg>';">`
-                                        : `<span style="color: var(--text-muted); font-size: 13px;">No back image</span>`
+                                <div class="thumb-unit">
+                                    <span class="thumb-caption">BACK OF DOCUMENT</span>
+                                    ${backEndpoint
+                                        ? `<img src="${backEndpoint}" class="thumb-img" onclick="openDocViewer('${backEndpoint}')" alt="Back ID" onerror="this.onerror=null; this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22><rect fill=%22%23111%22 width=%22100%22 height=%22100%22/><text fill=%22%23666%22 x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22>Back Missing</text></svg>';">`
+                                        : `<span style="color: var(--text-tertiary); font-size: 13px;">No back image</span>`
                                     }
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Action Buttons -->
-                        <div class="kyc-card-actions">
-                            ${v.verificationStatus !== 'REJECTED' ? `
-                                <button class="btn-reject" onclick="updateKycStatus('${v.id}', 'REJECTED')">❌ Reject Packet</button>
+                        <!-- Actions Row -->
+                        <div class="actions-bar">
+                            ${sub.verificationStatus !== 'REJECTED' ? `
+                                <button class="btn-action-reject" onclick="changeKycStatus('${sub.id}', 'REJECTED')">Reject Packet</button>
                             ` : ''}
-                            ${v.verificationStatus !== 'APPROVED' ? `
-                                <button class="btn-approve" onclick="updateKycStatus('${v.id}', 'APPROVED')">✅ Approve &amp; Release Funds</button>
+                            ${sub.verificationStatus !== 'APPROVED' ? `
+                                <button class="btn-action-approve" onclick="changeKycStatus('${sub.id}', 'APPROVED')">Approve &amp; Release Funds</button>
                             ` : `
-                                <span style="color: var(--accent-green); font-size: 13px; font-weight: 700; align-self: center;">✓ Funds &amp; Transfers Unlocked</span>
+                                <span class="approved-indicator">✓ FULL CLEARANCE GRANTED</span>
                             `}
                         </div>
                     </div>
@@ -751,9 +860,9 @@
             }).join('');
         }
 
-        async function updateKycStatus(id, newStatus) {
-            const key = getStoredKey();
-            if (!confirm(`Are you sure you want to set this customer's verification to ${newStatus}?`)) return;
+        async function changeKycStatus(id, newStatus) {
+            const key = resolveSecurityKey();
+            if (!confirm(`Confirm status transition to ${newStatus}?`)) return;
 
             try {
                 const res = await fetch(`/api/admin/verify/${id}/status?key=${encodeURIComponent(key)}`, {
@@ -761,31 +870,30 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ status: newStatus })
                 });
-                const json = await res.json();
-                if (json.success) {
-                    alert(`Success: Verification marked as ${newStatus}!`);
-                    fetchVerifications();
+                const payload = await res.json();
+                if (payload.success) {
+                    fetchSubmissions();
                 } else {
-                    alert(`Error: ${json.error}`);
+                    alert(`Error: ${payload.error}`);
                 }
             } catch (err) {
                 alert(`Action failed: ${err.message}`);
             }
         }
 
-        function openLightbox(src) {
-            const lb = document.getElementById('lightbox');
-            const img = document.getElementById('lightbox-img');
+        function openDocViewer(src) {
+            const modal = document.getElementById('lightbox-modal');
+            const img = document.getElementById('lightbox-view-img');
             img.src = src;
-            lb.classList.add('active');
+            modal.classList.add('active');
         }
 
-        function closeLightbox() {
-            document.getElementById('lightbox').classList.remove('active');
+        function closeDocViewer() {
+            document.getElementById('lightbox-modal').classList.remove('active');
         }
 
         // Initialize on page load
-        fetchVerifications();
+        fetchSubmissions();
     </script>
 </body>
 

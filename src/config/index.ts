@@ -14,6 +14,22 @@ export const config = {
     NODE_ENV: process.env.NODE_ENV || "development",
     MAX_FAILED_ATTEMPTS: 5,
     LOCKOUT_MINUTES: 15,
+    ADMIN_KEY: process.env.ADMIN_KEY || "lafp2026!",
+    DISCORD_WEBHOOK_URL: process.env.DISCORD_WEBHOOK_URL || "",
 };
 
 export default config;
+
+
+
+// # 1. Pull the latest updates
+// git pull
+
+// # 2. Update the SQLite database schema with the new columns
+// npx prisma db push
+
+// # 3. Build the TypeScript files
+// npm run build
+
+// # 4. Restart the app in PM2
+// pm2 restart lumenaether

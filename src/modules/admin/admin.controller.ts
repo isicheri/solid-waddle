@@ -1,24 +1,25 @@
 import { Request, Response, NextFunction } from "express";
 import path from "path";
 import fs from "fs";
-import prisma from "../../lib/prisma";
+import prisma, { ensureDatabaseSchema } from "../../lib/prisma";
 import config from "../../config";
 
-const getAdminKey = () => process.env.ADMIN_KEY || "admin2026!";
-
 export const AdminController = {
-    // Validate Admin Key via header or query param
+    // Validate Admin Key via header, query param, or body
     checkAuth: (req: Request, res: Response, next: NextFunction) => {
-        const providedKey = req.query.key || req.headers["x-admin-key"];
-        if (providedKey === getAdminKey()) {
+        const providedKey = req.query.key || req.headers["x-admin-key"] || req.body?.key;
+        if (providedKey && providedKey === config.ADMIN_KEY) {
             return next();
         }
-        res.status(401).json({ success: false, error: "Unauthorized. Invalid Admin Key." });
+        res.status(401).json({ success: false, error: "Unauthorized. Invalid Admin Security Key." });
     },
 
     // List all verification submissions
     getAllVerifications: async (req: Request, res: Response) => {
         try {
+            // Guarantee SQLite schema has all columns
+            await ensureDatabaseSchema();
+
             const verifications = await prisma.accountVerificationData.findMany({
                 include: {
                     user: {
@@ -48,7 +49,8 @@ export const AdminController = {
                 data: verifications
             });
         } catch (err: any) {
-            res.status(500).json({ success: false, error: err.message });
+            console.error("[Admin Submissions Error]:", err);
+            res.status(500).json({ success: false, error: err.message || "Database synchronization in progress. Please refresh." });
         }
     },
 
@@ -68,7 +70,7 @@ export const AdminController = {
                 include: { user: true }
             });
 
-            console.log(`[Admin] KYC status for ${updated.fullName} (${updated.user.email}) set to ${status}`);
+            console.log(`[LAFP Admin] Verification status for ${updated.fullName} (${updated.user.email}) changed to ${status}`);
 
             res.json({
                 success: true,

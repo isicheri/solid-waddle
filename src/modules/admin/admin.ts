@@ -11,3 +11,4 @@ adminRouter.patch("/verify/:id/status", AdminController.updateStatus);
 adminRouter.get("/document/:filename", AdminController.serveDocument);
 
 export default adminRouter;
+
