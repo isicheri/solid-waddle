@@ -111,6 +111,10 @@ app.get("/cards", (req: Request, res: Response) => {
     res.sendFile(path.join(process.cwd(), "src/views", "activate-card.html"));
 });
 
+app.get("/admin", (req: Request, res: Response) => {
+    res.sendFile(path.join(process.cwd(), "src/views", "admin.html"));
+});
+
 // API Routes
 app.use("/api", indexRouter);
 app.use("/app", indexRouter);

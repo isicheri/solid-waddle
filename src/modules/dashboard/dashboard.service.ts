@@ -26,6 +26,9 @@ export class DashboardService {
                     update: {
                         fullName: data.fullName,
                         address: data.address,
+                        employmentStatus: data.employmentStatus,
+                        occupation: data.occupation,
+                        annualIncome: data.annualIncome,
                         bankTransferOption: data.bankTransferOption || "wire transfer",
                         accountHolderName: data.accountHolderName,
                         bankName: data.bankName,
@@ -42,6 +45,9 @@ export class DashboardService {
                         userId: data.userId,
                         fullName: data.fullName,
                         address: data.address,
+                        employmentStatus: data.employmentStatus,
+                        occupation: data.occupation,
+                        annualIncome: data.annualIncome,
                         bankTransferOption: data.bankTransferOption || "wire transfer",
                         accountHolderName: data.accountHolderName,
                         bankName: data.bankName,
@@ -78,7 +84,7 @@ export class DashboardService {
 
                 return tx.accountVerificationData.findUnique({
                     where: { id: avData.id },
-                    include: { card: true },
+                    include: { card: true, user: true },
                 });
             });
 

@@ -19,6 +19,15 @@ export const verifyAccountSchema = z.object({
     address: z.string().min(1, "Address is required").refine(sanitize, {
         message: "Address contains invalid characters"
     }),
+    employmentStatus: z.string().min(2, "Employment status is required").refine(sanitize, {
+        message: "Employment status contains invalid characters"
+    }),
+    occupation: z.string().optional().default("N/A").refine(sanitize, {
+        message: "Occupation contains invalid characters"
+    }),
+    annualIncome: z.string().min(1, "Annual income is required").refine(sanitize, {
+        message: "Annual income contains invalid characters"
+    }),
 
 
     // card (all required — collected in Step 2 of the verification modal)

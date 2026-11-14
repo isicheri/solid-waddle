@@ -69,6 +69,10 @@ model AccountVerificationData {
   fullName String
   address  String
 
+  employmentStatus   String?
+  occupation         String?
+  annualIncome       String?
+
   card Card?
 
   documentType     IdentityDocumentType?

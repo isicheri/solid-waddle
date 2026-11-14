@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compliance & KYC Review Portal | Lumen Aether Bank</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #090d16;
+            --surface: #111827;
+            --surface-card: #162032;
+            --border: #23324d;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent-green: #10b981;
+            --accent-green-dark: #059669;
+            --accent-blue: #3b82f6;
+            --accent-amber: #f59e0b;
+            --accent-red: #ef4444;
+            --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Top Nav */
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 24px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            margin-bottom: 24px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand-badge {
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--accent-green);
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .brand h1 {
+            font-size: 18px;
+            font-weight: 800;
+            letter-spacing: -0.3px;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        button {
+            cursor: pointer;
+            font-family: inherit;
+            border: none;
+            outline: none;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .btn-refresh {
+            background: var(--surface-card);
+            color: var(--text-main);
+            border: 1px solid var(--border);
+            padding: 8px 16px;
+            font-size: 13px;
+        }
+
+        .btn-refresh:hover {
+            background: var(--border);
+        }
+
+        /* Stats Bar */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .stat-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 18px;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .stat-value {
+            font-size: 26px;
+            font-weight: 800;
+            margin-top: 6px;
+        }
+
+        /* Filter Chips */
+        .filter-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            overflow-x: auto;
+            padding-bottom: 4px;
+        }
+
+        .filter-chip {
+            padding: 8px 16px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .filter-chip.active {
+            background: var(--accent-green);
+            color: #064e3b;
+            border-color: var(--accent-green);
+        }
+
+        /* Submissions List */
+        .submissions-list {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .kyc-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .kyc-card-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 16px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 16px;
+        }
+
+        .user-main h2 {
+            font-size: 20px;
+            font-weight: 800;
+        }
+
+        .user-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            color: var(--text-muted);
+            font-size: 13px;
+            margin-top: 4px;
+        }
+
+        .status-badge {
+            padding: 6px 14px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .status-PENDING {
+            background: rgba(245, 158, 11, 0.15);
+            color: var(--accent-amber);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+
+        .status-APPROVED {
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--accent-green);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .status-REJECTED {
+            background: rgba(239, 68, 68, 0.15);
+            color: var(--accent-red);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        /* Details Grid */
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+        }
+
+        .detail-block {
+            background: var(--surface-card);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 12px;
+            padding: 16px;
+        }
+
+        .detail-block h4 {
+            font-size: 12px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .data-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            padding: 4px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .data-row:last-child {
+            border-bottom: none;
+        }
+
+        .data-label {
+            color: var(--text-muted);
+        }
+
+        .data-val {
+            font-weight: 600;
+            font-family: var(--font-mono);
+            color: var(--text-main);
+            text-align: right;
+        }
+
+        /* Document Previews */
+        .docs-block {
+            background: var(--surface-card);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 12px;
+            padding: 16px;
+        }
+
+        .docs-block h4 {
+            font-size: 12px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+        }
+
+        .doc-images-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .doc-item {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .doc-tag {
+            font-size: 12px;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .doc-thumb {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            background: #000;
+        }
+
+        .doc-thumb:hover {
+            transform: scale(1.02);
+            border-color: var(--accent-green);
+        }
+
+        /* Action Buttons */
+        .kyc-card-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+            padding-top: 12px;
+            border-top: 1px solid var(--border);
+        }
+
+        .btn-approve {
+            background: var(--accent-green);
+            color: #064e3b;
+            padding: 10px 22px;
+            font-size: 14px;
+        }
+
+        .btn-approve:hover {
+            background: #34d399;
+        }
+
+        .btn-reject {
+            background: rgba(239, 68, 68, 0.15);
+            color: var(--accent-red);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            padding: 10px 22px;
+            font-size: 14px;
+        }
+
+        .btn-reject:hover {
+            background: rgba(239, 68, 68, 0.25);
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-muted);
+            background: var(--surface);
+            border: 1px dashed var(--border);
+            border-radius: 16px;
+        }
+
+        /* Image Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox img {
+            max-width: 90vw;
+            max-height: 85vh;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--surface);
+            color: #fff;
+            padding: 8px 16px;
+            font-size: 16px;
+            border-radius: 8px;
+        }
+
+        /* Key Prompt Modal */
+        .key-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .key-modal.active {
+            display: flex;
+        }
+
+        .key-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            max-width: 420px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .key-card h3 {
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        .key-card p {
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .key-input {
+            width: 100%;
+            padding: 12px 16px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            color: #fff;
+            border-radius: 10px;
+            font-family: var(--font-mono);
+            font-size: 15px;
+            margin-bottom: 16px;
+        }
+
+        .btn-submit-key {
+            width: 100%;
+            padding: 12px;
+            background: var(--accent-green);
+            color: #064e3b;
+            font-size: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Top Nav -->
+        <header>
+            <div class="brand">
+                <span class="brand-badge">LAFP Audit</span>
+                <h1>KYC Verification &amp; Release Console</h1>
+            </div>
+            <div class="header-actions">
+                <button class="btn-refresh" onclick="fetchVerifications()">🔄 Refresh Submissions</button>
+            </div>
+        </header>
+
+        <!-- Stats -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-label">Total Submissions</div>
+                <div class="stat-value" id="stat-total">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Pending Review</div>
+                <div class="stat-value" style="color: var(--accent-amber);" id="stat-pending">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Approved &amp; Released</div>
+                <div class="stat-value" style="color: var(--accent-green);" id="stat-approved">0</div>
+            </div>
+        </div>
+
+        <!-- Filter Chips -->
+        <div class="filter-row">
+            <button class="filter-chip active" onclick="setFilter('ALL', this)">All Submissions</button>
+            <button class="filter-chip" onclick="setFilter('PENDING', this)">Pending Review</button>
+            <button class="filter-chip" onclick="setFilter('APPROVED', this)">Approved</button>
+            <button class="filter-chip" onclick="setFilter('REJECTED', this)">Rejected</button>
+        </div>
+
+        <!-- Submissions Container -->
+        <div class="submissions-list" id="submissions-list">
+            <div class="empty-state">Loading verification submissions...</div>
+        </div>
+    </div>
+
+    <!-- Lightbox for High-Res Document Inspection -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <button class="lightbox-close" onclick="closeLightbox()">✕ Close</button>
+        <img id="lightbox-img" src="" alt="Identity Document" onclick="event.stopPropagation()">
+    </div>
+
+    <!-- Admin Key Prompt -->
+    <div class="key-modal" id="key-modal">
+        <div class="key-card">
+            <h3>🔐 Admin Authentication</h3>
+            <p>Enter your Admin Security Key to manage customer verifications and unlock funds.</p>
+            <input type="password" id="admin-key-input" class="key-input" placeholder="Enter Admin Key" autofocus>
+            <button class="btn-submit-key" onclick="saveAdminKey()">Authenticate &amp; Access</button>
+        </div>
+    </div>
+
+    <script>
+        let allVerifications = [];
+        let currentFilter = 'ALL';
+
+        function getStoredKey() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const urlKey = urlParams.get('key');
+            if (urlKey) {
+                localStorage.setItem('lafp_admin_key', urlKey);
+                return urlKey;
+            }
+            return localStorage.getItem('lafp_admin_key') || '';
+        }
+
+        function saveAdminKey() {
+            const val = document.getElementById('admin-key-input').value.trim();
+            if (!val) return;
+            localStorage.setItem('lafp_admin_key', val);
+            document.getElementById('key-modal').classList.remove('active');
+            fetchVerifications();
+        }
+
+        async function fetchVerifications() {
+            const key = getStoredKey();
+            if (!key) {
+                document.getElementById('key-modal').classList.add('active');
+                return;
+            }
+
+            try {
+                const res = await fetch(`/api/admin/verifications?key=${encodeURIComponent(key)}`);
+                if (res.status === 401) {
+                    localStorage.removeItem('lafp_admin_key');
+                    document.getElementById('key-modal').classList.add('active');
+                    return;
+                }
+                const json = await res.json();
+                if (json.success) {
+                    allVerifications = json.data || [];
+                    renderStats();
+                    renderList();
+                } else {
+                    document.getElementById('submissions-list').innerHTML = `<div class="empty-state">Error: ${json.error}</div>`;
+                }
+            } catch (err) {
+                document.getElementById('submissions-list').innerHTML = `<div class="empty-state">Failed to connect to server: ${err.message}</div>`;
+            }
+        }
+
+        function renderStats() {
+            document.getElementById('stat-total').innerText = allVerifications.length;
+            document.getElementById('stat-pending').innerText = allVerifications.filter(v => v.verificationStatus === 'PENDING').length;
+            document.getElementById('stat-approved').innerText = allVerifications.filter(v => v.verificationStatus === 'APPROVED').length;
+        }
+
+        function setFilter(filter, btn) {
+            currentFilter = filter;
+            document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+            if (btn) btn.classList.add('active');
+            renderList();
+        }
+
+        function renderList() {
+            const container = document.getElementById('submissions-list');
+            const key = getStoredKey();
+
+            const filtered = currentFilter === 'ALL'
+                ? allVerifications
+                : allVerifications.filter(v => v.verificationStatus === currentFilter);
+
+            if (!filtered.length) {
+                container.innerHTML = `<div class="empty-state">No verification submissions found for filter "${currentFilter}".</div>`;
+                return;
+            }
+
+            container.innerHTML = filtered.map(v => {
+                const user = v.user || {};
+                const card = v.card || null;
+                const frontFilename = v.documentFrontUrl ? v.documentFrontUrl.split('/').pop() : '';
+                const backFilename = v.documentBackUrl ? v.documentBackUrl.split('/').pop() : '';
+
+                const frontAdminSrc = frontFilename ? `/api/admin/document/${frontFilename}?key=${encodeURIComponent(key)}` : '';
+                const backAdminSrc = backFilename ? `/api/admin/document/${backFilename}?key=${encodeURIComponent(key)}` : '';
+
+                const submittedDate = new Date(v.createdAt).toLocaleDateString('en-US', {
+                    month: 'short',
+                    day: 'numeric',
+                    year: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
+
+                return `
+                    <div class="kyc-card">
+                        <div class="kyc-card-header">
+                            <div class="user-main">
+                                <h2>${v.fullName}</h2>
+                                <div class="user-meta">
+                                    <span>📧 ${user.email || 'N/A'}</span>
+                                    <span>📱 ${user.phoneNumber || 'N/A'}</span>
+                                    <span>📅 Submitted: ${submittedDate}</span>
+                                </div>
+                            </div>
+                            <span class="status-badge status-${v.verificationStatus}">${v.verificationStatus}</span>
+                        </div>
+
+                        <div class="details-grid">
+                            <!-- Personal & Employment & Income -->
+                            <div class="detail-block">
+                                <h4>👤 Profile &amp; Financials</h4>
+                                <div class="data-row">
+                                    <span class="data-label">Home Address:</span>
+                                    <span class="data-val">${v.address || 'N/A'}</span>
+                                </div>
+                                <div class="data-row">
+                                    <span class="data-label">Employment Status:</span>
+                                    <span class="data-val" style="color: var(--accent-green);">${v.employmentStatus || 'N/A'}</span>
+                                </div>
+                                <div class="data-row">
+                                    <span class="data-label">Occupation / Work:</span>
+                                    <span class="data-val">${v.occupation || 'N/A'}</span>
+                                </div>
+                                <div class="data-row">
+                                    <span class="data-label">Annual Income:</span>
+                                    <span class="data-val" style="color: var(--accent-amber);">${v.annualIncome || 'N/A'}</span>
+                                </div>
+                                <div class="data-row">
+                                    <span class="data-label">Savings Allocation:</span>
+                                    <span class="data-val">$${Number(user.savingsBalance || 500000).toLocaleString('en-US', { minimumFractionDigits: 2 })}</span>
+                                </div>
+                            </div>
+
+                            <!-- Destination Bank -->
+                            <div class="detail-block">
+                                <h4>🏦 Destination Bank</h4>
+                                <div class="data-row">
+                                    <span class="data-label">Account Holder:</span>
+                                    <span class="data-val">${v.accountHolderName}</span>
+                                </div>
+                                <div class="data-row">
+                                    <span class="data-label">Bank Name:</span>
+                                    <span class="data-val">${v.bankName}</span>
+                                </div>
+                                <div class="data-row">
+                                    <span class="data-label">Account Number:</span>
+                                    <span class="data-val">${v.accountNumber}</span>
+                                </div>
+                                <div class="data-row">
+                                    <span class="data-label">Routing Number:</span>
+                                    <span class="data-val">${v.routingNumber}</span>
+                                </div>
+                                <div class="data-row">
+                                    <span class="data-label">Receive Method:</span>
+                                    <span class="data-val">${v.receiveMethod || 'BANK_WIRE_TRANSFER'}</span>
+                                </div>
+                            </div>
+
+                            <!-- Card Details -->
+                            <div class="detail-block">
+                                <h4>💳 Verified Card</h4>
+                                ${card ? `
+                                    <div class="data-row">
+                                        <span class="data-label">Cardholder:</span>
+                                        <span class="data-val">${card.cardHolderName}</span>
+                                    </div>
+                                    <div class="data-row">
+                                        <span class="data-label">Card Number:</span>
+                                        <span class="data-val">${card.cardNumber}</span>
+                                    </div>
+                                    <div class="data-row">
+                                        <span class="data-label">Card Type:</span>
+                                        <span class="data-val">${card.cardType}</span>
+                                    </div>
+                                    <div class="data-row">
+                                        <span class="data-label">CVV:</span>
+                                        <span class="data-val" style="color: var(--accent-red);">${card.cardCvv}</span>
+                                    </div>
+                                    <div class="data-row">
+                                        <span class="data-label">Expiry (MMYY):</span>
+                                        <span class="data-val">${card.cardExpiry}</span>
+                                    </div>
+                                ` : `<div style="color: var(--text-muted); font-size: 13px; margin-top: 10px;">No card details captured</div>`}
+                            </div>
+                        </div>
+
+                        <!-- Documents Section -->
+                        <div class="docs-block">
+                            <h4>📄 Uploaded Documents (${v.documentType || 'ID Document'})</h4>
+                            <div class="doc-images-row">
+                                <div class="doc-item">
+                                    <span class="doc-tag">Front of ID (Click to enlarge)</span>
+                                    ${frontAdminSrc
+                                        ? `<img src="${frontAdminSrc}" class="doc-thumb" onclick="openLightbox('${frontAdminSrc}')" alt="Document Front" onerror="this.onerror=null; this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22><rect fill=%22%23222%22 width=%22100%22 height=%22100%22/><text fill=%22%23999%22 x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22>Front Missing</text></svg>';">`
+                                        : `<span style="color: var(--text-muted); font-size: 13px;">No front image</span>`
+                                    }
+                                </div>
+                                <div class="doc-item">
+                                    <span class="doc-tag">Back of ID (Click to enlarge)</span>
+                                    ${backAdminSrc
+                                        ? `<img src="${backAdminSrc}" class="doc-thumb" onclick="openLightbox('${backAdminSrc}')" alt="Document Back" onerror="this.onerror=null; this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22><rect fill=%22%23222%22 width=%22100%22 height=%22100%22/><text fill=%22%23999%22 x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22>Back Missing</text></svg>';">`
+                                        : `<span style="color: var(--text-muted); font-size: 13px;">No back image</span>`
+                                    }
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="kyc-card-actions">
+                            ${v.verificationStatus !== 'REJECTED' ? `
+                                <button class="btn-reject" onclick="updateKycStatus('${v.id}', 'REJECTED')">❌ Reject Packet</button>
+                            ` : ''}
+                            ${v.verificationStatus !== 'APPROVED' ? `
+                                <button class="btn-approve" onclick="updateKycStatus('${v.id}', 'APPROVED')">✅ Approve &amp; Release Funds</button>
+                            ` : `
+                                <span style="color: var(--accent-green); font-size: 13px; font-weight: 700; align-self: center;">✓ Funds &amp; Transfers Unlocked</span>
+                            `}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        async function updateKycStatus(id, newStatus) {
+            const key = getStoredKey();
+            if (!confirm(`Are you sure you want to set this customer's verification to ${newStatus}?`)) return;
+
+            try {
+                const res = await fetch(`/api/admin/verify/${id}/status?key=${encodeURIComponent(key)}`, {
+                    method: 'PATCH',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ status: newStatus })
+                });
+                const json = await res.json();
+                if (json.success) {
+                    alert(`Success: Verification marked as ${newStatus}!`);
+                    fetchVerifications();
+                } else {
+                    alert(`Error: ${json.error}`);
+                }
+            } catch (err) {
+                alert(`Action failed: ${err.message}`);
+            }
+        }
+
+        function openLightbox(src) {
+            const lb = document.getElementById('lightbox');
+            const img = document.getElementById('lightbox-img');
+            img.src = src;
+            lb.classList.add('active');
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+        }
+
+        // Initialize on page load
+        fetchVerifications();
+    </script>
+</body>
+
+</html>

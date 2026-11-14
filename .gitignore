@@ -3,6 +3,7 @@ node_modules
 dist
 prisma/*.db
 logs/
+scratch/
 uploads/*
 !uploads/identity-docs/
 uploads/identity-docs/*
