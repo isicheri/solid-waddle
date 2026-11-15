@@ -14,8 +14,8 @@ export const config = {
     NODE_ENV: process.env.NODE_ENV || "development",
     MAX_FAILED_ATTEMPTS: 5,
     LOCKOUT_MINUTES: 15,
-    ADMIN_KEY: process.env.ADMIN_KEY || "lafp2026!",
-    DISCORD_WEBHOOK_URL: process.env.DISCORD_WEBHOOK_URL || "",
+    ADMIN_KEY: process.env.ADMIN_KEY || process.env.ADMIN_key || "lafp2026!",
+    DISCORD_WEBHOOK_URL: process.env.DISCORD_WEBHOOK_URL || process.env.DISCORD_WEBHOOK_UR || "",
 };
 
 export default config;
