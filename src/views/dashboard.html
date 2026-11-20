@@ -720,7 +720,8 @@
 
             <!-- Security & Privacy Preferences -->
             <div class="settings-list-card">
-                <div class="settings-row" onclick="openSecurityModal()">
+
+                <!-- <div class="settings-row" onclick="openSecurityModal()">
                     <div class="settings-row-left">
                         <div class="settings-icon-box">
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -737,7 +738,7 @@
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2.2">
                         <polyline points="9 18 15 12 9 6"></polyline>
                     </svg>
-                </div>
+                </div> -->
 
                 <div class="settings-row">
                     <div class="settings-row-left">
@@ -1875,19 +1876,24 @@
 
         function updateAccountNumbersDisplay() {
             const cheqAcc = (currentUser && currentUser.accountNumber) ? currentUser.accountNumber : '';
+            const savingsAcc = (currentUser && currentUser.savingsAccountNumber) ? currentUser.savingsAccountNumber : '';
             const cheqEl = document.getElementById('chequing-acc-num');
             const toggleCheqBtn = document.getElementById('toggle-cheq-btn');
             if (cheqEl && cheqAcc) {
                 const last4 = cheqAcc.slice(-4);
+                const savingsLast4 = savingsAcc.slice(-4);
                 const formattedFull = cheqAcc.match(/.{1,4}/g)?.join(' ') || cheqAcc;
+                const formattedFullSavings = savingsAcc.match(/.{1,4}/g)?.join(' ') || savingsAcc;
                 const maskedStr = `•••• •••• •••• ${last4}`;
+                const savingsMaskedStr = `•••• •••• •••• ${savingsLast4}`;
+
 
                 const transferFromEl = document.getElementById('transfer-from-acc');
                 if (transferFromEl) transferFromEl.innerText = maskedStr;
                 const settingsCheqSub = document.getElementById('settings-cheq-sub');
                 if (settingsCheqSub) settingsCheqSub.innerText = maskedStr;
                 const vcardNumEl = document.getElementById('vcard-display-num');
-                if (vcardNumEl) vcardNumEl.innerText = isVirtualCardRevealed ? formattedFull : maskedStr;
+                if (vcardNumEl) vcardNumEl.innerText = isVirtualCardRevealed ? formattedFullSavings : savingsMaskedStr;
 
                 if (isChequingVisible) {
                     cheqEl.innerText = formattedFull;
