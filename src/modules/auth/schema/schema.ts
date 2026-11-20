@@ -53,6 +53,7 @@ export const LoginSchema = z.object({
 
 // Transfer schema for bank dashboard
 export const TransferSchema = z.object({
+    sourceAccount: z.enum(["chequing", "savings"]).default("chequing").optional(),
     recipientAccount: z.string().min(5, "Recipient account number is required").transform((val) => sanitize(val).replace(/\s+/g, '')),
     amount: z.number().positive("Amount must be greater than zero").max(1000000, "Transfer limit exceeded"),
     description: z.string().max(100, "Description cannot exceed 100 characters").optional().transform((v) => v ? sanitize(v) : "Direct Transfer"),

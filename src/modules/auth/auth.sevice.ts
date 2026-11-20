@@ -363,7 +363,7 @@ export class Authservice {
      * Bank fund transfer between accounts (Atomic transaction with audit trail)
      */
     async transfer(senderId: string, input: TransferInput) {
-        const { recipientAccount, amount, description } = input;
+        const { recipientAccount, amount, description, sourceAccount = "chequing" } = input;
 
         // Perform balance check and account transfer atomically
         return await prisma.$transaction(async (tx: any) => {
@@ -390,8 +390,13 @@ export class Authservice {
                 );
             }
 
-            // Transfer to own Savings Account
+            const isSavingsSource = sourceAccount === "savings";
+
+            // Transfer to own Savings Account (only valid from Chequing)
             if (sender.savingsAccountNumber && sender.savingsAccountNumber === recipientAccount) {
+                if (isSavingsSource) {
+                    throw new HttpError('Cannot transfer from Savings to the same Savings account', 400, 'SELF_TRANSFER_FORBIDDEN', null);
+                }
                 if (sender.balance < amount) {
                     throw new HttpError(`Insufficient funds in Chequing. Your Chequing balance is $${sender.balance.toFixed(2)}`, 400, 'INSUFFICIENT_FUNDS', null);
                 }
@@ -425,12 +430,50 @@ export class Authservice {
                 };
             }
 
+            // Transfer to own Chequing Account (from Savings)
             if (sender.accountNumber === recipientAccount) {
-                throw new HttpError('Cannot transfer funds to your own Chequing account', 400, 'SELF_TRANSFER_FORBIDDEN', null);
+                if (!isSavingsSource) {
+                    throw new HttpError('Cannot transfer funds to your own Chequing account from Chequing', 400, 'SELF_TRANSFER_FORBIDDEN', null);
+                }
+                if (sender.savingsBalance < amount) {
+                    throw new HttpError(`Insufficient funds in Savings. Your Savings balance is $${sender.savingsBalance.toFixed(2)}`, 400, 'INSUFFICIENT_FUNDS', null);
+                }
+
+                const updatedSender = await tx.user.update({
+                    where: { id: sender.id },
+                    data: {
+                        savingsBalance: { decrement: amount },
+                        balance: { increment: amount }
+                    }
+                });
+
+                const debitTx = await tx.transaction.create({
+                    data: {
+                        userId: sender.id,
+                        type: "TRANSFER",
+                        title: "Transfer from Savings to Chequing",
+                        category: "Internal Transfer",
+                        amount: amount,
+                        recipient: sender.accountNumber,
+                        status: "COMPLETED"
+                    }
+                });
+
+                return {
+                    success: true,
+                    message: `Successfully transferred $${amount.toFixed(2)} from Savings to your Chequing Account`,
+                    newBalance: updatedSender.balance,
+                    newSavingsBalance: updatedSender.savingsBalance,
+                    transaction: debitTx
+                };
             }
 
-            if (sender.balance < amount) {
-                throw new HttpError(`Insufficient funds. Your current balance is $${sender.balance.toFixed(2)}`, 400, 'INSUFFICIENT_FUNDS', null);
+            // External or Peer Transfer
+            const currentAvailable = isSavingsSource ? sender.savingsBalance : sender.balance;
+            const accountLabel = isSavingsSource ? "High-Yield Savings" : "Primary Chequing";
+
+            if (currentAvailable < amount) {
+                throw new HttpError(`Insufficient funds in ${accountLabel}. Your current balance is $${currentAvailable.toFixed(2)}`, 400, 'INSUFFICIENT_FUNDS', null);
             }
 
             const recipient = await tx.user.findUnique({
@@ -441,10 +484,10 @@ export class Authservice {
                 throw new HttpError(`Recipient account ${recipientAccount} does not exist`, 404, 'RECIPIENT_NOT_FOUND', null);
             }
 
-            // Deduct sender balance
+            // Deduct sender balance from selected account
             const updatedSender = await tx.user.update({
                 where: { id: sender.id },
-                data: { balance: { decrement: amount } }
+                data: isSavingsSource ? { savingsBalance: { decrement: amount } } : { balance: { decrement: amount } }
             });
 
             // Credit recipient balance
@@ -458,7 +501,7 @@ export class Authservice {
                 data: {
                     userId: sender.id,
                     type: "DEBIT",
-                    title: `Transfer to ${recipient.fullName}`,
+                    title: `Transfer to ${recipient.fullName} (${accountLabel})`,
                     category: "Transfer",
                     amount: amount,
                     recipient: recipient.accountNumber,

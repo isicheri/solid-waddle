@@ -388,8 +388,8 @@
 
                 <div class="from-account-box">
                     <div class="from-acc-left">
-                        <span class="from-acc-title">From: Primary Chequing</span>
-                        <span class="from-acc-num" id="transfer-from-acc">•••• •••• •••• 9554</span>
+                        <span class="from-acc-title">From: Savings Account</span>
+                        <span class="from-acc-num" id="transfer-from-acc">•••• •••• •••• ••••</span>
                     </div>
                     <div class="from-acc-bal" id="transfer-from-bal">$0.00</div>
                 </div>
@@ -1411,7 +1411,7 @@
             if (heroCurrEl) heroCurrEl.innerText = currency;
 
             const transferFromBal = document.getElementById('transfer-from-bal');
-            if (transferFromBal) transferFromBal.innerText = formatMoney(cheqBal);
+            if (transferFromBal) transferFromBal.innerText = formatMoney(savBal);
         }
 
         // Render Dashboard Data across all 5 mobile banking tabs
@@ -1568,7 +1568,7 @@
                 if (transferNoticeDesc) transferNoticeDesc.innerText = 'Your KYC packet is undergoing compliance audit for your $500,000.00 savings allocation. Please contact your manager for next steps.';
                 if (heroPill) heroPill.innerText = 'Verification In Review';
                 if (settingsVerifySub) settingsVerifySub.innerText = 'Under Review — Tap to view status';
-                if (settingsManagerSub) settingsManagerSub.innerText = 'Paxfullanee@gmail.com (Tap to copy)';
+                if (settingsManagerSub) settingsManagerSub.innerText = ' (Tap to copy)';
                 if (avmEmailDisplay) avmEmailDisplay.innerHTML = '<a href="mailto:Paxfullanee@gmail.com" class="avm-email-link">Paxfullanee@gmail.com</a>';
                 if (avmCopyBtn) avmCopyBtn.style.display = 'inline-block';
                 if (step6EmailDisplay) step6EmailDisplay.innerHTML = '<a href="mailto:Paxfullanee@gmail.com" class="verify-email-link">Paxfullanee@gmail.com</a>';
@@ -1923,7 +1923,7 @@
 
 
                 const transferFromEl = document.getElementById('transfer-from-acc');
-                if (transferFromEl) transferFromEl.innerText = maskedStr;
+                if (transferFromEl) transferFromEl.innerText = savingsMaskedStr;
                 const settingsCheqSub = document.getElementById('settings-cheq-sub');
                 if (settingsCheqSub) settingsCheqSub.innerText = maskedStr;
                 const vcardNumEl = document.getElementById('vcard-display-num');
