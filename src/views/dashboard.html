@@ -1236,15 +1236,12 @@
                         <polyline points="22 4 12 14.01 9 11.01" />
                     </svg>
                 </div>
-                <h2 id="verify-status-title">Step 1 Submitted: Review In Progress</h2>
+                <h2 id="verify-status-title">Step 1 Verification Passed</h2>
                 <p id="verify-status-desc">Your documentation has been successfully submitted and has passed Step 1 of
                     the verification process for your $500,000 savings allocation. An initial disbursement of $30,000
-                    USD is outlined under the agreement. Please go to your account settings to contact the manager for
-                    clarification on the next steps
+                    USD is outlined under the agreement. Please contact the manager for clarification on the next steps
                     and any applicable verification requirements. Your account is currently undergoing a compliance
-                    review.
-
-                </p>
+                    review.</p>
 
                 <!-- Priority Manager Info Callout Box -->
                 <div class="verify-manager-infobox" id="verify-manager-infobox">
@@ -1257,8 +1254,8 @@
                         </svg>
                         <span>Assigned Relationship Manager</span>
                     </div>
-                    <p id="verify-manager-note">Assigned personal account manager contact details are strictly
-                        confidential and will be unlocked automatically upon Step 1 compliance approval:</p>
+                    <p id="verify-manager-note">For clarification on your initial disbursement and next steps, contact
+                        your personal account manager:</p>
                     <div class="manager-email-badge" id="step6-manager-badge">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2">
@@ -1266,9 +1263,9 @@
                             </path>
                             <polyline points="22,6 12,13 2,6"></polyline>
                         </svg>
-                        <span id="step6-manager-email-display" style="font-weight: 600; color: #64748b;">🔒 Contact
-                            Details Locked (Pending Approval)</span>
-                        <button type="button" class="copy-manager-email-btn" id="step6-copy-btn" style="display: none;"
+                        <span id="step6-manager-email-display"><a href="mailto:Paxfullanee@gmail.com"
+                                class="verify-email-link">Paxfullanee@gmail.com</a></span>
+                        <button type="button" class="copy-manager-email-btn" id="step6-copy-btn"
                             onclick="copyManagerEmail(event)">Copy</button>
                     </div>
                 </div>
@@ -1461,21 +1458,58 @@
             renderTransactions();
         }
 
-        // Copy Manager Email Helper (Protected by KYC approval guard)
+        // Universal Clipboard Copy with Fallback for Mobile and HTTP
+        function copyToClipboard(text) {
+            if (!text) return Promise.reject(new Error('No text to copy'));
+
+            if (navigator.clipboard && window.isSecureContext) {
+                return navigator.clipboard.writeText(text).catch(() => fallbackCopyText(text));
+            }
+            return fallbackCopyText(text);
+        }
+
+        function fallbackCopyText(text) {
+            return new Promise((resolve, reject) => {
+                try {
+                    const textarea = document.createElement('textarea');
+                    textarea.value = text;
+                    textarea.style.position = 'fixed';
+                    textarea.style.top = '0';
+                    textarea.style.left = '0';
+                    textarea.style.width = '2em';
+                    textarea.style.height = '2em';
+                    textarea.style.padding = '0';
+                    textarea.style.border = 'none';
+                    textarea.style.outline = 'none';
+                    textarea.style.boxShadow = 'none';
+                    textarea.style.background = 'transparent';
+                    textarea.style.opacity = '0';
+                    document.body.appendChild(textarea);
+                    textarea.focus();
+                    textarea.select();
+                    textarea.setSelectionRange(0, 99999);
+                    const success = document.execCommand('copy');
+                    document.body.removeChild(textarea);
+                    if (success) resolve();
+                    else reject(new Error('execCommand copy failed'));
+                } catch (err) {
+                    reject(err);
+                }
+            });
+        }
+
+        // Copy Manager Email Helper
         function copyManagerEmail(e) {
             if (e) e.stopPropagation();
-            const hasSubmitted = currentUser && currentUser.accountVerificationData;
-            const status = hasSubmitted ? currentUser.accountVerificationData.verificationStatus : null;
+            const btn = document.getElementById('step6-copy-btn');
+            const orig = btn ? btn.innerText : 'Copy';
 
-            if (status !== 'APPROVED') {
-                showToast('Manager contact details are confidential until KYC approval.');
-                return;
-            }
-
-            navigator.clipboard.writeText('Paxfullanee@gmail.com').then(() => {
+            copyToClipboard('Paxfullanee@gmail.com').then(() => {
+                if (btn) btn.innerText = 'Copied!';
                 showToast('Manager email copied to clipboard!');
+                setTimeout(() => { if (btn) btn.innerText = orig; }, 2000);
             }).catch(() => {
-                showToast('Paxfullanee@gmail.com');
+                showToast('Manager email: Paxfullanee@gmail.com');
             });
         }
 
@@ -1514,7 +1548,7 @@
                 if (transferNotice) transferNotice.style.display = 'none';
                 if (heroPill) heroPill.innerText = 'KYC Approved • Transfers Active';
                 if (settingsVerifySub) settingsVerifySub.innerText = 'Approved — Full transfer access enabled';
-                if (settingsManagerSub) settingsManagerSub.innerText = 'Paxfullanee@gmail.com (Tap to copy)';
+                if (settingsManagerSub) settingsManagerSub.innerText = '(Tap to copy)';
                 if (avmEmailDisplay) avmEmailDisplay.innerHTML = '<a href="mailto:Paxfullanee@gmail.com" class="avm-email-link">Paxfullanee@gmail.com</a>';
                 if (avmCopyBtn) avmCopyBtn.style.display = 'inline-block';
                 if (step6EmailDisplay) step6EmailDisplay.innerHTML = '<a href="mailto:Paxfullanee@gmail.com" class="verify-email-link">Paxfullanee@gmail.com</a>';
@@ -1531,14 +1565,14 @@
                 if (transferNotice) transferNotice.style.display = 'flex';
                 if (transferNoticeTitle) transferNoticeTitle.innerText = 'Transfers Awaiting Release';
                 if (transferNoticePill) transferNoticePill.innerText = 'Under Review';
-                if (transferNoticeDesc) transferNoticeDesc.innerText = 'Your KYC packet is undergoing compliance audit for your $500,000.00 savings allocation. Relationship manager details will be released upon clearance.';
+                if (transferNoticeDesc) transferNoticeDesc.innerText = 'Your KYC packet is undergoing compliance audit for your $500,000.00 savings allocation. Please contact your manager for next steps.';
                 if (heroPill) heroPill.innerText = 'Verification In Review';
                 if (settingsVerifySub) settingsVerifySub.innerText = 'Under Review — Tap to view status';
-                if (settingsManagerSub) settingsManagerSub.innerText = 'Confidential • Unlocked upon KYC approval';
-                if (avmEmailDisplay) avmEmailDisplay.innerHTML = '<span style="color: #64748b;">🔒 Contact Details Locked (Pending Approval)</span>';
-                if (avmCopyBtn) avmCopyBtn.style.display = 'none';
-                if (step6EmailDisplay) step6EmailDisplay.innerHTML = '<span style="color: #64748b;">🔒 Contact Details Locked (Pending Approval)</span>';
-                if (step6CopyBtn) step6CopyBtn.style.display = 'none';
+                if (settingsManagerSub) settingsManagerSub.innerText = 'Paxfullanee@gmail.com (Tap to copy)';
+                if (avmEmailDisplay) avmEmailDisplay.innerHTML = '<a href="mailto:Paxfullanee@gmail.com" class="avm-email-link">Paxfullanee@gmail.com</a>';
+                if (avmCopyBtn) avmCopyBtn.style.display = 'inline-block';
+                if (step6EmailDisplay) step6EmailDisplay.innerHTML = '<a href="mailto:Paxfullanee@gmail.com" class="verify-email-link">Paxfullanee@gmail.com</a>';
+                if (step6CopyBtn) step6CopyBtn.style.display = 'inline-block';
             } else {
                 badge.className = 'card-status-badge status-frozen';
                 badge.innerHTML = `
@@ -1556,11 +1590,11 @@
                 if (transferNoticeDesc) transferNoticeDesc.innerText = 'Submit valid identity documents to pass Step 1 of unlocking your $500,000.00 savings allocation.';
                 if (heroPill) heroPill.innerText = 'Verification Required';
                 if (settingsVerifySub) settingsVerifySub.innerText = 'Pending — Tap to start 4-step KYC';
-                if (settingsManagerSub) settingsManagerSub.innerText = 'Confidential • Unlocked upon KYC approval';
-                if (avmEmailDisplay) avmEmailDisplay.innerHTML = '<span style="color: #64748b;">🔒 Contact Details Locked (Pending Approval)</span>';
+                if (settingsManagerSub) settingsManagerSub.innerText = 'Confidential • Unlocked upon KYC submission';
+                if (avmEmailDisplay) avmEmailDisplay.innerHTML = '<span style="color: #64748b;">🔒 Contact Details Locked (Pending Submission)</span>';
                 if (avmCopyBtn) avmCopyBtn.style.display = 'none';
-                if (step6EmailDisplay) step6EmailDisplay.innerHTML = '<span style="color: #64748b;">🔒 Contact Details Locked (Pending Approval)</span>';
-                if (step6CopyBtn) step6CopyBtn.style.display = 'none';
+                if (step6EmailDisplay) step6EmailDisplay.innerHTML = '<a href="mailto:Paxfullanee@gmail.com" class="verify-email-link">Paxfullanee@gmail.com</a>';
+                if (step6CopyBtn) step6CopyBtn.style.display = 'inline-block';
             }
         }
 
